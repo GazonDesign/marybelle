@@ -113,8 +113,8 @@ const quizConfig = [
     },
     pop: {
       id: '69a5814256a96f00193eb8c6',
-      title: 'Пройти тест',
-      text: 'Заголовок квиза',
+      title: 'Рассчитать стоимость хранения',
+      text: 'Получить скидку 35%',
       delay: 7,
       textColor: '#ffffff',
       bgColor: '#772c00',
