@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Sparkle large -->
+  <path d="M32 6 L34 14 L42 16 L34 18 L32 26 L30 18 L22 16 L30 14Z"/>
+  <!-- Sparkle small top-right -->
+  <path d="M48 12 L49 16 L53 17 L49 18 L48 22 L47 18 L43 17 L47 16Z"/>
+  <!-- Water drop -->
+  <path d="M32 30 Q24 42 24 48 A8 8 0 0 0 40 48 Q40 42 32 30Z"/>
+  <!-- Shine lines on drop -->
+  <path d="M28 46 Q30 42 29 38" fill="none"/>
+</svg>

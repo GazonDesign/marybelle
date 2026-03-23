@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Hands holding/crafting -->
+  <path d="M8 38 Q8 28 18 28 L24 28 Q28 28 28 32 L28 36"/>
+  <path d="M56 38 Q56 28 46 28 L40 28 Q36 28 36 32 L36 36"/>
+  <!-- Diamond/gem (craft symbol) -->
+  <path d="M24 20 L28 12 L36 12 L40 20 L32 30Z"/>
+  <line x1="28" y1="12" x2="24" y2="20"/>
+  <line x1="36" y1="12" x2="40" y2="20"/>
+  <line x1="32" y1="12" x2="32" y2="30"/>
+  <!-- Base/table -->
+  <line x1="8" y1="38" x2="56" y2="38"/>
+  <!-- Fingers detail -->
+  <path d="M22 38 L22 44 Q22 48 26 48 L38 48 Q42 48 42 44 L42 38"/>
+</svg>

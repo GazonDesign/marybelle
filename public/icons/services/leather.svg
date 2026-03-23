@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Leather jacket outline -->
+  <path d="M20 10 L12 20 L8 40 L16 56 L26 56 L28 44 L36 44 L38 56 L48 56 L56 40 L52 20 L44 10"/>
+  <!-- Collar -->
+  <path d="M20 10 Q26 16 32 12 Q38 16 44 10"/>
+  <!-- Zipper line -->
+  <line x1="32" y1="12" x2="32" y2="44"/>
+  <!-- Zipper teeth -->
+  <line x1="30" y1="18" x2="34" y2="18"/>
+  <line x1="30" y1="24" x2="34" y2="24"/>
+  <line x1="30" y1="30" x2="34" y2="30"/>
+  <line x1="30" y1="36" x2="34" y2="36"/>
+  <!-- Pocket -->
+  <path d="M16 32 L24 32 L24 42 L16 40Z"/>
+</svg>

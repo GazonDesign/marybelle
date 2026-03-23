@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Crown -->
+  <path d="M12 36 L8 16 L22 26 L32 10 L42 26 L56 16 L52 36Z"/>
+  <rect x="12" y="36" width="40" height="8" rx="1"/>
+  <!-- Year text area -->
+  <line x1="20" y1="50" x2="44" y2="50"/>
+  <line x1="24" y1="56" x2="40" y2="56"/>
+  <!-- Gems on crown -->
+  <circle cx="32" cy="30" r="2" fill="currentColor"/>
+  <circle cx="22" cy="32" r="1.5" fill="currentColor"/>
+  <circle cx="42" cy="32" r="1.5" fill="currentColor"/>
+</svg>

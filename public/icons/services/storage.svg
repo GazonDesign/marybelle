@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Refrigerator body -->
+  <rect x="14" y="6" width="36" height="52" rx="3"/>
+  <!-- Door split -->
+  <line x1="14" y1="28" x2="50" y2="28"/>
+  <!-- Handle top -->
+  <line x1="42" y1="14" x2="42" y2="22"/>
+  <!-- Handle bottom -->
+  <line x1="42" y1="34" x2="42" y2="42"/>
+  <!-- Snowflake -->
+  <line x1="28" y1="38" x2="28" y2="50"/>
+  <line x1="22" y1="44" x2="34" y2="44"/>
+  <line x1="23" y1="39" x2="33" y2="49"/>
+  <line x1="33" y1="39" x2="23" y2="49"/>
+  <!-- Temperature indicator -->
+  <circle cx="28" cy="17" r="4"/>
+  <path d="M28 13 L28 17 L31 17"/>
+</svg>
