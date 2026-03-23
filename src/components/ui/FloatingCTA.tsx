@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Phone, MessageCircle, X } from 'lucide-react'
-import { getUtm } from '@/lib/utm'
+import { getTracking } from '@/lib/utm'
 import PhoneInput from '@/components/ui/PhoneInput'
 
 export default function FloatingCTA() {
@@ -33,7 +33,7 @@ export default function FloatingCTA() {
           phone: formData.get('phone'),
           source: 'callback',
           page: window.location.pathname,
-          utm: getUtm(),
+          ...getTracking(),
         }),
       })
       if (typeof window !== 'undefined' && (window as any).ym) {

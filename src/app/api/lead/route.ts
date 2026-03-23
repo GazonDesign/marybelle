@@ -27,6 +27,8 @@ interface LeadData {
   source: string // 'contact', 'callback', 'trade-in'
   page?: string
   utm?: UtmData
+  yclid?: string    // Yandex Click ID — for offline conversions
+  clientId?: string // Yandex Metrika ClientID
 }
 
 // Send lead to AmoCRM
@@ -78,7 +80,7 @@ async function sendToAmoCRM(data: LeadData) {
       utm_term: 1030665,
     }
 
-    const trackingFields = data.utm
+    const trackingFields: Array<{ field_id?: number; field_name?: string; values: { value: any }[] }> = data.utm
       ? Object.entries(data.utm)
           .filter(([key, val]) => val && utmFieldIds[key])
           .map(([key, val]) => ({
@@ -92,6 +94,22 @@ async function sendToAmoCRM(data: LeadData) {
       field_id: 1478937, // Источник (URL)
       values: [{ value: data.page || '/' }],
     })
+
+    // yclid — Yandex Click ID for offline conversions
+    if (data.yclid) {
+      trackingFields.push({
+        field_name: 'yclid',
+        values: [{ value: data.yclid }],
+      })
+    }
+
+    // Metrika ClientID
+    if (data.clientId) {
+      trackingFields.push({
+        field_name: 'ClientID',
+        values: [{ value: data.clientId }],
+      })
+    }
 
     const leadBodyJson = JSON.stringify([
       {

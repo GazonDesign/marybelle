@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { MapPin, Phone, Clock } from 'lucide-react'
-import { getUtm } from '@/lib/utm'
+import { getTracking } from '@/lib/utm'
 import PhoneInput from '@/components/ui/PhoneInput'
 
 export default function ContactSection() {
@@ -39,7 +39,7 @@ export default function ContactSection() {
           message: formData.get('message'),
           source: 'contact',
           page: window.location.pathname,
-          utm: getUtm(),
+          ...getTracking(),
         }),
       })
       setFormState('sent')

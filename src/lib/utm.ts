@@ -2,10 +2,18 @@ const UTM_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', '
 
 export type UtmData = Partial<Record<typeof UTM_PARAMS[number], string>>
 
-// Save UTM params from URL to sessionStorage on first visit
+export interface TrackingData {
+  utm: UtmData
+  yclid?: string
+  clientId?: string
+}
+
+// Save UTM params + yclid from URL to sessionStorage on first visit
 export function captureUtm() {
   if (typeof window === 'undefined') return
   const params = new URLSearchParams(window.location.search)
+
+  // Capture UTM
   const hasUtm = UTM_PARAMS.some((p) => params.has(p))
   if (hasUtm) {
     const utm: UtmData = {}
@@ -14,6 +22,28 @@ export function captureUtm() {
       if (val) utm[p] = val
     })
     sessionStorage.setItem('utm', JSON.stringify(utm))
+  }
+
+  // Capture yclid (Yandex Click ID) — crucial for offline conversions
+  const yclid = params.get('yclid')
+  if (yclid) {
+    sessionStorage.setItem('yclid', yclid)
+  }
+}
+
+// Get Yandex Metrika ClientID
+function getClientId(): string | undefined {
+  if (typeof window === 'undefined') return undefined
+  try {
+    const ym = (window as any).ym
+    if (!ym) return undefined
+    let cid: string | undefined
+    ym(108179067, 'getClientID', (clientID: string) => {
+      cid = clientID
+    })
+    return cid
+  } catch {
+    return undefined
   }
 }
 
@@ -25,5 +55,15 @@ export function getUtm(): UtmData {
     return raw ? JSON.parse(raw) : {}
   } catch {
     return {}
+  }
+}
+
+// Get all tracking data for form submissions
+export function getTracking(): TrackingData {
+  if (typeof window === 'undefined') return { utm: {} }
+  return {
+    utm: getUtm(),
+    yclid: sessionStorage.getItem('yclid') || undefined,
+    clientId: getClientId(),
   }
 }

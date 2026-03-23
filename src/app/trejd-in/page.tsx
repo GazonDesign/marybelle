@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { getUtm } from '@/lib/utm'
+import { getTracking } from '@/lib/utm'
 import PhoneInput from '@/components/ui/PhoneInput'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -48,7 +48,7 @@ export default function TrejdInPage() {
           message: formData.get('message'),
           source: 'trade-in',
           page: '/trejd-in',
-          utm: getUtm(),
+          ...getTracking(),
         }),
       })
       if (typeof window !== 'undefined' && (window as any).ym) {
