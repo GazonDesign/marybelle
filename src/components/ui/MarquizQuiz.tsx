@@ -230,10 +230,10 @@ export default function MarquizQuiz() {
       patchNextDomForMarquiz()
 
       if (document.readyState !== 'loading') {
-        Marquiz.init(activeQuiz.init)
+        window.Marquiz!.init(activeQuiz.init)
       } else {
         document.addEventListener('DOMContentLoaded', function () {
-          Marquiz.init(activeQuiz.init)
+          window.Marquiz!.init(activeQuiz.init)
         })
       }
     }
@@ -242,7 +242,7 @@ export default function MarquizQuiz() {
     // --- 2. Код баннера (marquizLoaded — официальный паттерн) ---
     const addPop = () => {
       patchNextDomForMarquiz()
-      Marquiz.add(['Pop', activeQuiz.pop])
+      window.Marquiz!.add(['Pop', activeQuiz.pop])
     }
 
     const onMarquizLoaded = () => addPop()
