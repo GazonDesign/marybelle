@@ -1,7 +1,9 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ProductCard from '@/components/magazin/ProductCard'
 import Link from 'next/link'
 import { Phone } from 'lucide-react'
+import { getProductsByCategory } from '@/data/products'
 
 export const metadata = {
   title: 'Шубы из соболя — Индивидуальный пошив в Москве',
@@ -65,6 +67,34 @@ export default function SobolPage() {
             </div>
           </div>
         </section>
+
+        {/* Готовые изделия */}
+        {(() => {
+          const items = getProductsByCategory('shuby', 'sobol')
+          if (items.length === 0) return null
+          return (
+            <section className="py-20 md:py-28 bg-bg-light">
+              <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-[60px]">
+                <h2 className="font-serif text-3xl md:text-4xl text-black mb-4 text-center">Готовые изделия из соболя</h2>
+                <p className="text-text-muted text-center mb-12 max-w-2xl mx-auto">
+                  Эти модели можно примерить в ателье или заказать пошив аналогичной по вашим меркам
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {items.map((p) => (
+                    <ProductCard
+                      key={p.slug}
+                      title={p.title}
+                      description={p.description}
+                      image={p.images[0]}
+                      href={`/magazin/product/${p.slug}`}
+                      price={p.price}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+          )
+        })()}
 
         {/* Как заказать */}
         <section className="py-20 md:py-28 bg-bg-warm">
