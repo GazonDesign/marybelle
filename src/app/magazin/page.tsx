@@ -1,11 +1,11 @@
+'use client'
+
+import { useState } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
-
-export const metadata = {
-  title: 'Магазин меховых изделий и пальто — Mary Belle | Москва',
-  description: 'Магазин шуб, пальто и кожаных изделий Mary Belle. Шубы из норки, соболя, каракуля. Пальто из шерсти. Кожаные куртки и аксессуары. Москва, м. Войковская.',
-}
+import ProductCard from '@/components/magazin/ProductCard'
+import { products } from '@/data/products'
 
 const categories = [
   {
@@ -40,7 +40,22 @@ const categories = [
   },
 ]
 
+type FilterKey = 'all' | 'shuby' | 'palto' | 'kozha'
+
+const filters: { key: FilterKey; label: string }[] = [
+  { key: 'all', label: 'Все' },
+  { key: 'shuby', label: 'Шубы' },
+  { key: 'palto', label: 'Пальто' },
+  { key: 'kozha', label: 'Кожа' },
+]
+
 export default function MagazinPage() {
+  const [activeFilter, setActiveFilter] = useState<FilterKey>('all')
+
+  const filtered = activeFilter === 'all'
+    ? products
+    : products.filter((p) => p.category === activeFilter)
+
   return (
     <>
       <Header />
@@ -67,26 +82,26 @@ export default function MagazinPage() {
           </div>
         </div>
 
-        <section className="py-20 md:py-28">
+        {/* Category Cards */}
+        <section className="py-16 md:py-20">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-[60px]">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
               {categories.map((cat) => (
                 <Link
                   key={cat.href}
                   href={cat.href}
                   className="group relative overflow-hidden"
                 >
-                  <div className="relative h-[420px] overflow-hidden">
+                  <div className="relative h-[200px] md:h-[260px] overflow-hidden">
                     <img
                       src={cat.image}
                       alt={cat.title}
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8">
-                      <h2 className="font-serif text-2xl text-white mb-2">{cat.title}</h2>
-                      <p className="text-white/70 text-sm">{cat.description}</p>
-                      <span className="inline-flex items-center gap-2 text-white/60 text-sm mt-3 group-hover:text-white group-hover:gap-4 transition-all duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <h2 className="font-serif text-base md:text-lg text-white leading-tight">{cat.title}</h2>
+                      <span className="inline-flex items-center gap-1 text-white/60 text-xs mt-1 group-hover:text-white group-hover:gap-2 transition-all duration-300">
                         Смотреть <span>&rarr;</span>
                       </span>
                     </div>
@@ -94,6 +109,51 @@ export default function MagazinPage() {
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Filter + Products Grid */}
+        <section className="pb-20 md:pb-28">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-[60px]">
+            {/* Filter tabs */}
+            <div className="flex flex-wrap gap-2 mb-10 border-b border-border-light pb-6">
+              {filters.map((f) => (
+                <button
+                  key={f.key}
+                  onClick={() => setActiveFilter(f.key)}
+                  className={`px-6 py-2.5 text-sm tracking-wide transition-all ${
+                    activeFilter === f.key
+                      ? 'bg-brand text-white'
+                      : 'bg-bg-light text-text-muted hover:bg-brand/10 hover:text-brand'
+                  }`}
+                >
+                  {f.label}
+                  <span className="ml-2 text-xs opacity-60">
+                    {f.key === 'all' ? products.length : products.filter(p => p.category === f.key).length}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* Products grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              {filtered.map((p) => (
+                <ProductCard
+                  key={p.slug}
+                  title={p.title}
+                  description={p.description}
+                  image={p.images[0]}
+                  href={`/magazin/product/${p.slug}`}
+                  price={p.price}
+                />
+              ))}
+            </div>
+
+            {filtered.length === 0 && (
+              <div className="text-center py-20">
+                <p className="text-text-muted text-lg">В этой категории пока нет товаров</p>
+              </div>
+            )}
           </div>
         </section>
       </main>

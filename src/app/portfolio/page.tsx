@@ -5,6 +5,33 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
+const beforeAfterCases = [
+  {
+    before: '/images/portfolio-cases/case-001-before.jpg',
+    after: '/images/portfolio-cases/case-001-after.jpg',
+    title: 'Реставрация норковой шубы',
+    category: 'Ремонт шуб',
+    description: 'Полная реставрация, замена подкладки, ремонт воротника, укорачивание рукавов.',
+    duration: '14 дней',
+  },
+  {
+    before: '/images/portfolio-cases/case-002-before.jpg',
+    after: '/images/portfolio-cases/case-002-after.jpg',
+    title: 'Перекрой шубы из соболя',
+    category: 'Перекрой',
+    description: 'Перекрой, изменение фасона, укорачивание, обновление подкладки.',
+    duration: '21 день',
+  },
+  {
+    before: '/images/portfolio-cases/case-003-before.jpg',
+    after: '/images/portfolio-cases/case-003-after.jpg',
+    title: 'Химчистка белой норковой шубы',
+    category: 'Химчистка',
+    description: 'Профессиональная химчистка, удаление пятен, восстановление белизны.',
+    duration: '7 дней',
+  },
+]
+
 const portfolioItems = [
   { image: '/images/portfolio/001.jpg', title: 'Окрашивание норковой шубы', category: 'Окрашивание', description: 'Перекраска из тёмно-коричневого в золотистый оттенок с сохранением текстуры меха.' },
   { image: '/images/portfolio/002.jpg', title: 'Реставрация норковой шубы', category: 'Ремонт шуб', description: 'Восстановление тёмной норковой шубы: чистка, обновление ворса, ремонт подкладки.' },
@@ -54,6 +81,41 @@ export default function PortfolioPage() {
             <span className="text-text-primary">Портфолио</span>
           </div>
         </div>
+
+        {/* Before/After Cases */}
+        <section className="py-16 md:py-24 bg-bg-warm">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+            <h2 className="font-serif text-3xl md:text-4xl text-black mb-4 text-center">До и после</h2>
+            <p className="text-text-muted text-center mb-12 max-w-2xl mx-auto">Реальные результаты работы наших мастеров — каждый кейс с фотографиями до и после реставрации</p>
+            <div className="space-y-16">
+              {beforeAfterCases.map((item, i) => (
+                <div key={i} className="bg-white p-6 md:p-10">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div className="relative">
+                      <img src={item.before} alt={`${item.title} — до`} className="w-full h-auto" />
+                      <div className="absolute top-4 left-4 bg-black/70 text-white text-xs px-4 py-2 tracking-wider uppercase font-medium">До</div>
+                    </div>
+                    <div className="relative">
+                      <img src={item.after} alt={`${item.title} — после`} className="w-full h-auto" />
+                      <div className="absolute top-4 left-4 bg-brand text-white text-xs px-4 py-2 tracking-wider uppercase font-medium">После</div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                      <span className="text-brand text-xs tracking-wider uppercase">{item.category}</span>
+                      <h3 className="font-serif text-2xl text-black mt-1">{item.title}</h3>
+                      <p className="text-text-muted mt-1">{item.description}</p>
+                    </div>
+                    <div className="shrink-0 text-right">
+                      <span className="text-text-muted text-sm">Срок работы</span>
+                      <span className="block font-serif text-xl text-brand">{item.duration}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Filters */}
         <section className="py-8 border-b border-border-light">

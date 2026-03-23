@@ -102,6 +102,55 @@ export default function OFabrikePage() {
           </div>
         </section>
 
+        {/* Production Gallery */}
+        <section className="py-20 md:py-28 bg-bg-light">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+            <div className="text-center mb-12">
+              <h2 className="font-serif text-3xl md:text-4xl text-black mb-4">Наше производство</h2>
+              <p className="text-text-muted max-w-2xl mx-auto">Собственная мастерская, профессиональное оборудование и мастера с многолетним опытом</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="lg:col-span-2 relative overflow-hidden group">
+                <img src="/images/o-fabrike/mary_belle_workshop_panoramic.jpg" alt="Мастерская Mary Belle — панорама" className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-6 left-6">
+                  <h3 className="font-serif text-xl text-white">Мастерская</h3>
+                  <p className="text-white/70 text-sm">Светлое пространство с профессиональным оборудованием</p>
+                </div>
+              </div>
+              <div className="relative overflow-hidden group">
+                <img src="/images/o-fabrike/mary_belle_master_working.jpg" alt="Мастер за работой" className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-6 left-6">
+                  <h3 className="font-serif text-xl text-white">Мастера</h3>
+                  <p className="text-white/70 text-sm">Опыт работы 15–30 лет</p>
+                </div>
+              </div>
+              <div className="relative overflow-hidden group">
+                <img src="/images/o-fabrike/mary_belle_tools_table.jpg" alt="Инструменты скорняка" className="w-full h-[192px] object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <h3 className="font-serif text-lg text-white">Инструменты</h3>
+                </div>
+              </div>
+              <div className="relative overflow-hidden group">
+                <img src="/images/o-fabrike/workshop-01.jpg" alt="Рабочий процесс" className="w-full h-[192px] object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <h3 className="font-serif text-lg text-white">Раскройка</h3>
+                </div>
+              </div>
+              <div className="relative overflow-hidden group">
+                <img src="/images/o-fabrike/workshop-02.jpg" alt="Производство" className="w-full h-[192px] object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <h3 className="font-serif text-lg text-white">Пошив</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Timeline */}
         <section className="py-20 md:py-28 bg-bg-warm">
           <div className="max-w-[900px] mx-auto px-6 md:px-12">

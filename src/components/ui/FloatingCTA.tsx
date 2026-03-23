@@ -8,6 +8,7 @@ import PhoneInput from '@/components/ui/PhoneInput'
 export default function FloatingCTA() {
   const [isOpen, setIsOpen] = useState(false)
   const [showMobileCTA, setShowMobileCTA] = useState(false)
+  const [quizHeight, setQuizHeight] = useState(0)
   const [isCallbackOpen, setIsCallbackOpen] = useState(false)
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle')
 
@@ -17,6 +18,32 @@ export default function FloatingCTA() {
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Watch for Marquiz popup appearing/disappearing
+  useEffect(() => {
+    function measureQuiz() {
+      const el = document.querySelector('.marquiz-pops') as HTMLElement | null
+      if (el && el.style.display !== 'none') {
+        const rect = el.getBoundingClientRect()
+        if (rect.height > 10) {
+          setQuizHeight(rect.height + 8)
+          return
+        }
+      }
+      setQuizHeight(0)
+    }
+
+    const observer = new MutationObserver(() => measureQuiz())
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] })
+
+    // Poll every 300ms — Marquiz animates in and external script timing varies
+    const interval = setInterval(measureQuiz, 300)
+
+    return () => {
+      observer.disconnect()
+      clearInterval(interval)
+    }
   }, [])
 
   const handleCallback = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -52,10 +79,8 @@ export default function FloatingCTA() {
     <>
       {/* Desktop: floating buttons bottom-right */}
       <div className="fixed bottom-6 right-6 z-40 hidden md:flex flex-col items-end gap-3">
-        {/* Expanded actions */}
         {isOpen && (
           <div className="flex flex-col gap-3 animate-fade-up">
-            {/* WhatsApp */}
             <a
               href="https://wa.me/79670555978?text=Здравствуйте!%20Хочу%20записаться%20на%20консультацию."
               target="_blank"
@@ -65,8 +90,6 @@ export default function FloatingCTA() {
               <MessageCircle size={20} strokeWidth={1.5} />
               <span className="text-sm font-medium">WhatsApp</span>
             </a>
-
-            {/* Callback */}
             <button
               onClick={() => { setIsCallbackOpen(true); setIsOpen(false) }}
               className="flex items-center gap-3 bg-brand text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
@@ -76,8 +99,6 @@ export default function FloatingCTA() {
             </button>
           </div>
         )}
-
-        {/* Main FAB */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all ${
@@ -93,16 +114,19 @@ export default function FloatingCTA() {
         </button>
       </div>
 
-      {/* Mobile: sticky bottom bar */}
+      {/* Mobile: floating glass buttons */}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-40 md:hidden transition-transform duration-300 ${
-          showMobileCTA ? 'translate-y-0' : 'translate-y-full'
+        className={`fixed left-0 right-0 z-40 md:hidden transition-all duration-500 ease-out ${
+          showMobileCTA ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
+        style={{ bottom: `${quizHeight}px` }}
       >
-        <div className="bg-white border-t border-border shadow-[0_-4px_20px_rgba(0,0,0,0.1)] px-4 py-3 flex gap-2">
+        <div className={`flex gap-2 justify-center px-3 pb-2 pt-2 ${
+          quizHeight === 0 ? 'bg-white/60 backdrop-blur-xl border-t border-white/30 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]' : ''
+        }`}>
           <a
             href="tel:+74952254444"
-            className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand text-white text-sm font-medium tracking-wide"
+            className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand/90 backdrop-blur-md text-white text-sm font-medium tracking-wide rounded-2xl shadow-lg"
           >
             <Phone size={16} strokeWidth={1.5} />
             Позвонить
@@ -111,14 +135,14 @@ export default function FloatingCTA() {
             href="https://wa.me/79670555978?text=Здравствуйте!%20Хочу%20записаться%20на%20консультацию."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#25D366] text-white text-sm font-medium tracking-wide"
+            className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#25D366]/90 backdrop-blur-md text-white text-sm font-medium tracking-wide rounded-2xl shadow-lg"
           >
             <MessageCircle size={16} strokeWidth={1.5} />
             WhatsApp
           </a>
           <button
             onClick={() => setIsCallbackOpen(true)}
-            className="flex-1 flex items-center justify-center gap-2 py-3 border border-brand text-brand text-sm font-medium tracking-wide"
+            className="flex-1 flex items-center justify-center gap-2 py-3 bg-gray-100/80 backdrop-blur-md text-brand text-sm font-medium tracking-wide rounded-2xl shadow-lg border border-gray-200/50"
           >
             Заявка
           </button>
