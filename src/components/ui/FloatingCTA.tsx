@@ -142,8 +142,9 @@ export default function FloatingCTA() {
           </a>
           <button
             onClick={() => setIsCallbackOpen(true)}
-            className="flex-1 flex items-center justify-center gap-2 py-3 bg-gray-100/80 backdrop-blur-md text-brand text-sm font-medium tracking-wide rounded-2xl shadow-lg border border-gray-200/50"
+            className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand/15 backdrop-blur-md text-brand text-sm font-medium tracking-wide rounded-2xl shadow-lg border border-brand/30"
           >
+            <Phone size={16} strokeWidth={1.5} />
             Заявка
           </button>
         </div>
