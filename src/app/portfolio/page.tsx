@@ -6,21 +6,21 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 const portfolioItems = [
-  { image: '/images/portfolio/001.jpg', title: 'Реставрация дублёнки-авиатор', category: 'Ремонт дублёнок', description: 'Полная реставрация: чистка, восстановление цвета, замена фурнитуры.' },
-  { image: '/images/portfolio/002.jpg', title: 'Восстановление дублёнки', category: 'Ремонт дублёнок', description: 'Глубокая чистка, окрашивание, восстановление мехового воротника.' },
-  { image: '/images/portfolio/003.jpg', title: 'Реставрация кожаной куртки', category: 'Ремонт кожи', description: 'Восстановление цвета и эластичности кожи, замена подкладки.' },
-  { image: '/images/portfolio/004.jpg', title: 'Ремонт дублёнки с мехом', category: 'Ремонт дублёнок', description: 'Окрашивание, восстановление мехового воротника и манжет.' },
-  { image: '/images/portfolio/005.jpg', title: 'Реставрация дублёнки-макси', category: 'Ремонт дублёнок', description: 'Полное восстановление длинной дублёнки: чистка, окрашивание, ремонт швов.' },
-  { image: '/images/portfolio/006.jpg', title: 'Восстановление короткой дублёнки', category: 'Ремонт дублёнок', description: 'Чистка, восстановление цвета, замена застёжек.' },
-  { image: '/images/portfolio/007.jpg', title: 'Ремонт шубы', category: 'Ремонт шуб', description: 'Реставрация мехового изделия: восстановление ворса, ремонт подкладки.' },
-  { image: '/images/portfolio/008.jpg', title: 'Окрашивание дублёнки', category: 'Окрашивание', description: 'Обновление цвета дублёнки с сохранением текстуры материала.' },
-  { image: '/images/portfolio/009.jpg', title: 'Реставрация кожаного пальто', category: 'Ремонт кожи', description: 'Восстановление покрытия, ремонт швов, замена фурнитуры.' },
-  { image: '/images/portfolio/010.jpg', title: 'Восстановление дублёнки', category: 'Ремонт дублёнок', description: 'Комплексная реставрация: от чистки до полного обновления.' },
-  { image: '/images/portfolio/011.jpg', title: 'Ремонт меховой куртки', category: 'Ремонт шуб', description: 'Восстановление мехового покрытия, ремонт застёжек.' },
-  { image: '/images/portfolio/012.jpg', title: 'Реставрация пальто', category: 'Ремонт пальто', description: 'Глубокая чистка, восстановление формы и цвета.' },
+  { image: '/images/portfolio/001.jpg', title: 'Окрашивание норковой шубы', category: 'Окрашивание', description: 'Перекраска из тёмно-коричневого в золотистый оттенок с сохранением текстуры меха.' },
+  { image: '/images/portfolio/002.jpg', title: 'Реставрация норковой шубы', category: 'Ремонт шуб', description: 'Восстановление тёмной норковой шубы: чистка, обновление ворса, ремонт подкладки.' },
+  { image: '/images/portfolio/003.jpg', title: 'Окрашивание норковой шубы в тёмный', category: 'Окрашивание', description: 'Перекраска светлой норки в глубокий тёмно-коричневый цвет.' },
+  { image: '/images/portfolio/004.jpg', title: 'Реставрация соболиной шубы', category: 'Ремонт шуб', description: 'Комплексная реставрация шубы из соболя: восстановление меха, обновление фурнитуры.' },
+  { image: '/images/portfolio/005.jpg', title: 'Перекрой пальто с меховым воротником', category: 'Перекрой', description: 'Перекрой мехового воротника и обновление силуэта пальто.' },
+  { image: '/images/portfolio/006.jpg', title: 'Окрашивание шубы из песца', category: 'Окрашивание', description: 'Перекраска шубы из песца из серого в белоснежный цвет.' },
+  { image: '/images/portfolio/007.jpg', title: 'Реставрация мехового полушубка', category: 'Ремонт шуб', description: 'Обновление мехового полушубка: чистка, восстановление воротника.' },
+  { image: '/images/portfolio/008.jpg', title: 'Реставрация мужской шубы', category: 'Ремонт шуб', description: 'Восстановление мужской шубы: чистка меха, ремонт подкладки и фурнитуры.' },
+  { image: '/images/portfolio/009.jpg', title: 'Реставрация дублёнки-авиатор', category: 'Ремонт дублёнок', description: 'Восстановление дублёнки: чистка, обновление цвета, ремонт мехового воротника.' },
+  { image: '/images/portfolio/010.jpg', title: 'Окрашивание шубы из песца', category: 'Окрашивание', description: 'Перекраска шубы из песца с обновлением оттенка и восстановлением блеска.' },
+  { image: '/images/portfolio/011.jpg', title: 'Реставрация норковой шубы', category: 'Ремонт шуб', description: 'Восстановление норковой шубы: обновление цвета, ремонт швов.' },
+  { image: '/images/portfolio/012.jpg', title: 'Окрашивание шубы из лисы', category: 'Окрашивание', description: 'Перекраска шубы из лисы в светлый оттенок с полным обновлением изделия.' },
 ]
 
-const categories = ['Все', 'Ремонт дублёнок', 'Ремонт кожи', 'Ремонт шуб', 'Окрашивание', 'Ремонт пальто']
+const categories = ['Все', 'Ремонт шуб', 'Окрашивание', 'Перекрой', 'Ремонт дублёнок']
 
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState('Все')
