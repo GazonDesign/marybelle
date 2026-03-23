@@ -20,6 +20,19 @@ interface ServicePageProps {
   relatedServices: { title: string; href: string }[]
 }
 
+const serviceIcons: Record<string, string> = {
+  '/uslugi/remont-shub': '/icons/services/repair.svg',
+  '/uslugi/remont-shub-vojkovskaya': '/icons/services/repair.svg',
+  '/uslugi/remont-kozhi': '/icons/services/leather.svg',
+  '/uslugi/remont-brendovoj-odezhdy': '/icons/services/leather.svg',
+  '/uslugi/remont-palto': '/icons/services/repair.svg',
+  '/uslugi/poshiv-shub': '/icons/services/sewing.svg',
+  '/uslugi/perekroj': '/icons/services/sewing.svg',
+  '/uslugi/mehovoj-holodilnik': '/icons/services/storage.svg',
+  '/uslugi/okrashivanie': '/icons/services/coloring.svg',
+  '/uslugi/himchistka': '/icons/services/cleaning.svg',
+}
+
 export default function ServicePageTemplate({
   title,
   subtitle,
@@ -166,6 +179,11 @@ export default function ServicePageTemplate({
                     href={s.href}
                     className="group p-8 border border-border-light hover:border-brand transition-colors"
                   >
+                    {serviceIcons[s.href] && (
+                      <div className="w-10 h-10 mb-4 flex items-center justify-center bg-brand/10 rounded-sm">
+                        <img src={serviceIcons[s.href]} alt="" className="w-5 h-5 opacity-60" />
+                      </div>
+                    )}
                     <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">
                       {s.title}
                     </h3>
