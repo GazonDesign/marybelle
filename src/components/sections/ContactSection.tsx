@@ -45,7 +45,7 @@ export default function ContactSection() {
       setFormState('sent')
       form.reset()
       if (typeof window !== 'undefined' && (window as any).ym) {
-        (window as any).ym(108179067, 'reachGoal', 'form_contact')
+        (window as any).ym(106018856, 'reachGoal', 'form_submit_success')
       }
     } catch {
       setFormState('sent')

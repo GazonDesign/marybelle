@@ -13,7 +13,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const AMO_SUBDOMAIN = process.env.AMO_SUBDOMAIN
 const AMO_TOKEN = process.env.AMO_TOKEN
 const METRIKA_TOKEN = process.env.METRIKA_OAUTH_TOKEN
-const METRIKA_COUNTER = '108179067'
+const METRIKA_COUNTER = '106018856'
 
 // Fetch lead details from AmoCRM to get yclid + revenue
 async function getLeadDetails(leadId: string) {

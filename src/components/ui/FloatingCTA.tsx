@@ -37,7 +37,7 @@ export default function FloatingCTA() {
         }),
       })
       if (typeof window !== 'undefined' && (window as any).ym) {
-        (window as any).ym(108179067, 'reachGoal', 'form_callback')
+        (window as any).ym(106018856, 'reachGoal', 'form_submit_success')
       }
     } catch { /* silent */ }
     setFormState('sent')

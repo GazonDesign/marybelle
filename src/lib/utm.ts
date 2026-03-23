@@ -38,7 +38,7 @@ function getClientId(): string | undefined {
     const ym = (window as any).ym
     if (!ym) return undefined
     let cid: string | undefined
-    ym(108179067, 'getClientID', (clientID: string) => {
+    ym(106018856, 'getClientID', (clientID: string) => {
       cid = clientID
     })
     return cid
