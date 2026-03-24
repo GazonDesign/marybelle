@@ -1,0 +1,115 @@
+// Anti-Tailwind-Preflight for Payload Admin
+// Restores browser defaults that Tailwind's preflight removes
+
+html[data-theme] {
+  *, *::before, *::after {
+    border-width: revert;
+    border-style: revert;
+    border-color: revert;
+    box-sizing: revert;
+  }
+
+  svg {
+    display: revert;
+    vertical-align: revert;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: revert;
+    font-weight: revert;
+    font-family: revert;
+    line-height: revert;
+    margin: revert;
+  }
+
+  p {
+    font-size: revert;
+    font-weight: revert;
+    line-height: revert;
+    margin: revert;
+  }
+
+  // ALL lists in Payload admin — no bullets
+  ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: revert;
+    text-decoration: revert;
+  }
+
+  button, input, select, textarea {
+    font: revert;
+    color: revert;
+    margin: revert;
+    padding: revert;
+  }
+
+  img, video {
+    max-width: revert;
+    height: revert;
+    display: revert;
+  }
+
+  body {
+    font-family: revert;
+    font-weight: revert;
+    line-height: revert;
+    color: revert;
+    background-color: revert;
+    margin: 0;
+  }
+
+  table {
+    border-collapse: revert;
+    border-spacing: revert;
+  }
+
+  th, td {
+    text-align: revert;
+    padding: revert;
+  }
+
+  hr {
+    border-top-width: revert;
+    height: revert;
+  }
+
+  blockquote, pre {
+    margin: revert;
+  }
+
+  // Fix: nav groups showing empty space (collapsed groups with revert)
+  .nav-group--collapsed .rah-static > div {
+    display: none;
+  }
+
+  // Fix: step-nav chevron icon too large
+  .step-nav .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  // Fix: Dashboard cards nav group chevrons
+  .nav-group__indicator .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  // Hide frontend-only elements leaking into admin
+  .marquiz__holder,
+  .floating-cta,
+  [class*="marquiz"],
+  #floating-cta-container {
+    display: none !important;
+  }
+
+  // Hide the phone button from frontend FloatingCTA
+  > body > div:last-of-type > button,
+  > body > .fixed {
+    display: none !important;
+  }
+}

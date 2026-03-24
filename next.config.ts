@@ -1,6 +1,8 @@
 import type { NextConfig } from 'next'
+import { withPayload } from '@payloadcms/next/withPayload'
 
 const nextConfig: NextConfig = {
+  turbopack: {},
   images: {
     formats: ['image/avif', 'image/webp'],
   },
@@ -25,7 +27,6 @@ const nextConfig: NextConfig = {
       { source: '/ximchistka/', destination: '/uslugi/himchistka', permanent: true },
       { source: '/perekroj', destination: '/uslugi/perekroj', permanent: true },
       { source: '/perekroj/', destination: '/uslugi/perekroj', permanent: true },
-      // Трейд-ин жил на пагинации — перенаправляем
       { source: '/shubi/page/2', destination: '/trejd-in', permanent: true },
       { source: '/shubi/page/2/', destination: '/trejd-in', permanent: true },
 
@@ -62,4 +63,4 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+export default withPayload(nextConfig)
