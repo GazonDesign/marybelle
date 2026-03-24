@@ -1,19 +1,37 @@
-// Anti-Tailwind-Preflight for Payload Admin
-// Restores browser defaults that Tailwind's preflight removes
+// =============================================================
+// Anti-Tailwind-Preflight for Payload CMS Admin
+// Tailwind's preflight globally resets borders, SVG display,
+// heading sizes, etc. These rules restore Payload's expected
+// styles using high-specificity selectors scoped to [data-theme].
+// =============================================================
 
+// --- GLOBAL RESETS (undo Tailwind preflight) ---
 html[data-theme] {
+
+  // Tailwind sets border-width:0 on everything — restore defaults
   *, *::before, *::after {
     border-width: revert;
     border-style: revert;
     border-color: revert;
-    box-sizing: revert;
   }
 
+  // Tailwind sets svg { display: block } — Payload needs inline
   svg {
-    display: revert;
-    vertical-align: revert;
+    display: inline-block;
+    vertical-align: middle;
   }
 
+  // Restore body
+  body {
+    margin: 0;
+    font-family: revert;
+    font-weight: revert;
+    line-height: revert;
+    color: revert;
+    background-color: revert;
+  }
+
+  // Tailwind resets headings — restore for admin
   h1, h2, h3, h4, h5, h6 {
     font-size: revert;
     font-weight: revert;
@@ -22,6 +40,7 @@ html[data-theme] {
     margin: revert;
   }
 
+  // Tailwind resets p
   p {
     font-size: revert;
     font-weight: revert;
@@ -29,18 +48,13 @@ html[data-theme] {
     margin: revert;
   }
 
-  // ALL lists in Payload admin — no bullets
-  ul, ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
+  // Tailwind resets a
   a {
     color: revert;
     text-decoration: revert;
   }
 
+  // Tailwind resets form elements
   button, input, select, textarea {
     font: revert;
     color: revert;
@@ -48,68 +62,287 @@ html[data-theme] {
     padding: revert;
   }
 
+  // Tailwind resets img
   img, video {
     max-width: revert;
     height: revert;
     display: revert;
   }
 
-  body {
-    font-family: revert;
-    font-weight: revert;
-    line-height: revert;
-    color: revert;
-    background-color: revert;
+  // Tailwind resets tables
+  table { border-collapse: revert; border-spacing: revert; }
+  th, td { text-align: revert; padding: revert; }
+  hr { border-top-width: revert; height: revert; }
+  blockquote, pre { margin: revert; }
+}
+
+// --- PAYLOAD-SPECIFIC FIXES ---
+// These override revert where Payload needs specific values
+
+html[data-theme] {
+
+  // Lists: Payload uses custom list styling, no browser bullets
+  ul, ol {
+    list-style: none;
     margin: 0;
+    padding: 0;
   }
 
-  table {
-    border-collapse: revert;
-    border-spacing: revert;
+  // Icon sizing — Payload uses CSS vars but revert breaks them
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
   }
 
-  th, td {
-    text-align: revert;
-    padding: revert;
-  }
-
-  hr {
-    border-top-width: revert;
-    height: revert;
-  }
-
-  blockquote, pre {
-    margin: revert;
-  }
-
-  // Fix: nav groups showing empty space (collapsed groups with revert)
-  .nav-group--collapsed .rah-static > div {
-    display: none;
-  }
-
-  // Fix: step-nav chevron icon too large
-  .step-nav .icon {
+  .icon--chevron {
     width: 20px;
     height: 20px;
   }
 
-  // Fix: Dashboard cards nav group chevrons
   .nav-group__indicator .icon {
     width: 16px;
     height: 16px;
   }
 
-  // Hide frontend-only elements leaking into admin
-  .marquiz__holder,
-  .floating-cta,
-  [class*="marquiz"],
-  #floating-cta-container {
-    display: none !important;
+  .step-nav .icon,
+  .app-header .icon {
+    width: 20px;
+    height: 20px;
   }
 
-  // Hide the phone button from frontend FloatingCTA
-  > body > div:last-of-type > button,
-  > body > .fixed {
+  .hamburger .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .btn .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .search-bar .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .sort-column__button .icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .pill .icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  // Nav sidebar — proper width and layout
+  .nav {
+    border-right: 1px solid var(--theme-elevation-150, #e0e0e0);
+  }
+
+  .nav-group {
+    border: none;
+    margin-bottom: 0;
+  }
+
+  .nav-group__toggle {
+    border: none;
+    background: none;
+    padding: 8px 16px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .nav__link {
+    display: flex;
+    align-items: center;
+    padding: 6px 16px 6px 24px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .nav__controls {
+    border-top: 1px solid var(--theme-elevation-150, #e0e0e0);
+    padding: 8px 16px;
+  }
+
+  // Cards — restore borders that Tailwind killed
+  .card {
+    border: 1px solid var(--theme-elevation-150, #e0e0e0) !important;
+    border-radius: 8px;
+    background: var(--theme-elevation-50, #f5f5f5);
+  }
+
+  // Dashboard collections list
+  .collections__card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .collections__card-list li {
+    flex: 1 1 200px;
+    min-width: 150px;
+  }
+
+  // Table fixes
+  .table {
+    width: 100%;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--theme-elevation-100, #eee);
+    }
+  }
+
+  // Form fields
+  .field-type input,
+  .field-type textarea,
+  .field-type select {
+    border: 1px solid var(--theme-elevation-150, #ddd);
+    border-radius: 4px;
+    padding: 8px 12px;
+    width: 100%;
+    font-size: 14px;
+    background: var(--theme-elevation-0, #fff);
+  }
+
+  .field-type input:focus,
+  .field-type textarea:focus {
+    outline: none;
+    border-color: var(--theme-elevation-400, #888);
+  }
+
+  .field-label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  // Buttons
+  .btn {
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .btn--style-primary {
+    background: var(--theme-elevation-900, #222);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+
+  .btn--style-pill {
+    background: var(--theme-elevation-100, #eee);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  // Doc header
+  .doc-header__title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  // Gutter padding
+  .gutter--left { padding-left: 24px; }
+  .gutter--right { padding-right: 24px; }
+
+  // App header
+  .app-header {
+    border-bottom: 1px solid var(--theme-elevation-150, #e0e0e0);
+    padding: 8px 0;
+  }
+
+  // Search bar
+  .search-bar {
+    border: 1px solid var(--theme-elevation-150, #ddd);
+    border-radius: 4px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-filter__input {
+    border: none !important;
+    outline: none;
+    width: 100%;
+  }
+
+  // Array field
+  .array-field__header {
+    border-bottom: 1px solid var(--theme-elevation-100, #eee);
+  }
+
+  // Group field
+  .group-field__wrap {
+    border: 1px solid var(--theme-elevation-100, #eee);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  // Upload dropzone
+  .dropzone {
+    border: 2px dashed var(--theme-elevation-200, #ccc);
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  // Rich text editor
+  .rich-text-lexical .ContentEditable__root {
+    min-height: 200px;
+    padding: 16px;
+    border: 1px solid var(--theme-elevation-150, #ddd);
+    border-radius: 4px;
+  }
+
+  // Checkbox
+  .checkbox-input__icon {
+    border: 2px solid var(--theme-elevation-300, #aaa);
+    border-radius: 3px;
+    width: 16px;
+    height: 16px;
+  }
+
+  // Page controls
+  .page-controls {
+    padding: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  // Banner
+  .banner {
+    padding: 12px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--theme-elevation-100, #eee);
+  }
+
+  // Hide frontend elements leaking into admin
+  .fixed,
+  [class*="marquiz"],
+  #marquiz-holder {
     display: none !important;
   }
 }

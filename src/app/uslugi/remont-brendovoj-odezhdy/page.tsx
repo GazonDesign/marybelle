@@ -11,7 +11,7 @@ export default function RemontBrendovojOdezhdyPage() {
       title="Ремонт брендовой одежды в Москве"
       subtitle="Реставрация люксовых изделий"
       description="Ремонт брендовой одежды требует особого подхода — мы работаем с изделиями Moncler, Max Mara, Burberry, Loro Piana и других премиальных марок. Сохраняем оригинальную фурнитуру и подбираем материалы, идентичные оригиналу. Мастера с опытом работы с люксовыми брендами."
-      heroImage="/images/product-sobol.jpg"
+      heroImage="/images/uslugi-poshiv-hero.webp"
       features={[
         { title: 'Работа с люксом', description: 'Знаем особенности конструкции и материалов премиальных брендов.' },
         { title: 'Оригинальная фурнитура', description: 'Сохраняем или подбираем фурнитуру, идентичную оригиналу.' },
