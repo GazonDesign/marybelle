@@ -103,8 +103,8 @@ export default function SubHeroSection() {
               }}
             >
               <img
-                src="/images/subhero-1.jpg"
-                alt="Mary Belle — мастерство"
+                src="/images/production/workshop-hands-sobol.jpg"
+                alt="Руки мастера на соболином мехе — фабрика Mary Belle, 2025"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -116,8 +116,8 @@ export default function SubHeroSection() {
               }}
             >
               <img
-                src="/images/subhero-2.jpg"
-                alt="Mary Belle — качество"
+                src="/images/history/2025/pudra-01.jpg"
+                alt="Модель Пудра — коллекция Mary Belle, 2025"
                 className="w-full h-full object-cover"
               />
             </div>

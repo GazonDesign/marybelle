@@ -89,6 +89,7 @@ export default function HeroSection() {
           style={{ transitionDelay: '500ms' }}
         >
           Mary Belle
+          <span className="sr-only"> — Меховое ателье в Москве: ремонт шуб, пошив, хранение</span>
         </h1>
 
         {/* Sub-headline: what we do */}

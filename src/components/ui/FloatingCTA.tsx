@@ -66,6 +66,12 @@ export default function FloatingCTA() {
       if (typeof window !== 'undefined' && (window as any).ym) {
         (window as any).ym(106018856, 'reachGoal', 'form_submit_success')
       }
+      // Envybox автозвонок — передаём номер, Envybox сам перезванивает клиенту
+      const phone = formData.get('phone') as string
+      const w = window as any
+      if (phone && w.CallbackKillerApi) {
+        w.CallbackKillerApi.requestCallback({ phone })
+      }
     } catch { /* silent */ }
     setFormState('sent')
     form.reset()
@@ -91,7 +97,17 @@ export default function FloatingCTA() {
               <span className="text-sm font-medium">WhatsApp</span>
             </a>
             <button
-              onClick={() => { setIsCallbackOpen(true); setIsOpen(false) }}
+              onClick={() => {
+                // Envybox API: открыть форму обратного звонка
+                const w = window as any
+                if (w.CallbackKillerApi) {
+                  w.CallbackKillerApi.open()
+                } else {
+                  // Фолбэк — наша модалка, если Envybox не загрузился
+                  setIsCallbackOpen(true)
+                }
+                setIsOpen(false)
+              }}
               className="flex items-center gap-3 bg-brand text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
             >
               <Phone size={20} strokeWidth={1.5} />

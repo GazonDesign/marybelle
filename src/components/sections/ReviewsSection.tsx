@@ -3,7 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Star } from 'lucide-react'
 
-const reviews = [
+export interface Review {
+  name: string
+  text: string
+  rating: number
+  service: string
+}
+
+const fallbackReviews: Review[] = [
   {
     name: 'Елена М.',
     text: 'Отличное ателье! Переделала здесь несколько шуб, работа выполнена качественно и в срок. Очень довольна результатом, всем рекомендую!',
@@ -36,7 +43,8 @@ const reviews = [
   },
 ]
 
-export default function ReviewsSection() {
+export default function ReviewsSection({ reviews }: { reviews?: Review[] }) {
+  const data = reviews && reviews.length > 0 ? reviews : fallbackReviews
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -76,7 +84,7 @@ export default function ReviewsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reviews.map((review, i) => (
+          {data.map((review, i) => (
             <div
               key={i}
               className={`p-8 border border-border-light transition-all duration-700 ${

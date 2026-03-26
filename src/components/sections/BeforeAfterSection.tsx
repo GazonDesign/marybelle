@@ -6,39 +6,45 @@ import Link from 'next/link'
 const cases = [
   {
     id: 1,
-    title: 'Реставрация дублёнки-авиатор',
-    description: 'Полная реставрация: чистка, восстановление цвета, замена фурнитуры.',
-    image: '/images/portfolio/001.jpg',
+    title: 'Восстановление норковой шубы',
+    description: 'Восстановление цвета и блеска пожелтевшей норки без окрашивания.',
+    image: '/images/portfolio-new/case-norka-after.jpg',
+    year: '2025',
   },
   {
     id: 2,
-    title: 'Реставрация дублёнки-макси',
-    description: 'Окрашивание, восстановление мехового воротника и манжет.',
-    image: '/images/portfolio/005.jpg',
+    title: 'Реставрация белой норки',
+    description: 'Глубокая чистка загрязнённой белой норки, возвращение первоначального цвета.',
+    image: '/images/portfolio-new/case-white-after.jpg',
+    year: '2025',
   },
   {
     id: 3,
-    title: 'Восстановление короткой дублёнки',
-    description: 'Чистка, восстановление цвета, замена застёжек.',
-    image: '/images/portfolio/006.jpg',
+    title: 'Реставрация дублёнки-авиатор',
+    description: 'Полная реставрация: чистка, восстановление цвета, замена фурнитуры.',
+    image: '/images/portfolio/001.jpg',
+    year: '2024',
   },
   {
     id: 4,
     title: 'Реставрация кожаной куртки',
     description: 'Восстановление цвета и эластичности кожи, ремонт швов.',
     image: '/images/portfolio/003.jpg',
+    year: '2024',
   },
   {
     id: 5,
     title: 'Ремонт дублёнки с мехом',
     description: 'Глубокая чистка, окрашивание, восстановление меха.',
     image: '/images/portfolio/004.jpg',
+    year: '2024',
   },
   {
     id: 6,
-    title: 'Восстановление дублёнки',
-    description: 'Комплексная реставрация: от чистки до полного обновления.',
-    image: '/images/portfolio/002.jpg',
+    title: 'Восстановление серой норки',
+    description: 'Полная реставрация серой норковой шубы с обновлением силуэта.',
+    image: '/images/portfolio-new/case-grey-after.jpg',
+    year: '2025',
   },
 ]
 
@@ -119,7 +125,10 @@ export default function BeforeAfterSection() {
                 </div>
               </div>
               <div className="pt-4">
-                <h3 className="font-serif text-lg text-black">{item.title}</h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-serif text-lg text-black">{item.title}</h3>
+                  {item.year && <span className="text-text-muted text-xs">· {item.year}</span>}
+                </div>
                 <p className="text-text-muted text-sm mt-1">{item.description}</p>
               </div>
             </div>

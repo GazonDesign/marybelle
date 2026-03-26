@@ -2,16 +2,20 @@ import Link from 'next/link'
 
 const serviceLinks = [
   { label: 'Ремонт шуб', href: '/uslugi/remont-shub' },
-  { label: 'Ремонт кожи', href: '/uslugi/remont-kozhi' },
+  { label: 'Ремонт кожи и дублёнок', href: '/uslugi/remont-kozhi' },
+  { label: 'Ремонт пальто', href: '/uslugi/remont-palto' },
+  { label: 'Ремонт брендовой одежды', href: '/uslugi/remont-brendovoj-odezhdy' },
   { label: 'Индивидуальный пошив', href: '/uslugi/poshiv-shub' },
-  { label: 'Меховой холодильник', href: '/uslugi/mehovoj-holodilnik' },
+  { label: 'Перекрой шуб', href: '/uslugi/perekroj' },
+  { label: 'Окрашивание меха', href: '/uslugi/okrashivanie' },
   { label: 'Химчистка', href: '/uslugi/himchistka' },
-  { label: 'Окрашивание', href: '/uslugi/okrashivanie' },
+  { label: 'Меховой холодильник', href: '/uslugi/mehovoj-holodilnik' },
 ]
 
 const catalogLinks = [
   { label: 'Шубы из норки', href: '/magazin/shuby/norka' },
   { label: 'Шубы из соболя', href: '/magazin/shuby/sobol' },
+  { label: 'Шубы из каракуля', href: '/magazin/shuby/karakul' },
   { label: 'Пальто', href: '/magazin/palto' },
   { label: 'Большие размеры', href: '/magazin/bolshie-razmery' },
   { label: 'Изделия из кожи', href: '/magazin/kozha' },
@@ -21,6 +25,8 @@ const infoLinks = [
   { label: 'О фабрике', href: '/o-fabrike' },
   { label: 'Портфолио', href: '/portfolio' },
   { label: 'Цены', href: '/ceny' },
+  { label: 'Гарантия', href: '/garantiya' },
+  { label: 'Блог', href: '/blog' },
   { label: 'Трейд-ин', href: '/trejd-in' },
   { label: 'Контакты', href: '/kontakty' },
 ]

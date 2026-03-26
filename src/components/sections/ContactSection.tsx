@@ -47,6 +47,12 @@ export default function ContactSection() {
       if (typeof window !== 'undefined' && (window as any).ym) {
         (window as any).ym(106018856, 'reachGoal', 'form_submit_success')
       }
+      // Envybox автозвонок
+      const phone = formData.get('phone') as string
+      const w = window as any
+      if (phone && w.CallbackKillerApi) {
+        w.CallbackKillerApi.requestCallback({ phone })
+      }
     } catch {
       setFormState('sent')
     }

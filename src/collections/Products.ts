@@ -60,6 +60,27 @@ export const Products: CollectionConfig = {
       },
     },
     {
+      name: 'tags',
+      label: 'Теги',
+      type: 'select',
+      hasMany: true,
+      options: [
+        { label: 'Большие размеры', value: 'bolshie-razmery' },
+        { label: 'Норка', value: 'norka' },
+        { label: 'Соболь', value: 'sobol' },
+        { label: 'Каракуль', value: 'karakul' },
+        { label: 'Шиншилла', value: 'shinshilla' },
+        { label: 'Песец', value: 'pesec' },
+        { label: 'Лиса / Чернобурка', value: 'lisa' },
+        { label: 'Куница', value: 'kunitsa' },
+        { label: 'Бобр', value: 'bobr' },
+        { label: 'Рысь', value: 'rys' },
+      ],
+      admin: {
+        description: 'Теги для фильтрации (можно выбрать несколько)',
+      },
+    },
+    {
       name: 'price',
       label: 'Цена',
       type: 'text',

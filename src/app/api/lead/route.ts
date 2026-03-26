@@ -5,8 +5,9 @@ import nodemailer from 'nodemailer'
 
 const AMO_SUBDOMAIN = process.env.AMO_SUBDOMAIN
 const AMO_TOKEN = process.env.AMO_TOKEN
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
-// Chat ID will need to be set — for now we'll get it from the first message
+// Telegram via Cloudflare Worker bridge (bot token stays in Worker, not here)
+const CF_WORKER_URL = process.env.CF_TELEGRAM_WORKER_URL
+const CF_WORKER_SECRET = process.env.CF_TELEGRAM_WORKER_SECRET
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID
 const EMAIL_TO = process.env.EMAIL_TO || 'gazonmarketing@yandex.ru'
 const SMTP_USER = process.env.SMTP_USER
@@ -167,10 +168,10 @@ async function sendToAmoCRM(data: LeadData) {
   }
 }
 
-// Send notification to Telegram
+// Send notification to Telegram via Cloudflare Worker bridge
 async function sendToTelegram(data: LeadData) {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-    console.warn('Telegram not configured, skipping')
+  if (!CF_WORKER_URL || !CF_WORKER_SECRET || !TELEGRAM_CHAT_ID) {
+    console.warn('Telegram Worker not configured, skipping')
     return null
   }
 
@@ -188,28 +189,35 @@ async function sendToTelegram(data: LeadData) {
     : ''
 
   const text = [
-    `🔔 *Новая заявка с сайта*`,
+    `🔔 <b>Новая заявка с сайта</b>`,
     ``,
-    `📋 *Тип:* ${sourceLabels[data.source] || data.source}`,
-    `👤 *Имя:* ${data.name}`,
-    `📞 *Телефон:* ${data.phone}`,
-    data.message ? `💬 *Сообщение:* ${data.message}` : '',
-    data.page ? `📄 *Страница:* ${data.page}` : '',
-    utmLine ? `🏷 *UTM:* ${utmLine}` : '',
+    `📋 <b>Тип:</b> ${sourceLabels[data.source] || data.source}`,
+    `👤 <b>Имя:</b> ${data.name}`,
+    `📞 <b>Телефон:</b> ${data.phone}`,
+    data.message ? `💬 <b>Сообщение:</b> ${data.message}` : '',
+    data.page ? `📄 <b>Страница:</b> ${data.page}` : '',
+    utmLine ? `🏷 <b>UTM:</b> ${utmLine}` : '',
   ].filter(Boolean).join('\n')
 
   try {
-    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    const res = await fetch(CF_WORKER_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${CF_WORKER_SECRET}`,
+      },
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
         text,
-        parse_mode: 'Markdown',
+        parse_mode: 'HTML',
       }),
     })
+
+    if (!res.ok) {
+      console.error(`Telegram Worker error: ${res.status} ${res.statusText}`)
+    }
   } catch (error) {
-    console.error('Telegram error:', error)
+    console.error('Telegram Worker error:', error)
   }
 }
 

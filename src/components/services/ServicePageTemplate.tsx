@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -18,6 +18,8 @@ interface ServicePageProps {
   features: ServiceFeature[]
   prices: { label: string; price: string }[]
   relatedServices: { title: string; href: string }[]
+  gallery?: { src: string; alt: string }[]
+  children?: React.ReactNode
 }
 
 const serviceIcons: Record<string, string> = {
@@ -41,12 +43,39 @@ export default function ServicePageTemplate({
   features,
   prices,
   relatedServices,
+  gallery,
+  children,
 }: ServicePageProps) {
   const [isVisible, setIsVisible] = useState(false)
+  const [lightbox, setLightbox] = useState<number | null>(null)
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
+
+  // Lightbox keyboard navigation
+  useEffect(() => {
+    if (lightbox === null || !gallery) return
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightbox(null)
+      if (e.key === 'ArrowRight') setLightbox((prev) => (prev! + 1) % gallery.length)
+      if (e.key === 'ArrowLeft') setLightbox((prev) => (prev! - 1 + gallery.length) % gallery.length)
+    }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKey)
+    }
+  }, [lightbox, gallery])
+
+  const goNext = useCallback(() => {
+    if (gallery) setLightbox((prev) => (prev! + 1) % gallery.length)
+  }, [gallery])
+
+  const goPrev = useCallback(() => {
+    if (gallery) setLightbox((prev) => (prev! - 1 + gallery.length) % gallery.length)
+  }, [gallery])
 
   return (
     <>
@@ -79,6 +108,61 @@ export default function ServicePageTemplate({
         </section>
 
         {/* Breadcrumbs */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://mary-belle.ru/" },
+                { "@type": "ListItem", "position": 2, "name": "Услуги", "item": "https://mary-belle.ru/uslugi" },
+                { "@type": "ListItem", "position": 3, "name": title },
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "name": title,
+              "description": description,
+              "provider": {
+                "@type": "LocalBusiness",
+                "name": "Mary Belle",
+                "@id": "https://mary-belle.ru/#organization",
+              },
+              "areaServed": {
+                "@type": "City",
+                "name": "Москва",
+              },
+              "offers": prices.map((p) => {
+                const numeric = p.price.replace(/[^\d]/g, '')
+                const isFrom = /^от\s/i.test(p.price.trim())
+                if (isFrom) {
+                  return {
+                    "@type": "Offer",
+                    "name": p.label,
+                    "priceSpecification": {
+                      "@type": "PriceSpecification",
+                      "minPrice": numeric,
+                      "priceCurrency": "RUB",
+                    },
+                  }
+                }
+                return {
+                  "@type": "Offer",
+                  "name": p.label,
+                  "price": numeric,
+                  "priceCurrency": "RUB",
+                }
+              }),
+            }),
+          }}
+        />
         <div className="bg-bg-warm border-b border-border-light">
           <div className="max-w-[1200px] mx-auto px-6 py-3 text-sm text-text-muted">
             <Link href="/" className="hover:text-brand transition-colors">Главная</Link>
@@ -99,6 +183,30 @@ export default function ServicePageTemplate({
             </div>
           </div>
         </section>
+
+        {/* Gallery */}
+        {gallery && gallery.length > 0 && (
+          <section className="py-16 md:py-20 bg-bg-light">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+              <h2 className="font-serif text-3xl md:text-4xl text-black mb-8">Наши работы</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+                {gallery.map((img, i) => (
+                  <div
+                    key={i}
+                    className="overflow-hidden group cursor-pointer"
+                    onClick={() => setLightbox(i)}
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Features */}
         <section className="py-20 md:py-28 bg-bg-warm">
@@ -142,6 +250,9 @@ export default function ServicePageTemplate({
           </div>
         </section>
 
+        {/* FAQ slot */}
+        {children}
+
         {/* CTA */}
         <section className="py-20 md:py-28 bg-bg-dark text-white text-center">
           <div className="max-w-[800px] mx-auto px-6">
@@ -152,7 +263,7 @@ export default function ServicePageTemplate({
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+74951234567"
+                href="tel:+74952254444"
                 className="px-12 py-4 bg-brand text-white font-light tracking-widest text-sm btn-shimmer"
               >
                 Позвонить
@@ -198,6 +309,55 @@ export default function ServicePageTemplate({
         )}
       </main>
       <Footer />
+
+      {/* Lightbox */}
+      {lightbox !== null && gallery && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+          onClick={() => setLightbox(null)}
+        >
+          {/* Close */}
+          <button
+            className="absolute top-4 right-4 md:top-6 md:right-6 w-12 h-12 flex items-center justify-center text-white/70 hover:text-white transition-colors text-3xl z-10"
+            onClick={() => setLightbox(null)}
+            aria-label="Закрыть"
+          >
+            &times;
+          </button>
+
+          {/* Counter */}
+          <div className="absolute top-4 left-4 md:top-6 md:left-6 text-white/50 text-sm tracking-wider">
+            {lightbox + 1} / {gallery.length}
+          </div>
+
+          {/* Prev */}
+          <button
+            className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-white/50 hover:text-white transition-colors text-4xl z-10"
+            onClick={(e) => { e.stopPropagation(); goPrev() }}
+            aria-label="Предыдущее фото"
+          >
+            &#8249;
+          </button>
+
+          {/* Image */}
+          <img
+            src={gallery[lightbox].src}
+            alt={gallery[lightbox].alt}
+            className="max-h-[85vh] max-w-[90vw] object-contain select-none"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          {/* Next */}
+          <button
+            className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-white/50 hover:text-white transition-colors text-4xl z-10"
+            onClick={(e) => { e.stopPropagation(); goNext() }}
+            aria-label="Следующее фото"
+          >
+            &#8250;
+          </button>
+
+        </div>
+      )}
     </>
   )
 }

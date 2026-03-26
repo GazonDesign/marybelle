@@ -2,6 +2,85 @@
 
 @import "tailwindcss";
 
+/*
+  Payload CMS fix: @layer payload-fix объявлен ПОСЛЕ Tailwind,
+  поэтому бьёт preflight. Но стили Payload НЕ в layer —
+  а unlayered CSS ВСЕГДА побеждает layered. Итог:
+  Tailwind preflight < payload-fix < Payload own CSS.
+*/
+@layer payload-fix {
+  [data-theme] *,
+  [data-theme] *::before,
+  [data-theme] *::after {
+    border-width: revert;
+    border-style: revert;
+    border-color: revert;
+  }
+  [data-theme] body {
+    font-family: revert;
+    font-weight: revert;
+    line-height: revert;
+    color: revert;
+    background-color: revert;
+  }
+  [data-theme] h1, [data-theme] h2, [data-theme] h3,
+  [data-theme] h4, [data-theme] h5, [data-theme] h6 {
+    font-size: revert;
+    font-weight: revert;
+    font-family: revert;
+    line-height: revert;
+    margin: revert;
+  }
+  [data-theme] p {
+    font-size: revert;
+    font-weight: revert;
+    line-height: revert;
+    margin: revert;
+  }
+  [data-theme] a {
+    color: revert;
+    text-decoration: revert;
+  }
+  [data-theme] svg {
+    display: revert;
+    vertical-align: revert;
+  }
+  [data-theme] img,
+  [data-theme] video {
+    max-width: revert;
+    height: revert;
+    display: revert;
+  }
+  [data-theme] button,
+  [data-theme] input,
+  [data-theme] select,
+  [data-theme] textarea {
+    font: revert;
+    color: revert;
+    padding: revert;
+    margin: revert;
+  }
+  [data-theme] ul,
+  [data-theme] ol {
+    list-style: revert;
+    margin: revert;
+    padding: revert;
+  }
+  [data-theme] table {
+    border-collapse: revert;
+    border-spacing: revert;
+  }
+  [data-theme] th,
+  [data-theme] td {
+    text-align: revert;
+    padding: revert;
+  }
+  [data-theme] hr {
+    border-top-width: revert;
+    height: revert;
+  }
+}
+
 @theme {
   --color-brand: #8b6d4b;
   --color-brand-light: #a3845e;

@@ -20,14 +20,19 @@ const quizConfig = [
       '/',
       '/uslugi',
       '/uslugi/remont-shub',
+      '/uslugi/remont-shub/norkovye',
+      '/uslugi/remont-shub/sobolinye',
       '/uslugi/perekroj',
       '/uslugi/poshiv-shub',
+      '/uslugi/poshiv-shub/iz-sobolya',
+      '/uslugi/poshiv-shub/iz-norki',
       '/uslugi/remont-shub-vojkovskaya',
       '/uslugi/okrashivanie',
       '/magazin',
       '/magazin/shuby/norka',
       '/magazin/shuby/sobol',
       '/magazin/shuby/karakul',
+      '/magazin/bolshie-razmery',
       '/trejd-in',
       '/portfolio',
     ],
@@ -214,6 +219,52 @@ export default function MarquizQuiz() {
 
     if (!activeQuiz) return
 
+    // AIDA-подстраницы: увеличенный таймер автооткрытия (пользователь дольше читает)
+    const aidaPages = [
+      '/uslugi/remont-shub/norkovye',
+      '/uslugi/remont-shub/sobolinye',
+      '/uslugi/poshiv-shub/iz-sobolya',
+      '/uslugi/poshiv-shub/iz-norki',
+    ]
+    const isAidaPage = aidaPages.includes(normalizedPath)
+    const initOverride = isAidaPage
+      ? { ...activeQuiz.init, autoOpen: 25 }
+      : activeQuiz.init
+    const popOverride = isAidaPage
+      ? { ...activeQuiz.pop, delay: 8 }
+      : activeQuiz.pop
+
+    // --- Envybox: загружаем на страницах с квизом (десктоп/планшет) ---
+    let envyCleanup: (() => void) | null = null
+    if (window.innerWidth >= 768 && !document.querySelector('script[data-envybox]')) {
+      const style = document.createElement('style')
+      style.setAttribute('data-envybox', 'style')
+      style.textContent = [
+        '[class*="callbackkiller"] { opacity: 0 !important; pointer-events: none !important; width: 0 !important; height: 0 !important; overflow: hidden !important; position: fixed !important; left: -9999px !important; }',
+        '[class*="callbackkiller"][class*="open"], [class*="callbackkiller"][class*="active"], [class*="callbackkiller"][class*="showed"] { opacity: 1 !important; pointer-events: auto !important; width: auto !important; height: auto !important; overflow: visible !important; left: auto !important; }',
+      ].join('\n')
+      document.head.appendChild(style)
+
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = 'https://cdn.envybox.io/widget/cbk.css'
+      link.setAttribute('data-envybox', 'css')
+      document.head.appendChild(link)
+
+      const envyScript = document.createElement('script')
+      envyScript.src = 'https://cdn.envybox.io/widget/cbk.js?wcb_code=45933bcf817cd4419c6d6867576a5000'
+      envyScript.charset = 'UTF-8'
+      envyScript.async = true
+      envyScript.setAttribute('data-envybox', 'js')
+      document.body.appendChild(envyScript)
+
+      envyCleanup = () => {
+        style.remove()
+        link.remove()
+        envyScript.remove()
+      }
+    }
+
     // Очистка предыдущего Marquiz
     document.querySelectorAll('script[data-marquiz]').forEach((el) => el.remove())
     document.querySelectorAll('[class*="marquiz"]').forEach((el) => el.remove())
@@ -230,10 +281,10 @@ export default function MarquizQuiz() {
       patchNextDomForMarquiz()
 
       if (document.readyState !== 'loading') {
-        window.Marquiz!.init(activeQuiz.init)
+        window.Marquiz!.init(initOverride)
       } else {
         document.addEventListener('DOMContentLoaded', function () {
-          window.Marquiz!.init(activeQuiz.init)
+          window.Marquiz!.init(initOverride)
         })
       }
     }
@@ -242,7 +293,7 @@ export default function MarquizQuiz() {
     // --- 2. Код баннера (marquizLoaded — официальный паттерн) ---
     const addPop = () => {
       patchNextDomForMarquiz()
-      window.Marquiz!.add(['Pop', activeQuiz.pop])
+      window.Marquiz!.add(['Pop', popOverride])
     }
 
     const onMarquizLoaded = () => addPop()
@@ -251,6 +302,26 @@ export default function MarquizQuiz() {
     if (window.Marquiz) {
       addPop()
     }
+
+    // Marquiz → Envybox: после отправки квиза передаём номер в Envybox для автозвонка
+    const onMarquizSubmit = (e: any) => {
+      const phone = e?.detail?.phone || e?.data?.phone
+      const w = window as any
+      if (phone && w.CallbackKillerApi) {
+        w.CallbackKillerApi.requestCallback({ phone })
+      }
+    }
+    document.addEventListener('marquizSubmit', onMarquizSubmit)
+    // Marquiz также шлёт postMessage из iframe
+    const onMessage = (e: MessageEvent) => {
+      if (e.data?.type === 'marquizSubmit' && e.data?.phone) {
+        const w = window as any
+        if (w.CallbackKillerApi) {
+          w.CallbackKillerApi.requestCallback({ phone: e.data.phone })
+        }
+      }
+    }
+    window.addEventListener('message', onMessage)
 
     // MutationObserver: патчим __NA на новых элементах
     const observer = new MutationObserver((mutations) => {
@@ -268,8 +339,11 @@ export default function MarquizQuiz() {
       script.remove()
       observer.disconnect()
       document.removeEventListener('marquizLoaded', onMarquizLoaded)
+      document.removeEventListener('marquizSubmit', onMarquizSubmit)
+      window.removeEventListener('message', onMessage)
       document.querySelectorAll('[class*="marquiz"]').forEach((el) => el.remove())
       delete (window as any).Marquiz
+      if (envyCleanup) envyCleanup()
     }
   }, [pathname])
 

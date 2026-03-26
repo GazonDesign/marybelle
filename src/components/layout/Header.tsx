@@ -8,9 +8,11 @@ import { Phone, X, Search } from 'lucide-react'
 const menuLinks = [
   { label: 'Услуги', href: '/uslugi' },
   { label: 'Магазин', href: '/magazin' },
-  { label: 'Трейд-ин', href: '/trejd-in' },
-  { label: 'Портфолио', href: '/portfolio' },
   { label: 'Цены', href: '/ceny' },
+  { label: 'Портфолио', href: '/portfolio' },
+  { label: 'Трейд-ин', href: '/trejd-in' },
+  { label: 'Гарантия', href: '/garantiya' },
+  { label: 'Блог', href: '/blog' },
   { label: 'О фабрике', href: '/o-fabrike' },
   { label: 'Контакты', href: '/kontakty' },
 ]

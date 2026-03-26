@@ -54,6 +54,29 @@ const nextConfig: NextConfig = {
       { source: '/shubi/izdeliya-iz-kozhi', destination: '/magazin/kozha', permanent: true },
       { source: '/shubi/izdeliya-iz-kozhi/', destination: '/magazin/kozha', permanent: true },
 
+      // === ПРОПУЩЕННЫЕ УСЛУГИ ===
+      { source: '/shuby-na-zakaz-iz-sobolya', destination: '/uslugi/poshiv-shub', permanent: true },
+      { source: '/shuby-na-zakaz-iz-sobolya/', destination: '/uslugi/poshiv-shub', permanent: true },
+      { source: '/poshiv-shub-iz-naturalnogo-meha', destination: '/uslugi/poshiv-shub', permanent: true },
+      { source: '/poshiv-shub-iz-naturalnogo-meha/', destination: '/uslugi/poshiv-shub', permanent: true },
+      { source: '/pokraska', destination: '/uslugi/okrashivanie', permanent: true },
+      { source: '/pokraska/', destination: '/uslugi/okrashivanie', permanent: true },
+      { source: '/okrashivanie-vojkovskaya', destination: '/uslugi/okrashivanie', permanent: true },
+      { source: '/okrashivanie-vojkovskaya/', destination: '/uslugi/okrashivanie', permanent: true },
+
+      // === ПРОПУЩЕННЫЕ КАТЕГОРИИ МАГАЗИНА ===
+      { source: '/shubi/shuby-iz-kunitsy', destination: '/magazin', permanent: true },
+      { source: '/shubi/shuby-iz-kunitsy/', destination: '/magazin', permanent: true },
+
+      // === ТОВАРНЫЕ СТРАНИЦЫ (catch-all: /shub/категория/товар → магазин) ===
+      { source: '/shub/:category/:product', destination: '/magazin', permanent: true },
+      { source: '/shub/:category/:product/', destination: '/magazin', permanent: true },
+
+      // === ПОДСТРАНИЦЫ ПОШИВА ===
+      { source: '/individualnyj-poshiv-2/individualnyj-poshiv-shub-iz-sobolya', destination: '/uslugi/poshiv-shub/iz-sobolya', permanent: true },
+      { source: '/individualnyj-poshiv-2/individualnyj-poshiv-shub-iz-sobolya/', destination: '/uslugi/poshiv-shub/iz-sobolya', permanent: true },
+      { source: '/individualnyj-poshiv-2/:path*', destination: '/uslugi/poshiv-shub', permanent: true },
+
       // === КОНТЕНТ И ИНФО ===
       { source: '/kontakti', destination: '/kontakty', permanent: true },
       { source: '/kontakti/', destination: '/kontakty', permanent: true },

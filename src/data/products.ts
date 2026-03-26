@@ -4,8 +4,10 @@ export interface Product {
   description: string
   category: 'shuby' | 'palto' | 'kozha'
   subcategory?: string // norka, karakul, sobol
+  tags?: string[] // bolshie-razmery, etc.
   images: string[]
   price: string
+  oldPrice?: string // перечёркнутая цена (скидка)
   details?: string[]
 }
 
@@ -548,6 +550,263 @@ export const products: Product[] = [
   },
 ]
 
+// === БОЛЬШИЕ РАЗМЕРЫ (шубы из скандинавской норки, 52-62) ===
+const BR = '/images/gov-import/katalog-shuby'
+
+const bolshieRazmeryProducts: Product[] = [
+  {
+    slug: 'br-norka-pepelno-rozovaya',
+    title: 'Шуба из скандинавской норки пепельно-розовая',
+    description: 'Роскошная шуба из скандинавской норки пепельно-розового цвета. Доступна в больших размерах — изготовим по вашим меркам за 21 день.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5695.jpg`],
+    price: '149 000 ₽',
+    oldPrice: '215 000 ₽',
+    details: ['Мех: скандинавская норка', 'Цвет: пепельно-розовый', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-model-vishnya',
+    title: 'Модель «Вишня»',
+    description: 'Шуба из скандинавской норки насыщенного вишнёвого оттенка. Пошив на заказ в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-vishnya.jpg`],
+    price: 'Только на заказ',
+    details: ['Мех: скандинавская норка', 'Цвет: вишнёвый', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-pudrovaya-roza',
+    title: 'Шуба модель «Пудровая роза»',
+    description: 'Элегантная шуба из скандинавской норки в оттенке пудровой розы. Доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-pudrovaya-roza.jpg`],
+    price: '199 000 ₽',
+    oldPrice: '220 000 ₽',
+    details: ['Мех: скандинавская норка', 'Цвет: пудровая роза', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-1',
+    title: 'Шуба из скандинавской коротковорсовой норки',
+    description: 'Шуба из коротковорсовой скандинавской норки. Лёгкая и элегантная, пошив на заказ.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5709.jpg`],
+    price: 'Только на заказ',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-skandinavskaya-5557',
+    title: 'Шуба из скандинавской норки',
+    description: 'Классическая шуба из скандинавской норки. Прямой силуэт, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5557.jpg`],
+    price: '195 000 ₽',
+    details: ['Мех: скандинавская норка', 'Крой: прямой', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-2',
+    title: 'Шуба из скандинавской коротковорсовой норки',
+    description: 'Коротковорсовая скандинавская норка — лёгкий вес и элегантный вид. Большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5575.jpg`],
+    price: '199 000 ₽',
+    oldPrice: '315 000 ₽',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5614',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки тёмного оттенка. Элегантный длинный силуэт.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5614.jpg`],
+    price: '185 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5616',
+    title: 'Шуба из скандинавской норки',
+    description: 'Премиальная шуба из скандинавской норки. Роскошный мех, безупречный крой.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5616.jpg`],
+    price: '250 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-rubashka',
+    title: 'Шуба из скандинавской норки «Рубашка»',
+    description: 'Шуба-рубашка из скандинавской норки. Свободный крой, стильный фасон.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5620.jpg`],
+    price: '169 000 ₽',
+    oldPrice: '210 000 ₽',
+    details: ['Мех: скандинавская норка', 'Крой: рубашка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5653',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки. Классический фасон, большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5653.jpg`],
+    price: '195 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-pryamoj-siluet',
+    title: 'Шуба из скандинавской норки, прямой силуэт',
+    description: 'Шуба прямого силуэта из скандинавской норки. Строгие линии, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5658.jpg`],
+    price: '185 000 ₽',
+    details: ['Мех: скандинавская норка', 'Крой: прямой', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-3',
+    title: 'Шуба из коротковорсовой скандинавской норки',
+    description: 'Коротковорсовая норка скандинавского происхождения. Лёгкость и изящество.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5666.jpg`],
+    price: '155 000 ₽',
+    oldPrice: '165 000 ₽',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5686',
+    title: 'Шуба из скандинавской норки',
+    description: 'Норковая шуба по выгодной цене. Скандинавская норка, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5686.jpg`],
+    price: '99 000 ₽',
+    oldPrice: '100 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5681',
+    title: 'Шуба из скандинавской норки',
+    description: 'Роскошная шуба из скандинавской норки. Классика в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5681.jpg`],
+    price: '195 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-roskoshnaya',
+    title: 'Шуба из роскошной коротковорсовой скандинавской норки',
+    description: 'Премиальная коротковорсовая норка. Мягкий мех, изысканный силуэт.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5689.jpg`],
+    price: '185 000 ₽',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Категория: премиум', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5697',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки. Женственный силуэт, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5697.jpg`],
+    price: '199 000 ₽',
+    oldPrice: '210 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5701',
+    title: 'Шуба из скандинавской норки',
+    description: 'Норковая шуба из скандинавского меха. Большие размеры, пошив по меркам.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5701.jpg`],
+    price: '120 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5699',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки с мягким силуэтом. Большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5699.jpg`],
+    price: '179 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-5702',
+    title: 'Шуба из коротковорсовой скандинавской норки',
+    description: 'Коротковорсовая скандинавская норка. Современный крой, большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5702.jpg`],
+    price: '195 000 ₽',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5705',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки. Классический крой, большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5705.jpg`],
+    price: '155 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5707',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки. Женственный фасон, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_5707.jpg`],
+    price: 'Только на заказ',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-model-fiona',
+    title: 'Модель «Фиона»',
+    description: 'Авторская шуба из скандинавской норки. Уникальный дизайн, пошив на заказ в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery'],
+    images: [`${BR}/01-img_9736.jpeg`],
+    price: 'Только на заказ',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+]
+
+products.push(...bolshieRazmeryProducts)
+
 export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug)
 }
@@ -558,4 +817,8 @@ export function getProductsByCategory(category: string, subcategory?: string): P
     if (subcategory && p.subcategory !== subcategory) return false
     return true
   })
+}
+
+export function getProductsByTag(tag: string): Product[] {
+  return products.filter((p) => p.tags?.includes(tag))
 }
