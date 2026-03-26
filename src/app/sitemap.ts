@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog/kakoj-meh-samyj-teplyj`, changeFrequency: 'monthly' as const, priority: 0.6 },
     { url: `${baseUrl}/garantiya`, changeFrequency: 'yearly' as const, priority: 0.4 },
     { url: `${baseUrl}/politika-konfidencialnosti`, changeFrequency: 'yearly' as const, priority: 0.3 },
+    { url: `${baseUrl}/oferta`, changeFrequency: 'yearly' as const, priority: 0.3 },
   ]
 
   // Динамические страницы товаров

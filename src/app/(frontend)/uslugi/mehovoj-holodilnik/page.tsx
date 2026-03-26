@@ -1,5 +1,6 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import HolodilnikFAQ from './HolodilnikFAQ'
 import Link from 'next/link'
 
 export const metadata = {
@@ -179,6 +180,9 @@ export default function MehovojHolodilnikPage() {
             </div>
           </div>
         </section>
+
+        {/* FAQ */}
+        <HolodilnikFAQ />
 
         {/* Related */}
         <section className="py-20 md:py-28 bg-bg-warm">
