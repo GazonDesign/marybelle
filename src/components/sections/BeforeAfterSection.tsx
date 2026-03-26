@@ -6,45 +6,39 @@ import Link from 'next/link'
 const cases = [
   {
     id: 1,
-    title: 'Восстановление норковой шубы',
-    description: 'Восстановление цвета и блеска пожелтевшей норки без окрашивания.',
-    image: '/images/portfolio-new/case-norka-after.jpg',
-    year: '2025',
+    title: 'Перекрой дублёнки',
+    description: 'Старая дублёнка → современный крой с косой молнией.',
+    image: '/images/before-after/case-02.jpg',
   },
   {
     id: 2,
-    title: 'Реставрация белой норки',
-    description: 'Глубокая чистка загрязнённой белой норки, возвращение первоначального цвета.',
-    image: '/images/portfolio-new/case-white-after.jpg',
-    year: '2025',
+    title: 'Перекрой норковой шубы',
+    description: 'Устаревший фасон → элегантная шуба с воротником из чернобурки.',
+    image: '/images/before-after/case-03.jpg',
   },
   {
     id: 3,
-    title: 'Реставрация дублёнки-авиатор',
-    description: 'Полная реставрация: чистка, восстановление цвета, замена фурнитуры.',
-    image: '/images/portfolio/001.jpg',
-    year: '2024',
+    title: 'Ремонт норки',
+    description: 'Разрыв в области подмышки — аккуратная починка, шов не заметен.',
+    image: '/images/before-after/case-04.jpg',
   },
   {
     id: 4,
-    title: 'Реставрация кожаной куртки',
-    description: 'Восстановление цвета и эластичности кожи, ремонт швов.',
-    image: '/images/portfolio/003.jpg',
-    year: '2024',
+    title: 'Перекрой каракуля',
+    description: 'Старое пальто из каракуля → обновлённый современный силуэт.',
+    image: '/images/before-after/case-05.jpg',
   },
   {
     id: 5,
-    title: 'Ремонт дублёнки с мехом',
-    description: 'Глубокая чистка, окрашивание, восстановление меха.',
-    image: '/images/portfolio/004.jpg',
-    year: '2024',
+    title: 'Перекрой шубы в пальто',
+    description: 'Старая шуба → авторское пальто с аппликацией.',
+    image: '/images/before-after/case-06.jpg',
   },
   {
     id: 6,
-    title: 'Восстановление серой норки',
-    description: 'Полная реставрация серой норковой шубы с обновлением силуэта.',
-    image: '/images/portfolio-new/case-grey-after.jpg',
-    year: '2025',
+    title: 'Пошив по образцу',
+    description: 'Клиент принёс фото — мы воплотили идею в жизнь.',
+    image: '/images/before-after/case-01.jpg',
   },
 ]
 
@@ -116,19 +110,13 @@ export default function BeforeAfterSection() {
                   alt={`${item.title} — до и после`}
                   className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
                 />
-                {/* Labels */}
-                <div className="absolute top-3 left-3 bg-black/60 text-white text-xs px-3 py-1 tracking-wider uppercase">
-                  До
-                </div>
-                <div className="absolute top-3 right-3 bg-brand text-white text-xs px-3 py-1 tracking-wider uppercase">
-                  После
+                <div className="absolute bottom-0 left-0 right-0 flex">
+                  <span className="flex-1 text-center bg-black/50 text-white text-xs py-1.5 tracking-wider uppercase">До</span>
+                  <span className="flex-1 text-center bg-brand/80 text-white text-xs py-1.5 tracking-wider uppercase">После</span>
                 </div>
               </div>
               <div className="pt-4">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-serif text-lg text-black">{item.title}</h3>
-                  {item.year && <span className="text-text-muted text-xs">· {item.year}</span>}
-                </div>
+                <h3 className="font-serif text-lg text-black">{item.title}</h3>
                 <p className="text-text-muted text-sm mt-1">{item.description}</p>
               </div>
             </div>
