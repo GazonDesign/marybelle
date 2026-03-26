@@ -43,5 +43,53 @@ export async function generateStaticParams() {
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params
-  return <ProductPageClient slug={slug} />
+  const product = products.find((p) => p.slug === slug)
+
+  const jsonLd = product
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: product.title,
+        description: product.description,
+        image: product.images.map((img) => `https://mary-belle.ru${img}`),
+        brand: {
+          '@type': 'Brand',
+          name: 'Mary Belle',
+        },
+        manufacturer: {
+          '@type': 'Organization',
+          name: 'Mary Belle — Меховое ателье',
+          foundingDate: '1870',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '1-й Новоподмосковный пер., д. 2/1',
+            addressLocality: 'Москва',
+            addressCountry: 'RU',
+          },
+        },
+        offers: {
+          '@type': 'Offer',
+          availability: 'https://schema.org/InStock',
+          priceCurrency: 'RUB',
+          price: product.price === 'Цена по запросу' ? undefined : product.price.replace(/[^\d]/g, ''),
+          seller: {
+            '@type': 'Organization',
+            name: 'Mary Belle',
+          },
+        },
+        category: categoryLabels[product.category] || product.category,
+      }
+    : null
+
+  return (
+    <>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      <ProductPageClient slug={slug} />
+    </>
+  )
 }

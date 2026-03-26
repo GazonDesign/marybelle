@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { products } from '@/data/products'
-import { ChevronLeft, ChevronRight, Phone, X, ZoomIn } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Phone, X, ZoomIn, Shield, Truck, Ruler, Snowflake } from 'lucide-react'
 
 const categoryLabels: Record<string, string> = {
   shuby: 'Шубы',
@@ -245,6 +245,12 @@ export default function ProductPageClient({ slug }: { slug: string }) {
                     ))}
                   </div>
                 )}
+
+                {product.category === 'kozha' && (
+                  <p className="text-text-muted text-xs mt-3 italic">
+                    Изделие на фото — наша модель, сшитая в нашем ателье. Фотографии стилизованы для каталога.
+                  </p>
+                )}
               </div>
 
               {/* Info */}
@@ -316,6 +322,45 @@ export default function ProductPageClient({ slug }: { slug: string }) {
                 >
                   Москва, 1-й Новоподмосковный пер., д. 2/1 (5 мин от м. Войковская)
                 </a>
+
+                {/* Trust badges */}
+                <div className="mt-8 grid grid-cols-2 gap-3">
+                  <div className="flex items-start gap-3 p-4 bg-bg-warm border border-border-light">
+                    <Shield size={20} className="text-brand shrink-0 mt-0.5" strokeWidth={1.5} />
+                    <div>
+                      <p className="text-sm font-medium text-text-primary">Гарантия 2 года</p>
+                      <p className="text-xs text-text-muted mt-0.5">На мех и фурнитуру</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 bg-bg-warm border border-border-light">
+                    <Ruler size={20} className="text-brand shrink-0 mt-0.5" strokeWidth={1.5} />
+                    <div>
+                      <p className="text-sm font-medium text-text-primary">Подгонка по фигуре</p>
+                      <p className="text-xs text-text-muted mt-0.5">Бесплатно при покупке</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 bg-bg-warm border border-border-light">
+                    <Truck size={20} className="text-brand shrink-0 mt-0.5" strokeWidth={1.5} />
+                    <div>
+                      <p className="text-sm font-medium text-text-primary">Примерка в ателье</p>
+                      <p className="text-xs text-text-muted mt-0.5">Без обязательств</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 bg-bg-warm border border-border-light">
+                    <Snowflake size={20} className="text-brand shrink-0 mt-0.5" strokeWidth={1.5} />
+                    <div>
+                      <p className="text-sm font-medium text-text-primary">Хранение меха</p>
+                      <p className="text-xs text-text-muted mt-0.5">Меховой холодильник</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 p-4 border border-border-light">
+                  <p className="text-sm text-text-body leading-relaxed">
+                    <span className="font-medium">Семейная фабрика с 1870 года.</span>{' '}
+                    Все изделия отшиваются в нашем ателье в Москве. Размер подбираем индивидуально — приезжайте на примерку, подгоним по фигуре.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
