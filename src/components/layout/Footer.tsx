@@ -25,7 +25,7 @@ const infoLinks = [
   { label: 'О фабрике', href: '/o-fabrike' },
   { label: 'Портфолио', href: '/portfolio' },
   { label: 'Цены', href: '/ceny' },
-  { label: 'Гарантия', href: '/garantiya' },
+  { label: 'Российская гарантия', href: '/garantiya' },
   { label: 'Блог', href: '/blog' },
   { label: 'Трейд-ин', href: '/trejd-in' },
   { label: 'Контакты', href: '/kontakty' },

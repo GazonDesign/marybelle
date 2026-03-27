@@ -45,15 +45,20 @@ export default async function PortfolioPage() {
     <>
       <Header />
       <main>
-        <section className="bg-bg-dark py-24 md:py-32 text-center">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <span className="inline-block mb-4 text-sm tracking-[0.3em] font-light uppercase text-white/50">
+        <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+          <div
+            className="absolute inset-0 parallax-bg"
+            style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+            <span className="inline-block mb-4 text-sm tracking-[0.3em] font-light uppercase text-white/70">
               Наши работы
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-4xl">
               Портфолио — до и после
             </h1>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            <p className="mt-6 text-white/80 text-lg max-w-2xl">
               Реальные результаты работы наших мастеров. На каждой фотографии — одно изделие до и после реставрации.
             </p>
           </div>

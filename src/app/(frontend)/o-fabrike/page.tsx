@@ -36,7 +36,7 @@ export default function OFabrikePage() {
         <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
           <div
             className="absolute inset-0 parallax-bg"
-            style={{ backgroundImage: 'url(/images/about-bg.jpg)' }}
+            style={{ backgroundImage: 'url(/images/o-fabrike/mary_belle_workshop_panoramic.jpg)' }}
           />
           <div className="absolute inset-0 bg-black/50" />
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
