@@ -82,22 +82,22 @@ export default function ServicePageTemplate({
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+        <section className="relative h-[80vh] min-h-[550px] w-full overflow-hidden">
           <div
             className="absolute inset-0 parallax-bg"
             style={{ backgroundImage: `url(${heroImage})` }}
           />
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="relative z-10 h-full flex flex-col justify-end pb-14 px-6 text-center">
             <span
-              className={`inline-block mb-4 text-sm tracking-[0.3em] font-light uppercase text-white/70 transition-all duration-700 ${
+              className={`inline-block mb-3 text-sm md:text-base tracking-[0.3em] font-light uppercase text-white/60 transition-all duration-700 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
               {subtitle}
             </span>
             <h1
-              className={`font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-3xl transition-all duration-700 ${
+              className={`font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight transition-all duration-700 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ transitionDelay: '200ms' }}

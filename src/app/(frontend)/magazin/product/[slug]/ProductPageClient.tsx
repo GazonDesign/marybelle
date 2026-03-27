@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import { products } from '@/data/products'
+import type { Product } from '@/lib/strapi'
 import { ChevronLeft, ChevronRight, Phone, X, ZoomIn, Shield, Truck, Ruler, Snowflake } from 'lucide-react'
 
 const categoryLabels: Record<string, string> = {
@@ -28,8 +28,7 @@ const categoryNav = [
   { label: 'Кожа', href: '/magazin/kozha' },
 ]
 
-export default function ProductPageClient({ slug }: { slug: string }) {
-  const product = products.find((p) => p.slug === slug)
+export default function ProductPageClient({ slug, product, relatedProducts }: { slug: string; product?: Product; relatedProducts?: Product[] }) {
   const [activeImage, setActiveImage] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
@@ -138,8 +137,7 @@ export default function ProductPageClient({ slug }: { slug: string }) {
     setLightboxOpen(true)
   }
 
-  const related = products
-    .filter((p) => p.category === product.category && p.slug !== product.slug)
+  const related = relatedProducts || []
 
   return (
     <>

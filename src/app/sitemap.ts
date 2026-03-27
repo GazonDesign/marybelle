@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
-import { products } from '@/data/products'
+import { getAllProducts } from '@/lib/get-products'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://mary-belle.ru'
 
   // Статические страницы
@@ -35,6 +35,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/o-fabrike`, changeFrequency: 'monthly' as const, priority: 0.6 },
     { url: `${baseUrl}/kontakty`, changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${baseUrl}/blog`, changeFrequency: 'weekly' as const, priority: 0.6 },
+    { url: `${baseUrl}/blog/rossijskie-mehovye-fabriki`, changeFrequency: 'monthly' as const, priority: 0.6 },
+    { url: `${baseUrl}/blog/ekomeh-v-vysokoj-mode`, changeFrequency: 'monthly' as const, priority: 0.6 },
+    { url: `${baseUrl}/blog/novye-premialnye-brendy-meha`, changeFrequency: 'monthly' as const, priority: 0.6 },
+    { url: `${baseUrl}/blog/palto-s-membrannoj-tehnologiej`, changeFrequency: 'monthly' as const, priority: 0.6 },
+    { url: `${baseUrl}/blog/meh-v-sovremennyh-kollekciyah`, changeFrequency: 'monthly' as const, priority: 0.6 },
     { url: `${baseUrl}/blog/kakoj-meh-samyj-teplyj`, changeFrequency: 'monthly' as const, priority: 0.6 },
     { url: `${baseUrl}/garantiya`, changeFrequency: 'yearly' as const, priority: 0.4 },
     { url: `${baseUrl}/politika-konfidencialnosti`, changeFrequency: 'yearly' as const, priority: 0.3 },
@@ -42,6 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   // Динамические страницы товаров
+  const products = await getAllProducts()
   const productPages = products.map((product) => ({
     url: `${baseUrl}/magazin/product/${product.slug}`,
     changeFrequency: 'weekly' as const,

@@ -68,17 +68,17 @@ export default function RemontSobolinyePage() {
       <main>
         {/* ===== A — ATTENTION ===== */}
         {/* Hero — clean, visual, just H1 + subtitle */}
-        <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+        <section className="relative h-[80vh] min-h-[550px] w-full overflow-hidden">
           <div
             className="absolute inset-0 parallax-bg"
             style={{ backgroundImage: 'url(/images/gov-import/modeli/russkij-sobol.jpg)' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
-          <div className="relative z-10 h-full flex flex-col items-center justify-end text-center px-6 pb-16">
-            <span className="inline-block mb-4 text-sm tracking-[0.3em] font-light uppercase text-white/60">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="relative z-10 h-full flex flex-col justify-end pb-14 px-6 text-center">
+            <span className="inline-block mb-3 text-sm md:text-base tracking-[0.3em] font-light uppercase text-white/60">
               Бережная реставрация ценного меха
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-4xl">
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight">
               Ремонт шуб из соболя в Москве
             </h1>
           </div>

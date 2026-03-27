@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { products } from '@/data/products'
+import { getAllProducts, getProductBySlug, getProductsByCategory } from '@/lib/get-products'
 import ProductPageClient from './ProductPageClient'
 
 const categoryLabels: Record<string, string> = {
@@ -14,7 +14,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const product = products.find((p) => p.slug === slug)
+  const product = await getProductBySlug(slug)
 
   if (!product) {
     return {
@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
+  const products = await getAllProducts()
   return products.map((product) => ({
     slug: product.slug,
   }))
@@ -43,7 +44,11 @@ export async function generateStaticParams() {
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params
-  const product = products.find((p) => p.slug === slug)
+  const product = await getProductBySlug(slug)
+
+  const related = product
+    ? (await getProductsByCategory(product.category)).filter(p => p.slug !== slug)
+    : []
 
   const jsonLd = product
     ? {
@@ -89,7 +94,7 @@ export default async function ProductPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       )}
-      <ProductPageClient slug={slug} />
+      <ProductPageClient slug={slug} product={product} relatedProducts={related} />
     </>
   )
 }

@@ -1,9 +1,10 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ProductCard from '@/components/magazin/ProductCard'
+import CategoryNav from '@/components/magazin/CategoryNav'
 import Link from 'next/link'
 import { Phone } from 'lucide-react'
-import { getProductsByCategory } from '@/data/products'
+import { getProductsByCategory } from '@/lib/get-products'
 
 export const metadata = {
   title: 'Шубы из соболя — Купить соболиную шубу в Москве | Mary Belle',
@@ -22,24 +23,33 @@ const sobolAdvantages = [
   { title: 'Гарантия на изделие', description: 'Даём письменную гарантию на все работы. Обслуживание и ремонт — бесплатно в течение года.' },
 ]
 
-export default function SobolPage() {
+export default async function SobolPage() {
+  const sobolItems = await getProductsByCategory('shuby', 'sobol')
+
   return (
     <>
       <Header />
       <main>
-        <section className="bg-bg-dark py-24 md:py-32 text-center">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <span className="inline-block mb-4 text-sm tracking-[0.3em] font-light uppercase text-gold">
+        {/* Hero */}
+        <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+          <div
+            className="absolute inset-0 parallax-bg"
+            style={{ backgroundImage: 'url(/images/gov-import/modeli/sobol-e1746367903636.jpg)' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="relative z-10 h-full flex flex-col justify-end pb-12 px-6 text-center">
+            <span className="inline-block mb-3 text-xs tracking-[0.3em] font-light uppercase text-gold">
               Индивидуальный пошив
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl text-white mb-6">Шубы из соболя</h1>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">Шубы из соболя</h1>
+            <p className="mt-3 text-white/70 text-base md:text-lg max-w-2xl mx-auto">
               Соболь — самый ценный мех в мире. Мы создаём соболиные шубы на заказ:
               от подбора шкурок до финальной примерки.
             </p>
           </div>
         </section>
 
+        {/* Breadcrumbs */}
         <div className="bg-bg-warm border-b border-border-light">
           <div className="max-w-[1200px] mx-auto px-6 py-3 text-sm text-text-muted">
             <Link href="/" className="hover:text-brand transition-colors">Главная</Link>
@@ -50,8 +60,30 @@ export default function SobolPage() {
           </div>
         </div>
 
-        {/* Преимущества */}
+        <CategoryNav active="/magazin/shuby/sobol" />
+
+        {/* Каталог товаров — стандартная сетка */}
         <section className="py-20 md:py-28">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-[60px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {sobolItems.map((p) => (
+                <ProductCard
+                  key={p.slug}
+                  title={p.title}
+                  description={p.description}
+                  image={p.images[0]}
+                  href={`/magazin/product/${p.slug}`}
+                  price={p.price}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* === Премиальные секции === */}
+
+        {/* Преимущества */}
+        <section className="py-20 md:py-28 bg-bg-light">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12">
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-4 text-center">
               Почему соболь от Mary Belle
@@ -61,7 +93,7 @@ export default function SobolPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {sobolAdvantages.map((item, i) => (
-                <div key={i} className="p-8 bg-bg-warm border border-border-light">
+                <div key={i} className="p-8 bg-white border border-border-light">
                   <span className="text-brand/30 font-serif text-4xl">{String(i + 1).padStart(2, '0')}</span>
                   <h3 className="font-serif text-xl text-black mt-3 mb-3">{item.title}</h3>
                   <p className="text-text-muted text-sm leading-relaxed">{item.description}</p>
@@ -70,34 +102,6 @@ export default function SobolPage() {
             </div>
           </div>
         </section>
-
-        {/* Готовые изделия */}
-        {(() => {
-          const items = getProductsByCategory('shuby', 'sobol')
-          if (items.length === 0) return null
-          return (
-            <section className="py-20 md:py-28 bg-bg-light">
-              <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-[60px]">
-                <h2 className="font-serif text-3xl md:text-4xl text-black mb-4 text-center">Готовые изделия из соболя</h2>
-                <p className="text-text-muted text-center mb-12 max-w-2xl mx-auto">
-                  Эти модели можно примерить в ателье или заказать пошив аналогичной по вашим меркам
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {items.map((p) => (
-                    <ProductCard
-                      key={p.slug}
-                      title={p.title}
-                      description={p.description}
-                      image={p.images[0]}
-                      href={`/magazin/product/${p.slug}`}
-                      price={p.price}
-                    />
-                  ))}
-                </div>
-              </div>
-            </section>
-          )
-        })()}
 
         {/* Как заказать */}
         <section className="py-20 md:py-28 bg-bg-warm">

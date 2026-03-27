@@ -1,8 +1,9 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ProductCard from '@/components/magazin/ProductCard'
+import CategoryNav from '@/components/magazin/CategoryNav'
 import Link from 'next/link'
-import { getProductsByCategory } from '@/data/products'
+import { getProductsByCategory } from '@/lib/get-products'
 
 export const metadata = {
   title: 'Шубы из норки — Купить норковую шубу в Москве | Mary Belle',
@@ -12,17 +13,22 @@ export const metadata = {
   },
 }
 
-export default function NorkaPage() {
-  const items = getProductsByCategory('shuby', 'norka')
+export default async function NorkaPage() {
+  const items = await getProductsByCategory('shuby', 'norka')
 
   return (
     <>
       <Header />
       <main>
-        <section className="bg-bg-dark py-24 md:py-32 text-center">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <h1 className="font-serif text-4xl md:text-5xl text-white mb-6">Шубы из норки</h1>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+        <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+          <div
+            className="absolute inset-0 parallax-bg"
+            style={{ backgroundImage: 'url(/images/history/2025/banner-okrashivanie.jpg)' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="relative z-10 h-full flex flex-col justify-end pb-12 px-6 text-center">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">Шубы из норки</h1>
+            <p className="mt-3 text-white/70 text-base md:text-lg max-w-2xl mx-auto">
               Норковые шубы собственного производства — от классики до авангарда.
               Каждую модель можно примерить в нашем ателье.
             </p>
@@ -38,6 +44,8 @@ export default function NorkaPage() {
             <span className="text-text-primary">Шубы из норки</span>
           </div>
         </div>
+
+        <CategoryNav active="/magazin/shuby/norka" />
 
         <section className="py-20 md:py-28">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-[60px]">

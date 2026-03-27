@@ -1,0 +1,926 @@
+/**
+ * Seed all products from products.ts into Strapi CMS.
+ * Usage: node scripts/seed-products.mjs
+ *
+ * Expects Strapi running at localhost:1337.
+ * Set STRAPI_TOKEN env var if auth is required.
+ */
+
+const STRAPI_URL = process.env.STRAPI_URL || 'http://127.0.0.1:1337'
+const STRAPI_TOKEN = process.env.STRAPI_TOKEN || ''
+
+const headers = { 'Content-Type': 'application/json' }
+if (STRAPI_TOKEN) headers['Authorization'] = `Bearer ${STRAPI_TOKEN}`
+
+// Helper: generate image paths from folder
+function imgs(folder, count, ext = 'jpg') {
+  return Array.from({ length: count }, (_, i) =>
+    `${folder}/${String(i + 1).padStart(2, '0')}.${ext}`
+  )
+}
+
+// Parse price string to integer or null
+function parsePrice(priceStr) {
+  if (!priceStr) return { price: null, priceLabel: null }
+  const digits = priceStr.replace(/[^\d]/g, '')
+  if (digits && !isNaN(Number(digits))) {
+    return { price: Number(digits), priceLabel: null }
+  }
+  // Non-numeric: "Цена по запросу", "Только на заказ"
+  return { price: null, priceLabel: priceStr }
+}
+
+function parseOldPrice(oldPriceStr) {
+  if (!oldPriceStr) return null
+  const digits = oldPriceStr.replace(/[^\d]/g, '')
+  return digits ? Number(digits) : null
+}
+
+// ============ PRODUCTS DATA (copied from products.ts) ============
+
+const BR = '/images/gov-import/katalog-shuby'
+
+const products = [
+  // === ШУБЫ ИЗ НОРКИ ===
+  {
+    slug: 'odeyalo-pudra',
+    title: '«Одеяло» Пудра',
+    description: 'Шуба-одеяло из соболя пудрового оттенка. Свободный крой оверсайз, мягкий и уютный силуэт.',
+    category: 'shuby',
+    subcategory: 'sobol',
+    tags: ['sobol'],
+    images: imgs('/images/magazin/shuby/odeyalo-pudra', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: соболь', 'Цвет: пудра', 'Крой: оверсайз', 'Длина: до колена'],
+  },
+  {
+    slug: 'kimono-bluejeans',
+    title: '«Кимоно» БлюДжинс',
+    description: 'Шуба-кимоно из норки в оттенке Blue Jeans. Нестандартный крой, лёгкость и свобода движений.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/kimono-bluejeans', 4),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: Blue Jeans', 'Крой: кимоно', 'Длина: миди'],
+  },
+  {
+    slug: 'zhanna-norka',
+    title: '«Жанна»',
+    description: 'Элегантная норковая шуба с капюшоном. Тёмный соболиный оттенок, прямой удлинённый силуэт.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/zhanna-norka', 6),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: тёмный соболиный', 'Капюшон: да', 'Длина: ниже колена'],
+  },
+  {
+    slug: 'rayusha-norka-black',
+    title: '«Раюша» Норка Блэк',
+    description: 'Норковая шуба глубокого чёрного цвета. Объёмный силуэт, роскошный мех.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/rayusha-norka-black', 7),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: чёрный', 'Крой: объёмный', 'Длина: до колена'],
+  },
+  {
+    slug: 'dunyasha-scanblack',
+    title: '«Дуняша» ScanBlack',
+    description: 'Шуба из скандинавской норки. Глубокий чёрный цвет, поперечная раскладка меха, приталенный силуэт.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/dunyasha-scanblack', 8),
+    price: 'Цена по запросу',
+    details: ['Мех: скандинавская норка', 'Цвет: ScanBlack', 'Раскладка: поперечная', 'Длина: до колена'],
+  },
+  {
+    slug: 'kozlik-norka-kashmir',
+    title: '«Козлик-Норка-Кашемир»',
+    description: 'Комбинированная шуба: козлик, норка и кашемир. Оригинальный авторский дизайн.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul', 'norka'],
+    images: imgs('/images/magazin/shuby/kozlik-norka-kashmir', 4),
+    price: 'Цена по запросу',
+    details: ['Мех: козлик + норка', 'Ткань: кашемир', 'Дизайн: авторский', 'Длина: миди'],
+  },
+  {
+    slug: 'norka-classic',
+    title: 'Норка классическая',
+    description: 'Классическая модель из норки. Прямой крой, минималистичный дизайн, глубокий тёмный мех.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/norka-classic', 6),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: тёмный', 'Крой: прямой', 'Длина: до колена'],
+  },
+  // === ШУБЫ ИЗ КАРАКУЛЯ ===
+  {
+    slug: 'afgan-karakul',
+    title: '«Афган» Каракуль Джулия',
+    description: 'Каракулевая шуба в стиле Афган. Тонкий завиток свакара, контрастная отделка, приталенный силуэт.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul'],
+    images: imgs('/images/magazin/shuby/afgan-karakul', 7),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль свакара', 'Стиль: Афган', 'Отделка: контрастная', 'Длина: до середины бедра'],
+  },
+  // === ПАЛЬТО ===
+  {
+    slug: 'palto-1',
+    title: 'Пальто «Элегия»',
+    description: 'Длинное пальто из тёмной шерсти. Прямой силуэт с поясом. Лаконичный и строгий стиль.',
+    category: 'palto',
+    images: imgs('/images/magazin/palto/palto-1', 10),
+    price: 'Цена по запросу',
+    details: ['Материал: шерсть', 'Цвет: тёмно-серый', 'Пояс: да', 'Длина: макси'],
+  },
+  {
+    slug: 'palto-2',
+    title: 'Пальто «Аврора»',
+    description: 'Классическое пальто из плотной шерсти. Приталенный крой, женственный силуэт.',
+    category: 'palto',
+    images: imgs('/images/magazin/palto/palto-2', 10),
+    price: 'Цена по запросу',
+    details: ['Материал: шерсть', 'Крой: приталенный', 'Длина: миди'],
+  },
+  {
+    slug: 'palto-3',
+    title: 'Пальто «Софья»',
+    description: 'Элегантное пальто миди из мягкой шерсти. Женственные линии, лёгкий акцент на талии.',
+    category: 'palto',
+    images: imgs('/images/magazin/palto/palto-3', 8),
+    price: 'Цена по запросу',
+    details: ['Материал: мягкая шерсть', 'Крой: полуприлегающий', 'Длина: миди'],
+  },
+  {
+    slug: 'palto-4',
+    title: 'Пальто «Нева»',
+    description: 'Удлинённое пальто свободного кроя. Минимализм, комфорт и элегантность.',
+    category: 'palto',
+    images: imgs('/images/magazin/palto/palto-4', 10),
+    price: 'Цена по запросу',
+    details: ['Материал: шерсть', 'Крой: свободный', 'Длина: макси'],
+  },
+  {
+    slug: 'palto-5',
+    title: 'Пальто «Мария»',
+    description: 'Двубортное пальто из итальянской шерсти. Чёткие линии, структурированные плечи.',
+    category: 'palto',
+    images: imgs('/images/magazin/palto/palto-5', 10),
+    price: 'Цена по запросу',
+    details: ['Материал: итальянская шерсть', 'Крой: двубортный', 'Длина: миди'],
+  },
+  {
+    slug: 'palto-6',
+    title: 'Пальто «Вера»',
+    description: 'Лаконичное пальто прямого кроя. Универсальная модель на каждый день.',
+    category: 'palto',
+    images: imgs('/images/magazin/palto/palto-6', 8),
+    price: 'Цена по запросу',
+    details: ['Материал: шерсть', 'Крой: прямой', 'Длина: миди'],
+  },
+  {
+    slug: 'palto-7',
+    title: 'Пальто «Ольга»',
+    description: 'Пальто-халат с запахом. Мягкие линии, свободный силуэт, объёмный пояс.',
+    category: 'palto',
+    images: imgs('/images/magazin/palto/palto-7', 10),
+    price: 'Цена по запросу',
+    details: ['Материал: шерсть', 'Крой: халат с запахом', 'Длина: макси'],
+  },
+  {
+    slug: 'palto-8',
+    title: 'Пальто «Анна»',
+    description: 'Структурированное пальто с чёткими плечами. Минималистичный дизайн.',
+    category: 'palto',
+    images: imgs('/images/magazin/palto/palto-8', 10),
+    price: 'Цена по запросу',
+    details: ['Материал: шерсть', 'Крой: структурированный', 'Длина: миди'],
+  },
+  {
+    slug: 'palto-9',
+    title: 'Пальто «Лиза»',
+    description: 'Укороченное пальто из буклированной шерсти. Молодёжный повседневный стиль.',
+    category: 'palto',
+    images: imgs('/images/magazin/palto/palto-9', 10),
+    price: 'Цена по запросу',
+    details: ['Материал: буклированная шерсть', 'Крой: свободный', 'Длина: укороченное'],
+  },
+  // === КОЖА ===
+  {
+    slug: 'bomber-aviator',
+    title: 'Бомбер-авиатор',
+    description: 'Куртка-пилот из натуральной кожи. Классический авиаторский стиль с меховым воротником.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/bomber-aviator', 3),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: авиатор', 'Воротник: мех'],
+  },
+  {
+    slug: 'biker-kosukha',
+    title: 'Косуха Biker',
+    description: 'Мотоциклетная куртка из плотной кожи. Вечная классика — косуха.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/biker-kosukha', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: байкер / косуха'],
+  },
+  {
+    slug: 'modern-biker-grunge',
+    title: 'Байкер Grunge',
+    description: 'Современная интерпретация байкерской куртки в стиле гранж.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/modern-biker-grunge', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: гранж'],
+  },
+  {
+    slug: 'urban-minimalist-biker',
+    title: 'Urban Minimalist',
+    description: 'Минималистичная кожаная куртка для городского стиля.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/urban-minimalist-biker', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: минимализм'],
+  },
+  {
+    slug: 'urban-edge-biker',
+    title: 'Urban Edge',
+    description: 'Кожаная куртка с характером. Дерзкий городской стиль.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/urban-edge-biker', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: urban edge'],
+  },
+  {
+    slug: 'bold-statement-moto',
+    title: 'Statement Moto',
+    description: 'Кожаная куртка-заявление. Яркий и смелый мотоциклетный дизайн.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/bold-statement-moto', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: statement'],
+  },
+  {
+    slug: 'suede-moto-1',
+    title: 'Замшевая мото',
+    description: 'Куртка из мягкой замши. Тёплая и уютная, с мотоциклетным кроем.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/suede-moto-1', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная замша', 'Стиль: мото'],
+  },
+  {
+    slug: 'urban-bomber',
+    title: 'Бомбер Urban',
+    description: 'Городской бомбер из натуральной кожи. Лаконичный и современный.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/urban-bomber', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: urban bomber'],
+  },
+  {
+    slug: 'luxury-biker-chic',
+    title: 'Luxury Biker Chic',
+    description: 'Премиальная кожаная куртка. Роскошная выделка и безупречный крой.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/luxury-biker-chic', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: премиальная кожа', 'Стиль: luxury biker'],
+  },
+  {
+    slug: 'leather-blazer',
+    title: 'Кожаный блейзер',
+    description: 'Жакет из натуральной кожи. Power-suit стиль для деловых встреч и вечеров.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/leather-blazer', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: блейзер / power suit'],
+  },
+  {
+    slug: 'leather-midi-skirt',
+    title: 'Кожаная юбка миди',
+    description: 'Архитектурная юбка из натуральной кожи. Современный минимализм и чёткие линии.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/leather-midi-skirt', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: минимализм', 'Длина: миди'],
+  },
+  {
+    slug: 'suede-blazer',
+    title: 'Замшевый блейзер',
+    description: 'Блейзер-рубашка из натуральной замши. Мягкий и универсальный.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/suede-blazer', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная замша', 'Стиль: overshirt / блейзер'],
+  },
+  {
+    slug: 'distressed-grunge-biker',
+    title: 'Distressed Grunge',
+    description: 'Кожаная куртка с эффектом состаренности. Грандж-стиль.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/distressed-grunge-biker', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: distressed / grunge'],
+  },
+  {
+    slug: 'minimalist-chic-biker',
+    title: 'Minimalist Chic',
+    description: 'Минималистичная кожаная куртка. Чистые линии, лаконичный крой.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/minimalist-chic-biker', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: минимализм'],
+  },
+  {
+    slug: 'modern-chic-biker',
+    title: 'Modern Chic Biker',
+    description: 'Современная байкерская куртка с элегантным кроем. Городской шик.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/modern-chic-biker', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: modern chic'],
+  },
+  {
+    slug: 'suede-moto-2',
+    title: 'Замшевая мото II',
+    description: 'Замшевая куртка в мотоциклетном стиле. Мягкая текстура, тёплые тона.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/suede-moto-2', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная замша', 'Стиль: мото'],
+  },
+  {
+    slug: 'urban-chic-biker',
+    title: 'Urban Chic Biker',
+    description: 'Кожаная куртка для городского стиля. Элегантность и характер.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/urban-chic-biker', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: urban chic'],
+  },
+  {
+    slug: 'urban-chic-moto-1',
+    title: 'Urban Chic Moto',
+    description: 'Мотоциклетная куртка в городском стиле. Утончённый крой, мягкая кожа.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/urban-chic-moto-1', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: urban moto'],
+  },
+  {
+    slug: 'urban-chic-moto-2',
+    title: 'Urban Chic Moto II',
+    description: 'Вторая модель в линейке Urban Chic. Акцентные детали, выверенный силуэт.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/urban-chic-moto-2', 4),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: urban moto'],
+  },
+  {
+    slug: 'urban-edge-moto',
+    title: 'Urban Edge Moto',
+    description: 'Кожаная куртка с дерзким характером. Контрастные детали, острый силуэт.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/urban-edge-moto', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: натуральная кожа', 'Стиль: urban edge'],
+  },
+  {
+    slug: 'urban-luxury-biker',
+    title: 'Urban Luxury Biker',
+    description: 'Премиальная байкерская куртка. Люксовая кожа, безупречная посадка.',
+    category: 'kozha',
+    images: imgs('/images/magazin/kozha/urban-luxury-biker', 2),
+    price: 'Цена по запросу',
+    details: ['Материал: премиальная кожа', 'Стиль: luxury biker'],
+  },
+  // === НОВАЯ КОЛЛЕКЦИЯ ===
+  {
+    slug: 'polushubok-norka-bezhevyj',
+    title: 'Полушубок норковый бежевый',
+    description: 'Элегантный полушубок из норки бежевого оттенка. Укороченные рукава 3/4, женственный силуэт.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/polushubok-norka-bezhevyj', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: бежевый', 'Рукав: 3/4', 'Длина: полушубок'],
+  },
+  {
+    slug: 'shuba-karakul-seraya',
+    title: 'Шуба из каракуля серая',
+    description: 'Длинная шуба из каракуля серого цвета. Классический крой, изысканный завиток свакара.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul'],
+    images: imgs('/images/magazin/shuby/shuba-karakul-seraya', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль', 'Цвет: серый', 'Крой: классический', 'Длина: макси'],
+  },
+  {
+    slug: 'shuba-sobol-korichnevaya',
+    title: 'Шуба соболиная тёмно-коричневая',
+    description: 'Роскошная шуба из соболя глубокого тёмно-коричневого оттенка. Длинный силуэт, безупречный мех.',
+    category: 'shuby',
+    subcategory: 'sobol',
+    tags: ['sobol'],
+    images: imgs('/images/magazin/shuby/shuba-sobol-korichnevaya', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: соболь', 'Цвет: тёмно-коричневый', 'Длина: макси'],
+  },
+  {
+    slug: 'palto-norka-bezhevoe',
+    title: 'Пальто норковое бежевое',
+    description: 'Комбинированное пальто из норки бежевого цвета с поясом. Утончённый дизайн.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/palto-norka-bezhevoe', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: бежевый', 'Пояс: да', 'Стиль: комбинированный'],
+  },
+  {
+    slug: 'polushubok-norka-korichnevyj',
+    title: 'Полушубок норковый оверсайз',
+    description: 'Полушубок из норки коричневого оттенка. Свободный крой оверсайз, объёмный силуэт.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/polushubok-norka-korichnevyj', 4),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: коричневый', 'Крой: оверсайз'],
+  },
+  {
+    slug: 'shuba-karakul-seraya-oversajz',
+    title: 'Шуба из каракуля оверсайз',
+    description: 'Шуба из каракуля серого цвета в стиле оверсайз. Современный силуэт, подиумный крой.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul'],
+    images: imgs('/images/magazin/shuby/shuba-karakul-seraya-oversajz', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль', 'Цвет: серый', 'Крой: оверсайз'],
+  },
+  {
+    slug: 'zhaket-karakul-kimono',
+    title: 'Жакет из каракуля кимоно',
+    description: 'Жакет из каракуля с рукавами-кимоно. Укороченный фасон, оригинальный крой.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul'],
+    images: imgs('/images/magazin/shuby/zhaket-karakul-kimono', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль', 'Крой: кимоно', 'Длина: укороченный'],
+  },
+  {
+    slug: 'shuba-norka-korichnevaya-svobodnyj',
+    title: 'Шуба норковая свободного кроя',
+    description: 'Шуба из норки коричневого цвета. Свободный длинный крой, комфорт и элегантность.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/shuba-norka-korichnevaya-svobodnyj', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: коричневый', 'Крой: свободный', 'Длина: длинная'],
+  },
+  {
+    slug: 'zhaket-karakul-korichnevyj-norka',
+    title: 'Жакет из каракуля с норковой отделкой',
+    description: 'Жакет из каракуля коричневого цвета с отделкой из норки и поясом. Авторский дизайн.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul', 'norka'],
+    images: imgs('/images/magazin/shuby/zhaket-karakul-korichnevyj-norka', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль + норка', 'Цвет: коричневый', 'Пояс: да'],
+  },
+  {
+    slug: 'palto-karakul-korichnevoe',
+    title: 'Пальто из каракуля классическое',
+    description: 'Классическое пальто из каракуля коричневого цвета. Строгий силуэт, безупречный завиток.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul'],
+    images: imgs('/images/magazin/shuby/palto-karakul-korichnevoe', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль', 'Цвет: коричневый', 'Крой: классический'],
+  },
+  {
+    slug: 'polushubok-karakul-chernyj',
+    title: 'Полушубок из каракуля чёрный',
+    description: 'Полушубок из каракуля чёрного цвета с меховым воротником. Элегантный городской стиль.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul'],
+    images: imgs('/images/magazin/shuby/polushubok-karakul-chernyj', 4),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль', 'Цвет: чёрный', 'Воротник: меховой'],
+  },
+  {
+    slug: 'kurtka-mehovaya-zelenaya',
+    title: 'Куртка меховая тёмно-зелёная',
+    description: 'Меховая куртка насыщенного тёмно-зелёного цвета. На молнии, спортивный шик.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/kurtka-mehovaya-zelenaya', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: тёмно-зелёный', 'Застёжка: молния'],
+  },
+  {
+    slug: 'shuba-karakul-sinyaya',
+    title: 'Шуба из каракуля тёмно-синяя',
+    description: 'Длинная шуба из каракуля тёмно-синего цвета с поясом. Подиумный дизайн.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul'],
+    images: imgs('/images/magazin/shuby/shuba-karakul-sinyaya', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль', 'Цвет: тёмно-синий', 'Пояс: да', 'Длина: макси'],
+  },
+  {
+    slug: 'shuba-karakul-norka-vorotnik',
+    title: 'Шуба из каракуля с норковым воротником',
+    description: 'Шуба из каракуля серого цвета с воротником и манжетами из норки. Комбинированный дизайн.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul', 'norka'],
+    images: imgs('/images/magazin/shuby/shuba-karakul-norka-vorotnik', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль + норка', 'Цвет: серый', 'Воротник: норка', 'Манжеты: норка'],
+  },
+  {
+    slug: 'shuba-norka-svetlo-seraya',
+    title: 'Шуба норковая светло-серая',
+    description: 'Шуба из норки светло-серого оттенка с поясом. Мягкий цвет, женственный силуэт.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['norka'],
+    images: imgs('/images/magazin/shuby/shuba-norka-svetlo-seraya', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: норка', 'Цвет: светло-серый', 'Пояс: да'],
+  },
+  {
+    slug: 'zhaket-karakul-biryuzovyj',
+    title: 'Жакет из каракуля бирюзовый',
+    description: 'Яркий жакет из каракуля бирюзового цвета. Короткий рукав, смелый дизайн.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul'],
+    images: imgs('/images/magazin/shuby/zhaket-karakul-biryuzovyj', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль', 'Цвет: бирюзовый', 'Рукав: короткий'],
+  },
+  {
+    slug: 'zhaket-karakul-chernyj-kozha',
+    title: 'Жакет из каракуля чёрный',
+    description: 'Жакет из каракуля чёрного цвета с кожаным воротником. Строгий городской стиль.',
+    category: 'shuby',
+    subcategory: 'karakul',
+    tags: ['karakul'],
+    images: imgs('/images/magazin/shuby/zhaket-karakul-chernyj-kozha', 3),
+    price: 'Цена по запросу',
+    details: ['Мех: каракуль', 'Цвет: чёрный', 'Воротник: кожа'],
+  },
+  // === БОЛЬШИЕ РАЗМЕРЫ ===
+  {
+    slug: 'br-norka-pepelno-rozovaya',
+    title: 'Шуба из скандинавской норки пепельно-розовая',
+    description: 'Роскошная шуба из скандинавской норки пепельно-розового цвета. Доступна в больших размерах — изготовим по вашим меркам за 21 день.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5695.jpg`],
+    price: '149 000 ₽',
+    oldPrice: '215 000 ₽',
+    details: ['Мех: скандинавская норка', 'Цвет: пепельно-розовый', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-model-vishnya',
+    title: 'Модель «Вишня»',
+    description: 'Шуба из скандинавской норки насыщенного вишнёвого оттенка. Пошив на заказ в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-vishnya.jpg`],
+    price: 'Только на заказ',
+    details: ['Мех: скандинавская норка', 'Цвет: вишнёвый', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-pudrovaya-roza',
+    title: 'Шуба модель «Пудровая роза»',
+    description: 'Элегантная шуба из скандинавской норки в оттенке пудровой розы. Доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-pudrovaya-roza.jpg`],
+    price: '199 000 ₽',
+    oldPrice: '220 000 ₽',
+    details: ['Мех: скандинавская норка', 'Цвет: пудровая роза', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-1',
+    title: 'Шуба из скандинавской коротковорсовой норки',
+    description: 'Шуба из коротковорсовой скандинавской норки. Лёгкая и элегантная, пошив на заказ.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5709.jpg`],
+    price: 'Только на заказ',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-skandinavskaya-5557',
+    title: 'Шуба из скандинавской норки',
+    description: 'Классическая шуба из скандинавской норки. Прямой силуэт, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5557.jpg`],
+    price: '195 000 ₽',
+    details: ['Мех: скандинавская норка', 'Крой: прямой', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-2',
+    title: 'Шуба из скандинавской коротковорсовой норки',
+    description: 'Коротковорсовая скандинавская норка — лёгкий вес и элегантный вид. Большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5575.jpg`],
+    price: '199 000 ₽',
+    oldPrice: '315 000 ₽',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5614',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки тёмного оттенка. Элегантный длинный силуэт.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5614.jpg`],
+    price: '185 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5616',
+    title: 'Шуба из скандинавской норки',
+    description: 'Премиальная шуба из скандинавской норки. Роскошный мех, безупречный крой.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5616.jpg`],
+    price: '250 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-rubashka',
+    title: 'Шуба из скандинавской норки «Рубашка»',
+    description: 'Шуба-рубашка из скандинавской норки. Свободный крой, стильный фасон.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5620.jpg`],
+    price: '169 000 ₽',
+    oldPrice: '210 000 ₽',
+    details: ['Мех: скандинавская норка', 'Крой: рубашка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5653',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки. Классический фасон, большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5653.jpg`],
+    price: '195 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-pryamoj-siluet',
+    title: 'Шуба из скандинавской норки, прямой силуэт',
+    description: 'Шуба прямого силуэта из скандинавской норки. Строгие линии, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5658.jpg`],
+    price: '185 000 ₽',
+    details: ['Мех: скандинавская норка', 'Крой: прямой', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-3',
+    title: 'Шуба из коротковорсовой скандинавской норки',
+    description: 'Коротковорсовая норка скандинавского происхождения. Лёгкость и изящество.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5666.jpg`],
+    price: '155 000 ₽',
+    oldPrice: '165 000 ₽',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5686',
+    title: 'Шуба из скандинавской норки',
+    description: 'Норковая шуба по выгодной цене. Скандинавская норка, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5686.jpg`],
+    price: '99 000 ₽',
+    oldPrice: '100 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5681',
+    title: 'Шуба из скандинавской норки',
+    description: 'Роскошная шуба из скандинавской норки. Классика в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5681.jpg`],
+    price: '195 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-roskoshnaya',
+    title: 'Шуба из роскошной коротковорсовой скандинавской норки',
+    description: 'Премиальная коротковорсовая норка. Мягкий мех, изысканный силуэт.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5689.jpg`],
+    price: '185 000 ₽',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Категория: премиум', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5697',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки. Женственный силуэт, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5697.jpg`],
+    price: '199 000 ₽',
+    oldPrice: '210 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5701',
+    title: 'Шуба из скандинавской норки',
+    description: 'Норковая шуба из скандинавского меха. Большие размеры, пошив по меркам.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5701.jpg`],
+    price: '120 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5699',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки с мягким силуэтом. Большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5699.jpg`],
+    price: '179 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-korotkovorsovaya-5702',
+    title: 'Шуба из коротковорсовой скандинавской норки',
+    description: 'Коротковорсовая скандинавская норка. Современный крой, большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5702.jpg`],
+    price: '195 000 ₽',
+    details: ['Мех: скандинавская коротковорсовая норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5705',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки. Классический крой, большие размеры.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5705.jpg`],
+    price: '155 000 ₽',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62'],
+  },
+  {
+    slug: 'br-skandinavskaya-5707',
+    title: 'Шуба из скандинавской норки',
+    description: 'Шуба из скандинавской норки. Женственный фасон, доступна в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_5707.jpg`],
+    price: 'Только на заказ',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+  {
+    slug: 'br-model-fiona',
+    title: 'Модель «Фиона»',
+    description: 'Авторская шуба из скандинавской норки. Уникальный дизайн, пошив на заказ в больших размерах.',
+    category: 'shuby',
+    subcategory: 'norka',
+    tags: ['bolshie-razmery', 'norka'],
+    images: [`${BR}/01-img_9736.jpeg`],
+    price: 'Только на заказ',
+    details: ['Мех: скандинавская норка', 'Размеры: 52–62', 'Срок пошива: 21 день'],
+  },
+]
+
+// ============ SEED LOGIC ============
+
+async function createProduct(product) {
+  const { price, priceLabel } = parsePrice(product.price)
+  const oldPrice = parseOldPrice(product.oldPrice)
+
+  const body = {
+    data: {
+      title: product.title,
+      slug: product.slug,
+      description: product.description,
+      category: product.category,
+      subcategory: product.subcategory || null,
+      tags: product.tags || [],
+      price,
+      oldPrice,
+      priceLabel,
+      imagePaths: product.images.map(path => ({ path })),
+      details: (product.details || []).map(text => ({ text })),
+    },
+  }
+
+  const res = await fetch(`${STRAPI_URL}/api/products`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const err = await res.text()
+    throw new Error(`Failed to create "${product.slug}": ${res.status} ${err}`)
+  }
+
+  const json = await res.json()
+  const documentId = json.data?.documentId
+
+  // Publish
+  if (documentId) {
+    await fetch(`${STRAPI_URL}/api/products/${documentId}?status=published`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({ data: {} }),
+    })
+  }
+
+  return json
+}
+
+async function main() {
+  console.log(`Seeding ${products.length} products into Strapi at ${STRAPI_URL}...`)
+
+  // Check if products already exist
+  const checkRes = await fetch(`${STRAPI_URL}/api/products?pagination[pageSize]=1`, { headers })
+  if (checkRes.ok) {
+    const checkJson = await checkRes.json()
+    const existing = checkJson.meta?.pagination?.total || 0
+    if (existing > 0) {
+      console.log(`⚠️  Already ${existing} products in Strapi. Skipping seed to avoid duplicates.`)
+      console.log('   Delete existing products first if you want to re-seed.')
+      return
+    }
+  }
+
+  let ok = 0
+  let fail = 0
+
+  for (const product of products) {
+    try {
+      await createProduct(product)
+      ok++
+      process.stdout.write(`\r  ${ok}/${products.length} created`)
+    } catch (e) {
+      fail++
+      console.error(`\n❌ ${e.message}`)
+    }
+  }
+
+  console.log(`\n\n✅ Done: ${ok} created, ${fail} failed`)
+}
+
+main().catch(console.error)

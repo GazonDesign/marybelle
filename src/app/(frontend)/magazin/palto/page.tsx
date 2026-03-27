@@ -1,8 +1,9 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ProductCard from '@/components/magazin/ProductCard'
+import CategoryNav from '@/components/magazin/CategoryNav'
 import Link from 'next/link'
-import { getProductsByCategory } from '@/data/products'
+import { getProductsByCategory } from '@/lib/get-products'
 
 export const metadata = {
   title: 'Пальто из шерсти и экомеха — Купить в Москве | Mary Belle',
@@ -12,17 +13,22 @@ export const metadata = {
   },
 }
 
-export default function PaltoPage() {
-  const items = getProductsByCategory('palto')
+export default async function PaltoPage() {
+  const items = await getProductsByCategory('palto')
 
   return (
     <>
       <Header />
       <main>
-        <section className="bg-bg-dark py-24 md:py-32 text-center">
-          <div className="max-w-[1200px] mx-auto px-6">
-            <h1 className="font-serif text-4xl md:text-5xl text-white mb-6">Пальто</h1>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+        <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+          <div
+            className="absolute inset-0 parallax-bg"
+            style={{ backgroundImage: 'url(/images/gov-import/modeli/palto.jpg)' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="relative z-10 h-full flex flex-col justify-end pb-12 px-6 text-center">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight">Пальто</h1>
+            <p className="mt-3 text-white/70 text-base md:text-lg max-w-2xl mx-auto">
               Шерстяные и кашемировые пальто собственного производства. Каждую модель можно подогнать по фигуре.
             </p>
           </div>
@@ -37,6 +43,8 @@ export default function PaltoPage() {
             <span className="text-text-primary">Пальто</span>
           </div>
         </div>
+
+        <CategoryNav active="/magazin/palto" />
 
         <section className="py-20 md:py-28">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-[60px]">

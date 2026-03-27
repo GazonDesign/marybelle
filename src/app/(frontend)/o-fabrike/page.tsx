@@ -33,20 +33,20 @@ export default function OFabrikePage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+        <section className="relative h-[80vh] min-h-[550px] w-full overflow-hidden">
           <div
             className="absolute inset-0 parallax-bg"
             style={{ backgroundImage: 'url(/images/o-fabrike/mary_belle_workshop_panoramic.jpg)' }}
           />
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-            <span className="inline-block mb-4 text-sm tracking-[0.3em] font-light uppercase text-gold">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="relative z-10 h-full flex flex-col justify-end pb-14 px-6 text-center">
+            <span className="inline-block mb-3 text-sm md:text-base tracking-[0.3em] font-light uppercase text-gold">
               С 1870 года
             </span>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight max-w-4xl">
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight">
               Московская меховая фабрика Mary Belle
             </h1>
-            <p className="mt-6 text-white/70 text-lg max-w-2xl">
+            <p className="mt-4 text-white/70 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto">
               Более 150 лет мы работаем с мехом. Три поколения мастеров, тысячи довольных клиентов.
             </p>
           </div>
