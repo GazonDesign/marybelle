@@ -91,8 +91,18 @@ async function sendOfflineConversion(params: {
   }
 }
 
+const AMO_WEBHOOK_SECRET = process.env.AMO_WEBHOOK_SECRET
+
 export async function POST(req: NextRequest) {
   try {
+    // Verify webhook secret (pass as ?secret=xxx in AmoCRM webhook URL)
+    if (AMO_WEBHOOK_SECRET) {
+      const url = new URL(req.url)
+      if (url.searchParams.get('secret') !== AMO_WEBHOOK_SECRET) {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+      }
+    }
+
     // AmoCRM sends webhook as application/x-www-form-urlencoded
     const body = await req.text()
     const params = new URLSearchParams(body)

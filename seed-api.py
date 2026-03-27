@@ -1,7 +1,16 @@
 import json
+import os
 import urllib.request
 
 BASE = "http://localhost:3000/api"
+
+SEED_EMAIL = os.environ.get("SEED_EMAIL")
+SEED_PASSWORD = os.environ.get("SEED_PASSWORD")
+
+if not SEED_EMAIL or not SEED_PASSWORD:
+    print("ERROR: Set SEED_EMAIL and SEED_PASSWORD env vars")
+    print("Usage: SEED_EMAIL=your@email SEED_PASSWORD=yourpass python seed-api.py")
+    exit(1)
 
 def api(endpoint, data=None, method="GET", token=None):
     url = f"{BASE}/{endpoint}"
@@ -18,7 +27,7 @@ def api(endpoint, data=None, method="GET", token=None):
         return {}
 
 # Login
-token = api("users/login", {"email": "ivan@marybelle.ru", "password": "MaryBelle2026!"}, "POST")["token"]
+token = api("users/login", {"email": SEED_EMAIL, "password": SEED_PASSWORD}, "POST")["token"]
 print(f"Token: {token[:20]}...\n")
 
 # ========== УСЛУГИ ==========

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getBlogPostBySlug, getBlogPosts, formatDate } from '@/lib/strapi'
 import { renderBlocks } from '@/lib/blocks-renderer'
+import sanitizeHtml from 'sanitize-html'
 
 type Params = Promise<{ slug: string }>
 
@@ -41,9 +42,19 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const meta = [dateStr, author, readTimeStr].filter(Boolean).join(' \u00B7 ')
 
   // content = Blocks JSON (визуальный редактор Strapi)
-  // contentHtml = legacy HTML (fallback для старых статей)
+  // contentHtml = legacy HTML (fallback для старых статей, sanitized against XSS)
   const blocks = post.content
-  const legacyHtml = post.contentHtml || ''
+  const rawHtml = post.contentHtml || ''
+  const legacyHtml = rawHtml ? sanitizeHtml(rawHtml, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure', 'figcaption', 'h1', 'h2', 'h3']),
+    allowedAttributes: {
+      ...sanitizeHtml.defaults.allowedAttributes,
+      img: ['src', 'alt', 'style', 'width', 'height'],
+      figcaption: ['style'],
+      a: ['href', 'target', 'rel'],
+    },
+    allowedSchemes: ['http', 'https'],
+  }) : ''
 
   return (
     <>

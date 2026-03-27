@@ -14,6 +14,7 @@ export const Users: CollectionConfig = {
       if (users.totalDocs === 0) return true
       return !!req.user
     },
+    read: ({ req }) => !!req.user,
   },
   admin: {
     useAsTitle: 'email',

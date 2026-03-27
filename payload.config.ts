@@ -19,7 +19,11 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  secret: process.env.PAYLOAD_SECRET || 'marybelle-dev-secret-change-in-production',
+  secret: (() => {
+    const s = process.env.PAYLOAD_SECRET
+    if (!s || s.length < 32) throw new Error('PAYLOAD_SECRET env var must be set (min 32 chars)')
+    return s
+  })(),
 
   i18n: {
     supportedLanguages: { ru },

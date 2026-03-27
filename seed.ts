@@ -1,7 +1,15 @@
 import { getPayload } from 'payload'
 import config from './payload.config'
 
+const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || 'admin@mary-belle.ru'
+const ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD
+
 async function seed() {
+  if (!ADMIN_PASSWORD) {
+    console.error('ERROR: Set SEED_ADMIN_PASSWORD env var before running seed')
+    process.exit(1)
+  }
+
   const payload = await getPayload({ config })
 
   console.log('🌱 Начинаем заполнение CMS данными...\n')
@@ -14,14 +22,14 @@ async function seed() {
       await payload.create({
         collection: 'users',
         data: {
-          email: 'admin@mary-belle.ru',
-          password: 'MaryBelle2026!',
+          email: ADMIN_EMAIL,
+          password: ADMIN_PASSWORD,
           name: 'Администратор',
           role: 'admin',
         },
         overrideAccess: true,
       })
-      console.log('  ✓ admin@mary-belle.ru / MaryBelle2026!')
+      console.log(`  ✓ Админ создан: ${ADMIN_EMAIL}`)
     } catch (e: any) {
       console.log(`  ✗ Ошибка: ${e.message}`)
     }

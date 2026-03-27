@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
-const cases = [
+const fallbackCases = [
   {
     id: 1,
     title: 'Перекрой дублёнки',
@@ -42,7 +42,19 @@ const cases = [
   },
 ]
 
-export default function BeforeAfterSection() {
+interface BeforeAfterCase {
+  id: number
+  title: string
+  description: string
+  image: string
+}
+
+interface Props {
+  cases?: BeforeAfterCase[]
+}
+
+export default function BeforeAfterSection({ cases: propCases }: Props) {
+  const cases = propCases && propCases.length > 0 ? propCases : fallbackCases
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 

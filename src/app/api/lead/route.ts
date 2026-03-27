@@ -13,6 +13,31 @@ const EMAIL_TO = process.env.EMAIL_TO || 'gazonmarketing@yandex.ru'
 const SMTP_USER = process.env.SMTP_USER
 const SMTP_PASS = process.env.SMTP_PASS
 
+// ===== Rate limiting (per-instance, resets on cold start) =====
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT_MAX = 5
+const RATE_LIMIT_WINDOW = 60_000 // 1 minute
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimitMap.get(ip)
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW })
+    return false
+  }
+  entry.count++
+  return entry.count > RATE_LIMIT_MAX
+}
+
+// ===== HTML escaping for user data =====
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
 interface UtmData {
   utm_source?: string
   utm_medium?: string
@@ -30,6 +55,42 @@ interface LeadData {
   utm?: UtmData
   yclid?: string    // Yandex Click ID — for offline conversions
   clientId?: string // Yandex Metrika ClientID
+}
+
+const VALID_SOURCES = ['contact', 'callback', 'trade-in']
+
+function validateAndSanitize(data: any): { valid: false; error: string } | { valid: true; data: LeadData } {
+  if (!data || typeof data !== 'object') {
+    return { valid: false, error: 'Invalid request body' }
+  }
+
+  const phone = typeof data.phone === 'string' ? data.phone.trim() : ''
+  if (!phone || phone.length < 6 || phone.length > 20 || !/^[0-9+\-() ]+$/.test(phone)) {
+    return { valid: false, error: 'Некорректный номер телефона' }
+  }
+
+  const source = typeof data.source === 'string' ? data.source : ''
+  if (!VALID_SOURCES.includes(source)) {
+    return { valid: false, error: 'Некорректный источник заявки' }
+  }
+
+  const name = typeof data.name === 'string' ? data.name.slice(0, 100).trim() : ''
+  const message = typeof data.message === 'string' ? data.message.slice(0, 2000).trim() : undefined
+  const page = typeof data.page === 'string' ? data.page.slice(0, 500) : undefined
+  const yclid = typeof data.yclid === 'string' ? data.yclid.slice(0, 100) : undefined
+  const clientId = typeof data.clientId === 'string' ? data.clientId.slice(0, 100) : undefined
+
+  let utm: UtmData | undefined
+  if (data.utm && typeof data.utm === 'object') {
+    utm = {}
+    for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const) {
+      if (typeof data.utm[key] === 'string') {
+        utm[key] = data.utm[key].slice(0, 200)
+      }
+    }
+  }
+
+  return { valid: true, data: { name, phone, message, source, page, utm, yclid, clientId } }
 }
 
 // Send lead to AmoCRM
@@ -188,15 +249,22 @@ async function sendToTelegram(data: LeadData) {
         .join(', ')
     : ''
 
+  // Escape user data for Telegram HTML
+  const safeName = escapeHtml(data.name)
+  const safePhone = escapeHtml(data.phone)
+  const safeMessage = data.message ? escapeHtml(data.message) : ''
+  const safePage = data.page ? escapeHtml(data.page) : ''
+  const safeUtm = escapeHtml(utmLine)
+
   const text = [
     `🔔 <b>Новая заявка с сайта</b>`,
     ``,
     `📋 <b>Тип:</b> ${sourceLabels[data.source] || data.source}`,
-    `👤 <b>Имя:</b> ${data.name}`,
-    `📞 <b>Телефон:</b> ${data.phone}`,
-    data.message ? `💬 <b>Сообщение:</b> ${data.message}` : '',
-    data.page ? `📄 <b>Страница:</b> ${data.page}` : '',
-    utmLine ? `🏷 <b>UTM:</b> ${utmLine}` : '',
+    `👤 <b>Имя:</b> ${safeName}`,
+    `📞 <b>Телефон:</b> ${safePhone}`,
+    safeMessage ? `💬 <b>Сообщение:</b> ${safeMessage}` : '',
+    safePage ? `📄 <b>Страница:</b> ${safePage}` : '',
+    safeUtm ? `🏷 <b>UTM:</b> ${safeUtm}` : '',
   ].filter(Boolean).join('\n')
 
   try {
@@ -234,10 +302,17 @@ async function sendEmail(data: LeadData) {
     'trade-in': 'Трейд-ин',
   }
 
+  // Escape user data for email HTML
+  const safeName = escapeHtml(data.name)
+  const safePhone = escapeHtml(data.phone)
+  const safeMessage = data.message ? escapeHtml(data.message) : ''
+  const safePage = escapeHtml(data.page || '/')
+  const safeSource = escapeHtml(sourceLabels[data.source] || data.source)
+
   const utmHtml = data.utm
     ? Object.entries(data.utm)
         .filter(([, v]) => v)
-        .map(([k, v]) => `<tr><td style="color:#888;padding:4px 12px 4px 0">${k}</td><td>${v}</td></tr>`)
+        .map(([k, v]) => `<tr><td style="color:#888;padding:4px 12px 4px 0">${escapeHtml(k)}</td><td>${escapeHtml(v || '')}</td></tr>`)
         .join('')
     : ''
 
@@ -245,11 +320,11 @@ async function sendEmail(data: LeadData) {
     <div style="font-family:Arial,sans-serif;max-width:500px">
       <h2 style="color:#8b6d4b;margin-bottom:20px">Новая заявка с сайта Mary Belle</h2>
       <table style="border-collapse:collapse;width:100%">
-        <tr><td style="color:#888;padding:6px 12px 6px 0">Тип</td><td><strong>${sourceLabels[data.source] || data.source}</strong></td></tr>
-        <tr><td style="color:#888;padding:6px 12px 6px 0">Имя</td><td>${data.name}</td></tr>
-        <tr><td style="color:#888;padding:6px 12px 6px 0">Телефон</td><td><a href="tel:${data.phone}">${data.phone}</a></td></tr>
-        ${data.message ? `<tr><td style="color:#888;padding:6px 12px 6px 0">Сообщение</td><td>${data.message}</td></tr>` : ''}
-        <tr><td style="color:#888;padding:6px 12px 6px 0">Страница</td><td>${data.page || '/'}</td></tr>
+        <tr><td style="color:#888;padding:6px 12px 6px 0">Тип</td><td><strong>${safeSource}</strong></td></tr>
+        <tr><td style="color:#888;padding:6px 12px 6px 0">Имя</td><td>${safeName}</td></tr>
+        <tr><td style="color:#888;padding:6px 12px 6px 0">Телефон</td><td><a href="tel:${safePhone}">${safePhone}</a></td></tr>
+        ${safeMessage ? `<tr><td style="color:#888;padding:6px 12px 6px 0">Сообщение</td><td>${safeMessage}</td></tr>` : ''}
+        <tr><td style="color:#888;padding:6px 12px 6px 0">Страница</td><td>${safePage}</td></tr>
       </table>
       ${utmHtml ? `<h3 style="color:#8b6d4b;margin-top:20px">UTM-метки</h3><table style="border-collapse:collapse">${utmHtml}</table>` : ''}
     </div>
@@ -269,7 +344,7 @@ async function sendEmail(data: LeadData) {
     await transporter.sendMail({
       from: `"Mary Belle Сайт" <${SMTP_USER}>`,
       to: EMAIL_TO,
-      subject: `Заявка: ${sourceLabels[data.source] || data.source} — ${data.name}`,
+      subject: `Заявка: ${sourceLabels[data.source] || data.source} — ${data.name.slice(0, 50)}`,
       html,
     })
   } catch (error) {
@@ -279,12 +354,18 @@ async function sendEmail(data: LeadData) {
 
 export async function POST(req: NextRequest) {
   try {
-    const data: LeadData = await req.json()
-
-    // Validate
-    if (!data.phone || data.phone.length < 6) {
-      return NextResponse.json({ error: 'Телефон обязателен' }, { status: 400 })
+    // Rate limiting
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ error: 'Слишком много запросов. Попробуйте позже.' }, { status: 429 })
     }
+
+    const raw = await req.json()
+    const result = validateAndSanitize(raw)
+    if (!result.valid) {
+      return NextResponse.json({ error: result.error }, { status: 400 })
+    }
+    const data = result.data
 
     // Send to all channels in parallel (email is fire-and-forget — SMTP may be slow)
     const [amoResult] = await Promise.allSettled([

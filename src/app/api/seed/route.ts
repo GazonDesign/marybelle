@@ -1,9 +1,28 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { products } from '@/data/products'
 
-export async function POST() {
+const SEED_SECRET = process.env.SEED_SECRET
+
+export async function POST(req: NextRequest) {
+  // Seed endpoint disabled if SEED_SECRET is not set
+  if (!SEED_SECRET) {
+    return NextResponse.json({ error: 'Seed endpoint disabled' }, { status: 404 })
+  }
+
+  // Verify authorization
+  const auth = req.headers.get('authorization')
+  if (auth !== `Bearer ${SEED_SECRET}`) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+  }
+
+  const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || 'admin@mary-belle.ru'
+  const ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD
+  if (!ADMIN_PASSWORD) {
+    return NextResponse.json({ error: 'SEED_ADMIN_PASSWORD not configured' }, { status: 500 })
+  }
+
   try {
     const payload = await getPayload({ config })
     const log: string[] = []
@@ -13,10 +32,10 @@ export async function POST() {
     if (existingUsers.totalDocs === 0) {
       await payload.create({
         collection: 'users',
-        data: { email: 'admin@mary-belle.ru', password: 'MaryBelle2026!', name: 'Администратор', role: 'admin' },
+        data: { email: ADMIN_EMAIL, password: ADMIN_PASSWORD, name: 'Администратор', role: 'admin' },
         overrideAccess: true,
       })
-      log.push('✓ Админ создан: admin@mary-belle.ru / MaryBelle2026!')
+      log.push('✓ Админ создан')
     } else {
       log.push('→ Админ уже есть')
     }
@@ -134,6 +153,6 @@ export async function POST() {
 
     return NextResponse.json({ success: true, log })
   } catch (error: any) {
-    return NextResponse.json({ success: false, error: error.message, stack: error.stack?.split('\n').slice(0, 5) }, { status: 500 })
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 })
   }
 }

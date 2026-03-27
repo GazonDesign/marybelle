@@ -8,7 +8,7 @@ import BeforeAfterSection from '@/components/sections/BeforeAfterSection'
 import GuaranteeSection from '@/components/sections/GuaranteeSection'
 import HowWeWorkSection from '@/components/sections/HowWeWorkSection'
 import ReviewsSection from '@/components/sections/ReviewsSection'
-import { getReviews } from '@/lib/strapi'
+import { getReviews, getPortfolio } from '@/lib/strapi'
 import FAQSection from '@/components/sections/FAQSection'
 import SubHeroSection from '@/components/sections/SubHeroSection'
 import ContactSection from '@/components/sections/ContactSection'
@@ -38,6 +38,16 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const reviews = await getReviews()
+  const portfolioData = await getPortfolio()
+  const beforeAfterCases = portfolioData
+    .filter(p => p.beforeImage && p.afterImage)
+    .slice(0, 6)
+    .map((p, i) => ({
+      id: i + 1,
+      title: p.title,
+      description: p.description,
+      image: p.beforeImage!.replace('-before', '').replace('portfolio-cases/', 'before-after/').replace('portfolio-new/', 'before-after/'),
+    }))
 
   return (
     <>
@@ -46,7 +56,7 @@ export default async function HomePage() {
         <HeroSection />
         <ServicesSection />
         <WhyUsSection />
-        <BeforeAfterSection />
+        <BeforeAfterSection cases={beforeAfterCases.length > 0 ? beforeAfterCases : undefined} />
         <GuaranteeSection />
         <HowWeWorkSection />
         <ReviewsSection reviews={reviews} />

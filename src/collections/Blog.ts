@@ -12,7 +12,7 @@ export const Blog: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     group: 'Контент',
-    defaultColumns: ['title', 'status', 'publishedAt'],
+    defaultColumns: ['title', 'author', 'status', 'publishedAt'],
   },
   fields: [
     {
@@ -32,14 +32,31 @@ export const Blog: CollectionConfig = {
       },
     },
     {
+      name: 'author',
+      label: 'Автор',
+      type: 'text',
+      defaultValue: 'Иван Обухов',
+    },
+    {
       name: 'excerpt',
       label: 'Краткое описание',
       type: 'textarea',
     },
     {
+      name: 'contentHtml',
+      label: 'Содержание (HTML)',
+      type: 'textarea',
+      admin: {
+        description: 'HTML-разметка статьи (основное тело)',
+      },
+    },
+    {
       name: 'content',
-      label: 'Содержание',
+      label: 'Содержание (Lexical)',
       type: 'richText',
+      admin: {
+        description: 'Альтернативный редактор — используется, если contentHtml пуст',
+      },
     },
     {
       name: 'image',

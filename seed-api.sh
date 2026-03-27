@@ -1,10 +1,17 @@
 #!/bin/bash
 # Seed script for Mary Belle CMS via REST API
+# Usage: SEED_EMAIL=... SEED_PASSWORD=... bash seed-api.sh
 BASE="http://localhost:3000/api"
+
+if [ -z "$SEED_EMAIL" ] || [ -z "$SEED_PASSWORD" ]; then
+  echo "ERROR: Set SEED_EMAIL and SEED_PASSWORD env vars"
+  echo "Usage: SEED_EMAIL=your@email SEED_PASSWORD=yourpass bash seed-api.sh"
+  exit 1
+fi
 
 # Login
 TOKEN=$(curl -s "$BASE/users/login" -X POST -H "Content-Type: application/json" \
-  -d '{"email":"ivan@marybelle.ru","password":"MaryBelle2026!"}' | python3 -c "import sys,json; print(json.load(sys.stdin)['token'])")
+  -d "{\"email\":\"$SEED_EMAIL\",\"password\":\"$SEED_PASSWORD\"}" | python3 -c "import sys,json; print(json.load(sys.stdin)['token'])")
 
 echo "Token obtained: ${TOKEN:0:20}..."
 
