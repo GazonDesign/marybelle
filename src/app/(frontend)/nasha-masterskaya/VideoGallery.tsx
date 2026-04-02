@@ -17,6 +17,7 @@ interface Props {
 export default function VideoGallery({ videos, categories, videoBase }: Props) {
   const [activeCategory, setActiveCategory] = useState('all')
   const [playingVideo, setPlayingVideo] = useState<string | null>(null)
+  const [loadingVideo, setLoadingVideo] = useState<string | null>(null)
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({})
 
   const filtered = activeCategory === 'all'
@@ -28,10 +29,18 @@ export default function VideoGallery({ videos, categories, videoBase }: Props) {
     if (playingVideo && playingVideo !== slug && videoRefs.current[playingVideo]) {
       videoRefs.current[playingVideo]!.pause()
     }
-    setPlayingVideo(slug)
     const video = videoRefs.current[slug]
     if (video) {
+      setLoadingVideo(slug)
+      video.preload = 'auto'
       video.play()
+        .then(() => {
+          setPlayingVideo(slug)
+          setLoadingVideo(null)
+        })
+        .catch(() => {
+          setLoadingVideo(null)
+        })
     }
   }
 
@@ -71,10 +80,22 @@ export default function VideoGallery({ videos, categories, videoBase }: Props) {
                   playsInline
                   controls={playingVideo === video.slug}
                   onEnded={() => setPlayingVideo(null)}
+                  onCanPlay={() => {
+                    if (loadingVideo === video.slug) {
+                      setLoadingVideo(null)
+                    }
+                  }}
                 />
 
+                {/* Loading spinner */}
+                {loadingVideo === video.slug && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <div className="w-10 h-10 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  </div>
+                )}
+
                 {/* Play overlay */}
-                {playingVideo !== video.slug && (
+                {playingVideo !== video.slug && loadingVideo !== video.slug && (
                   <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
                     <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
                       <svg width="20" height="24" viewBox="0 0 20 24" fill="white">
