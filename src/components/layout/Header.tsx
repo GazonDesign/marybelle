@@ -10,6 +10,7 @@ const menuLinks = [
   { label: 'Магазин', href: '/magazin' },
   { label: 'Цены', href: '/ceny' },
   { label: 'Портфолио', href: '/portfolio' },
+  { label: 'Наша мастерская', href: '/nasha-masterskaya' },
   { label: 'Трейд-ин', href: '/trejd-in' },
   { label: 'Российская гарантия', href: '/garantiya' },
   { label: 'Блог', href: '/blog' },
