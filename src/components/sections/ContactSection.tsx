@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { MapPin, Phone, Clock } from 'lucide-react'
+import Link from 'next/link'
 import { getTracking } from '@/lib/utm'
 import PhoneInput from '@/components/ui/PhoneInput'
 
@@ -168,6 +169,12 @@ export default function ContactSection() {
                 {formState === 'sending' && 'Отправка...'}
                 {formState === 'sent' && 'Спасибо! Мы свяжемся с вами.'}
               </button>
+              <p className="text-text-muted text-xs text-center mt-4">
+                Нажимая кнопку, вы соглашаетесь с{' '}
+                <Link href="/politika-konfidencialnosti" className="underline hover:text-brand transition-colors">
+                  политикой конфиденциальности
+                </Link>
+              </p>
             </form>
           </div>
         </div>

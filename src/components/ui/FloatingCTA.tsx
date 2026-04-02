@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Phone, MessageCircle, X } from 'lucide-react'
+import Link from 'next/link'
 import { getTracking } from '@/lib/utm'
 import PhoneInput from '@/components/ui/PhoneInput'
 
@@ -209,7 +210,10 @@ export default function FloatingCTA() {
                 {formState === 'sent' && 'Заявка принята!'}
               </button>
               <p className="text-text-muted text-xs text-center">
-                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                Нажимая кнопку, вы соглашаетесь с{' '}
+                <Link href="/politika-konfidencialnosti" className="underline hover:text-brand transition-colors">
+                  политикой конфиденциальности
+                </Link>
               </p>
             </form>
           </div>

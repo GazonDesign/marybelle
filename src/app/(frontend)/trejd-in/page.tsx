@@ -221,7 +221,10 @@ export default function TrejdInPage() {
                 {formState === 'sent' && 'Спасибо! Мы перезвоним.'}
               </button>
               <p className="text-white/30 text-xs text-center">
-                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                Нажимая кнопку, вы соглашаетесь с{' '}
+                <a href="/politika-konfidencialnosti" className="underline hover:text-white/50 transition-colors">
+                  политикой конфиденциальности
+                </a>
               </p>
             </form>
 
