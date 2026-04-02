@@ -202,9 +202,19 @@ export default function HeroBannerCarousel() {
       setShowPopup(true)
     } else if (s.quiz && s.quizId) {
       e.preventDefault()
-      // Открываем квиз Marquiz программно
-      if (window.Marquiz) {
-        window.Marquiz.add(['open', { id: s.quizId }])
+      const M = (window as any).Marquiz
+      if (M) {
+        if (typeof M.showFullScreen === 'function') {
+          M.showFullScreen(s.quizId)
+        } else {
+          const popBtn = document.querySelector('.marquiz__button-open') as HTMLElement
+            || document.querySelector('[class*="marquiz"] button') as HTMLElement
+          if (popBtn) {
+            popBtn.click()
+          } else {
+            window.open(`https://quiz.marquiz.ru/quiz/${s.quizId}`, '_blank')
+          }
+        }
       } else {
         window.open(`https://quiz.marquiz.ru/quiz/${s.quizId}`, '_blank')
       }
