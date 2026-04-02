@@ -102,6 +102,7 @@ export default function Header() {
         className={`fixed inset-0 z-[9999] transition-all duration-700 ${
           isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
+        onClick={() => setIsMenuOpen(false)}
       >
         <div className="absolute inset-0 bg-white" />
         <div className="relative h-full flex">

@@ -301,16 +301,8 @@ export default function HeroBannerCarousel() {
                 {slide.subtitle}
               </p>
 
-              {/* Accent UTP */}
-              {slide.accent && (
-                <div className="mb-8 inline-flex items-center gap-3 px-5 py-3 border-2 border-brand bg-brand/90 backdrop-blur-sm">
-                  <span className="text-white text-lg md:text-2xl font-serif tracking-wide">
-                    {slide.accent}
-                  </span>
-                </div>
-              )}
-
               {/* CTA Button */}
+              <div className="mb-4">
               {(slide.popup || slide.quiz) ? (
                 <button
                   onClick={handleCtaClick}
@@ -326,22 +318,32 @@ export default function HeroBannerCarousel() {
                   {slide.cta}
                 </Link>
               )}
+              </div>
+
+              {/* Accent UTP */}
+              {slide.accent && (
+                <div className="inline-flex items-center px-5 py-2.5 rounded-full border border-brand/60 bg-black/40 backdrop-blur-md">
+                  <span className="text-white text-sm md:text-base font-serif tracking-wide whitespace-nowrap">
+                    {slide.accent}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Slide indicators + progress */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+        {/* Slide indicators — simple bars at bottom */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
           {slides.map((s, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              className="group relative flex flex-col items-center gap-2 cursor-pointer"
+              className="cursor-pointer"
               aria-label={`Слайд ${i + 1}: ${s.title}`}
             >
               <div
                 className={`relative h-[3px] rounded-full overflow-hidden transition-all duration-500 ${
-                  i === current ? 'w-16 bg-white/30' : 'w-8 bg-white/20 group-hover:bg-white/40'
+                  i === current ? 'w-12 bg-white/30' : 'w-6 bg-white/20 hover:bg-white/40'
                 }`}
               >
                 {i === current && (
@@ -352,25 +354,8 @@ export default function HeroBannerCarousel() {
                   />
                 )}
               </div>
-
-              <span
-                className={`text-[10px] tracking-widest uppercase transition-all duration-300 ${
-                  i === current
-                    ? 'text-white/70 opacity-100'
-                    : 'text-white/0 group-hover:text-white/50'
-                }`}
-              >
-                {s.title}
-              </span>
             </button>
           ))}
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 text-white/40 animate-bounce">
-          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-            <path d="M6 9l6 6 6-6" />
-          </svg>
         </div>
       </section>
       </div>
