@@ -1,51 +1,43 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [showVideo, setShowVideo] = useState(false)
-  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [loadingVideo, setLoadingVideo] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  useEffect(() => {
-    setIsVisible(true)
+  // Fade-in on mount
+  useState(() => { setIsVisible(true) })
 
-    // Defer video loading — let main content render and hydrate first
-    const startLoad = () => setVideoLoaded(true)
-    const timer = typeof window !== 'undefined' && 'requestIdleCallback' in window
-      ? (window as any).requestIdleCallback(startLoad, { timeout: 5000 })
-      : setTimeout(startLoad, 5000)
+  const handlePlayClick = () => {
+    if (showVideo) return
+    const video = videoRef.current
+    if (!video) return
 
-    return () => {
-      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-        (window as any).cancelIdleCallback(timer)
-      } else {
-        clearTimeout(timer)
-      }
+    setLoadingVideo(true)
+    video.preload = 'auto'
+    video.load()
+
+    const onCanPlay = () => {
+      video.removeEventListener('canplay', onCanPlay)
+      setLoadingVideo(false)
+      setShowVideo(true)
+      video.play().catch(() => {
+        setShowVideo(false)
+      })
     }
-  }, [])
-
-  // When video element mounts, trigger load
-  useEffect(() => {
-    if (videoLoaded && videoRef.current) {
-      videoRef.current.load()
-    }
-  }, [videoLoaded])
-
-  const handleVideoCanPlay = () => {
-    // Video is buffered enough to play — fade it in
-    setShowVideo(true)
-    videoRef.current?.play().catch(() => {
-      // Autoplay blocked — image stays
-    })
+    video.addEventListener('canplay', onCanPlay)
   }
 
   const handleVideoEnded = () => {
-    // Video finished — fade back to image
     setShowVideo(false)
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0
+    }
   }
 
   return (
@@ -56,25 +48,39 @@ export default function HeroSection() {
         style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}
       />
 
-      {/* Video Background — plays once over image, then fades back */}
-      {videoLoaded && (
-        <video
-          ref={videoRef}
-          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[2000ms] ${
-            showVideo ? 'opacity-100' : 'opacity-0'
-          }`}
-          muted
-          playsInline
-          preload="none"
-          onCanPlay={handleVideoCanPlay}
-          onEnded={handleVideoEnded}
-        >
-          <source src="/images/hero-video.mp4" type="video/mp4" />
-        </video>
-      )}
+      {/* Video — loads only on click */}
+      <video
+        ref={videoRef}
+        className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[2000ms] ${
+          showVideo ? 'opacity-100' : 'opacity-0'
+        }`}
+        muted
+        playsInline
+        preload="none"
+        onEnded={handleVideoEnded}
+      >
+        <source src="/images/hero-video.mp4" type="video/mp4" />
+      </video>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40" />
+
+      {/* Play button — bottom right */}
+      {!showVideo && (
+        <button
+          onClick={handlePlayClick}
+          className="absolute bottom-24 right-6 md:right-12 z-20 w-16 h-16 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center hover:bg-white/25 hover:scale-110 transition-all duration-300 cursor-pointer"
+          aria-label="Воспроизвести видео"
+        >
+          {loadingVideo ? (
+            <div className="w-7 h-7 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          ) : (
+            <svg width="18" height="22" viewBox="0 0 20 24" fill="white" className="ml-1">
+              <path d="M0 0L20 12L0 24V0Z" />
+            </svg>
+          )}
+        </button>
+      )}
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-6">
