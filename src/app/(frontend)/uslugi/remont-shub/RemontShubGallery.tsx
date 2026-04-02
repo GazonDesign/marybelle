@@ -43,7 +43,7 @@ export default function RemontShubGallery() {
       <section className="py-16 md:py-20 bg-bg-light">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <h2 className="font-serif text-3xl md:text-4xl text-black mb-8">Наши работы</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {gallery.map((img, i) => (
               <div
                 key={i}
@@ -53,7 +53,7 @@ export default function RemontShubGallery() {
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full aspect-[4/5] object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  className="w-full aspect-[5/4] object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             ))}
