@@ -387,7 +387,8 @@ export default function PoshivSobolyaPage() {
 
         {/* Mid-CTA #2 */}
         <section className="relative py-24 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-bg-dark" />
+          <div className="absolute inset-0 parallax-bg" style={{ backgroundImage: 'url(/images/gov-import/proizvodstvo/s-ceh-s.jpg)' }} />
+          <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 max-w-[800px] mx-auto px-6 text-center">
             <span className="inline-block mb-4 text-sm tracking-[0.3em] font-light uppercase text-white/40">
               Индивидуальный подход
@@ -426,7 +427,9 @@ export default function PoshivSobolyaPage() {
         {/* ============================================ */}
         {/* A — ACTION: Final CTA #4                     */}
         {/* ============================================ */}
-        <section className="relative py-24 md:py-32 overflow-hidden bg-bg-dark">
+        <section className="relative py-24 md:py-32 overflow-hidden">
+          <div className="absolute inset-0 parallax-bg" style={{ backgroundImage: 'url(/images/gov-import/proizvodstvo/img_7184-kopiya.jpg)' }} />
+          <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 max-w-[800px] mx-auto px-6 text-center">
             <span className="inline-block mb-4 text-sm tracking-[0.3em] font-light uppercase text-white/40">
               Меховое ателье Mary Belle

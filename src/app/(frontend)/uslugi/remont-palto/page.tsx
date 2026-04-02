@@ -7,6 +7,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-palto',
   },
+  openGraph: {
+    title: 'Ремонт пальто в Москве — Mary Belle',
+    description: 'Ремонт пальто любой сложности. Замена подкладки, ремонт швов, замена фурнитуры. Ателье Mary Belle.',
+    url: 'https://mary-belle.ru/uslugi/remont-palto',
+    images: [{ url: '/images/product-palto.jpg' }],
+  },
 }
 
 export default function RemontPaltoPage() {

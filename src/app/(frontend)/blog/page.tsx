@@ -9,6 +9,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/blog',
   },
+  openGraph: {
+    title: 'Блог о мехе и уходе за шубами — Mary Belle',
+    description: 'Полезные статьи о мехе, уходе за шубами, выборе меха и хранении меховых изделий.',
+    url: 'https://mary-belle.ru/blog',
+    images: [{ url: '/images/about-bg.jpg' }],
+  },
 }
 
 const fallbackArticles = [

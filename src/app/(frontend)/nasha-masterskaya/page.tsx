@@ -13,6 +13,7 @@ export const metadata = {
     title: 'Наша мастерская — Видео работ Mary Belle',
     description: 'Видео из мастерской мехового ателье Mary Belle: перекрой шуб, реставрация меха, создание изделий на заказ.',
     url: 'https://mary-belle.ru/nasha-masterskaya',
+    images: [{ url: '/images/gov-import/proizvodstvo/s-ceh-s.jpg' }],
   },
 }
 

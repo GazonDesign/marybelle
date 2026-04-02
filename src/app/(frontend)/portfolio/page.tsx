@@ -10,6 +10,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/portfolio',
   },
+  openGraph: {
+    title: 'Портфолио — до и после | Меховое ателье Mary Belle',
+    description: 'Реальные работы мехового ателье Mary Belle: ремонт шуб, перекрой, окрашивание меха. Фотографии до и после.',
+    url: 'https://mary-belle.ru/portfolio',
+    images: [{ url: '/images/hero-bg.jpg' }],
+  },
 }
 
 const fallbackBeforeAfter = [

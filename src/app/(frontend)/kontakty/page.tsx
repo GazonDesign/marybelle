@@ -9,6 +9,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/kontakty',
   },
+  openGraph: {
+    title: 'Контакты мехового ателье Mary Belle — м. Войковская',
+    description: 'Меховое ателье Mary Belle: адрес, телефон, режим работы. Москва, 5 минут от м. Войковская.',
+    url: 'https://mary-belle.ru/kontakty',
+    images: [{ url: '/images/hero-bg.jpg' }],
+  },
 }
 
 export default function KontaktyPage() {

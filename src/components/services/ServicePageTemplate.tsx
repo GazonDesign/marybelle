@@ -195,7 +195,7 @@ export default function ServicePageTemplate({
           <section className="py-16 md:py-20 bg-bg-light">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
               <h2 className="font-serif text-3xl md:text-4xl text-black mb-8">Наши работы</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                 {gallery.map((img, i) => (
                   <div
                     key={i}
@@ -220,7 +220,7 @@ export default function ServicePageTemplate({
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-12">Что включено</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature, i) => (
-                <div key={i} className="bg-white p-8 border border-border-light relative group hover:border-brand/30 transition-colors">
+                <div key={i} className="bg-white p-8 border border-border-light relative group hover:border-brand/30 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                   {/* Accent top line */}
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                   {/* Number */}
@@ -263,8 +263,10 @@ export default function ServicePageTemplate({
         {crossSellService && <CrossSellBanner currentService={crossSellService} />}
 
         {/* CTA */}
-        <section className="py-20 md:py-28 bg-bg-dark text-white text-center">
-          <div className="max-w-[800px] mx-auto px-6">
+        <section className="relative py-20 md:py-28 text-white text-center overflow-hidden">
+          <div className="absolute inset-0 parallax-bg" style={{ backgroundImage: 'url(/images/gov-import/proizvodstvo/s-ceh-s.jpg)' }} />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="relative z-10 max-w-[800px] mx-auto px-6">
             <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">Запишитесь на консультацию</h2>
             <p className="text-white/70 mb-10 text-lg">
               Привезите изделие в наше ателье — мастер осмотрит и назовёт точную стоимость.

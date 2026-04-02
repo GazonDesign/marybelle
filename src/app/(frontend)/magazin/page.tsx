@@ -7,6 +7,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/magazin',
   },
+  openGraph: {
+    title: 'Магазин — Шубы, пальто и кожаные изделия | Mary Belle',
+    description: 'Магазин меховых изделий Mary Belle. Шубы, пальто, кожаные куртки собственного производства.',
+    url: 'https://mary-belle.ru/magazin',
+    images: [{ url: '/images/hero-bg.jpg' }],
+  },
 }
 
 export default async function MagazinPage() {

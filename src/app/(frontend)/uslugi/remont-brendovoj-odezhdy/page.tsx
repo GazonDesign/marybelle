@@ -7,6 +7,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-brendovoj-odezhdy',
   },
+  openGraph: {
+    title: 'Ремонт брендовой одежды в Москве — Mary Belle',
+    description: 'Реставрация люксовых вещей: Moncler, Max Mara, Burberry. Ателье Mary Belle, м. Войковская.',
+    url: 'https://mary-belle.ru/uslugi/remont-brendovoj-odezhdy',
+    images: [{ url: '/images/uslugi-poshiv-hero.webp' }],
+  },
 }
 
 export default function RemontBrendovojOdezhdyPage() {

@@ -191,8 +191,10 @@ export default function HimchistkaPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 md:py-28 bg-bg-dark text-center">
-          <div className="max-w-[800px] mx-auto px-6">
+        <section className="relative py-20 md:py-28 text-center overflow-hidden">
+          <div className="absolute inset-0 parallax-bg" style={{ backgroundImage: 'url(/images/himchistka/banner-bg.jpg)' }} />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="relative z-10 max-w-[800px] mx-auto px-6">
             <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">Запишитесь на химчистку</h2>
             <p className="text-white/70 mb-10 text-lg">
               Привезите изделие — мастер осмотрит и назовёт точную стоимость. Консультация бесплатная.

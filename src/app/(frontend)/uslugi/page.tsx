@@ -8,6 +8,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi',
   },
+  openGraph: {
+    title: 'Услуги мехового ателье — Ремонт шуб, пошив, хранение | Mary Belle',
+    description: 'Все услуги мехового ателье Mary Belle: ремонт шуб, пошив на заказ, перекрой, окрашивание меха, химчистка, хранение.',
+    url: 'https://mary-belle.ru/uslugi',
+    images: [{ url: '/images/production/workshop-hands-sobol.jpg' }],
+  },
 }
 
 const services = [

@@ -9,6 +9,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/garantiya',
   },
+  openGraph: {
+    title: 'Российская гарантия на работы — Mary Belle',
+    description: 'Российская гарантия на все виды работ мехового ателье Mary Belle. До 12 месяцев на пошив и ремонт шуб.',
+    url: 'https://mary-belle.ru/garantiya',
+    images: [{ url: '/images/production/designer-production.webp' }],
+  },
 }
 
 const guaranteeItems = [

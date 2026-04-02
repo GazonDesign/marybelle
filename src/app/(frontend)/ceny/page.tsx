@@ -9,6 +9,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/ceny',
   },
+  openGraph: {
+    title: 'Цены на ремонт шуб, пошив, хранение — Mary Belle',
+    description: 'Прайс-лист мехового ателье Mary Belle. Цены на ремонт шуб, хранение, пошив на заказ, окрашивание, химчистку.',
+    url: 'https://mary-belle.ru/ceny',
+    images: [{ url: '/images/production/karakul-detail.jpg' }],
+  },
 }
 
 const fallbackCategories = [
