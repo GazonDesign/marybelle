@@ -6,39 +6,39 @@ import Link from 'next/link'
 const fallbackCases = [
   {
     id: 1,
-    title: 'Перекрой дублёнки',
-    description: 'Старая дублёнка → современный крой с косой молнией.',
-    image: '/images/before-after/case-02.jpg',
+    title: 'Ремонт кожаной куртки',
+    description: 'Потёртая куртка → полная реставрация, покраска, как новая.',
+    image: '/images/before-after/case-07-kozha-kurtka.webp',
   },
   {
     id: 2,
-    title: 'Перекрой норковой шубы',
-    description: 'Устаревший фасон → элегантная шуба с воротником из чернобурки.',
-    image: '/images/before-after/case-03.jpg',
+    title: 'Реставрация дублёнки',
+    description: 'Изношенная дублёнка → профессиональная чистка и восстановление.',
+    image: '/images/before-after/case-08-dublyonka.webp',
   },
   {
     id: 3,
-    title: 'Ремонт норки',
-    description: 'Разрыв в области подмышки — аккуратная починка, шов не заметен.',
-    image: '/images/before-after/case-04.jpg',
+    title: 'Окрашивание шубы',
+    description: 'Пожелтевший мех → белоснежная шуба после профессиональной покраски.',
+    image: '/images/before-after/case-09-pokraska.jpg',
   },
   {
     id: 4,
-    title: 'Перекрой каракуля',
-    description: 'Старое пальто из каракуля → обновлённый современный силуэт.',
-    image: '/images/before-after/case-05.jpg',
+    title: 'Ремонт норковой шубы',
+    description: 'Загрязнённая шуба → полное восстановление, химчистка и ремонт.',
+    image: '/images/before-after/case-10-remont.jpg',
   },
   {
     id: 5,
-    title: 'Перекрой шубы в пальто',
-    description: 'Старая шуба → авторское пальто с аппликацией.',
-    image: '/images/before-after/case-06.jpg',
+    title: 'Ремонт кожаной куртки',
+    description: 'Рваная куртка → аккуратная реставрация, шов не заметен.',
+    image: '/images/before-after/case-11-kozha.webp',
   },
   {
     id: 6,
-    title: 'Пошив по образцу',
-    description: 'Клиент принёс фото — мы воплотили идею в жизнь.',
-    image: '/images/before-after/case-01.jpg',
+    title: 'Перекрой норковой шубы',
+    description: 'Устаревший фасон → элегантная шуба с воротником из чернобурки.',
+    image: '/images/before-after/case-12-perekroj.jpg',
   },
 ]
 
@@ -120,7 +120,7 @@ export default function BeforeAfterSection({ cases: propCases }: Props) {
                 <img
                   src={item.image}
                   alt={`${item.title} — до и после`}
-                  className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full aspect-[5/4] object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex">
                   <span className="flex-1 text-center bg-black/50 text-white text-xs py-1.5 tracking-wider uppercase">До</span>

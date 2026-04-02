@@ -37,13 +37,18 @@ export default function OkrashivaniePage() {
         { label: 'Окрашивание воротника / манжет', price: 'от 3 000 ₽' },
         { label: 'Окрашивание кожаных элементов', price: 'от 4 000 ₽' },
       ]}
+      galleryAspect="5/4"
       gallery={[
-        { src: '/images/gov-import/uslugi/okrashivanie-1.jpg', alt: 'Окрашивание меха — результат работы' },
-        { src: '/images/gov-import/modeli/norka3.jpg', alt: 'Окрашенная норковая шуба' },
-        { src: '/images/gov-import/modeli/biryuzovaya-1.jpg', alt: 'Бирюзовое окрашивание меха' },
-        { src: '/images/gov-import/modeli/shaba-supr-ton.jpg', alt: 'Тонирование меха — натуральный оттенок' },
-        { src: '/images/gov-import/modeli/sobol-e1746367903636.jpg', alt: 'Окрашивание соболя' },
+        { src: '/images/okrashivanie-gallery/011.jpg', alt: 'Окрашивание меха — до и после' },
+        { src: '/images/okrashivanie-gallery/015.jpg', alt: 'Тонирование норковой шубы' },
+        { src: '/images/okrashivanie-gallery/022.jpg', alt: 'Обновление цвета мехового изделия' },
+        { src: '/images/okrashivanie-gallery/biryuzovaya-1-1.jpg', alt: 'Бирюзовое окрашивание меха' },
+        { src: '/images/okrashivanie-gallery/photo_2026-02-05_20-05-57.jpg', alt: 'Окрашивание шубы — результат' },
+        { src: '/images/okrashivanie-gallery/photo_2026-02-07_13-01-32.jpg', alt: 'Покраска мехового изделия' },
+        { src: '/images/okrashivanie-gallery/remont061225.jpg', alt: 'Восстановление цвета меха' },
+        { src: '/images/okrashivanie-gallery/remont26.jpg', alt: 'Профессиональное окрашивание' },
       ]}
+      crossSellService="okrashivanie"
       relatedServices={[
         { title: 'Ремонт шуб', href: '/uslugi/remont-shub' },
         { title: 'Химчистка', href: '/uslugi/himchistka' },

@@ -21,7 +21,7 @@ const services = [
   {
     title: 'Индивидуальный пошив',
     description: 'Пошив шуб и пальто на заказ из норки, соболя, каракуля. Три примерки, авторский крой, мех от Kopenhagen Fur и NAFA.',
-    image: '/images/uslugi-poshiv.jpg',
+    image: '/images/uslugi-poshiv-new.jpg',
     href: '/uslugi/poshiv-shub',
     icon: '/icons/services/sewing.svg',
   },
@@ -42,7 +42,7 @@ const services = [
   {
     title: 'Химчистка',
     description: 'Профессиональная чистка меховых и кожаных изделий. Удаление загрязнений и запахов, антимольная обработка, восстановление блеска.',
-    image: '/images/uslugi-himchistka.jpg',
+    image: '/images/uslugi-himchistka-new.jpg',
     href: '/uslugi/himchistka',
     icon: '/icons/services/cleaning.svg',
   },
@@ -113,7 +113,7 @@ export default function ServicesSection() {
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />

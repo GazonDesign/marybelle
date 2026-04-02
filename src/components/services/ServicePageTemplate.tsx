@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import CrossSellBanner from '@/components/ui/CrossSellBanner'
 
 interface ServiceFeature {
   title: string
@@ -19,6 +20,9 @@ interface ServicePageProps {
   prices: { label: string; price: string }[]
   relatedServices: { title: string; href: string }[]
   gallery?: { src: string; alt: string }[]
+  /** Aspect ratio для галереи: '4/5' (вертикальное, по умолчанию) или '5/4' (горизонтальное) */
+  galleryAspect?: '4/5' | '5/4' | '3/2'
+  crossSellService?: 'himchistka' | 'mehovoj-holodilnik' | 'okrashivanie'
   children?: React.ReactNode
 }
 
@@ -44,6 +48,8 @@ export default function ServicePageTemplate({
   prices,
   relatedServices,
   gallery,
+  galleryAspect = '4/5',
+  crossSellService,
   children,
 }: ServicePageProps) {
   const [isVisible, setIsVisible] = useState(false)
@@ -199,7 +205,7 @@ export default function ServicePageTemplate({
                     <img
                       src={img.src}
                       alt={img.alt}
-                      className="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-105"
+                      className={`w-full object-cover object-top transition-transform duration-500 group-hover:scale-105 ${galleryAspect === '5/4' ? 'aspect-[5/4]' : galleryAspect === '3/2' ? 'aspect-[3/2]' : 'aspect-[4/5]'}`}
                     />
                   </div>
                 ))}
@@ -252,6 +258,9 @@ export default function ServicePageTemplate({
 
         {/* FAQ slot */}
         {children}
+
+        {/* Cross-sell banner */}
+        {crossSellService && <CrossSellBanner currentService={crossSellService} />}
 
         {/* CTA */}
         <section className="py-20 md:py-28 bg-bg-dark text-white text-center">

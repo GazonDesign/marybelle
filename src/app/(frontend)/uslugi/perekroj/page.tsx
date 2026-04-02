@@ -39,12 +39,16 @@ export default function PerekrojPage() {
         { label: 'Изготовить капюшон', price: 'от 25 000 ₽' },
         { label: 'Укоротить / удлинить низ', price: 'от 13 000 ₽' },
       ]}
+      galleryAspect="5/4"
       gallery={[
-        { src: '/images/gov-import/remont-do-posle/chastichnyj-perekroj_.jpg', alt: 'Частичный перекрой шубы — до и после' },
-        { src: '/images/gov-import/remont-do-posle/perekroj-1.jpg', alt: 'Перекрой шубы — новый фасон' },
-        { src: '/images/gov-import/modeli/palto.jpg', alt: 'Пальто из перекроенной шубы' },
-        { src: '/images/gov-import/modeli/palto2.jpg', alt: 'Перекрой в пальто — вид сбоку' },
-        { src: '/images/gov-import/modeli/palto3.jpg', alt: 'Перекрой в пальто — вид сзади' },
+        { src: '/images/perekroj-gallery/004.jpg', alt: 'Перекрой шубы — до и после' },
+        { src: '/images/perekroj-gallery/005.jpg', alt: 'Перешив мехового изделия — результат' },
+        { src: '/images/perekroj-gallery/007.jpg', alt: 'Перекрой норковой шубы — новый фасон' },
+        { src: '/images/perekroj-gallery/009.jpg', alt: 'Модернизация шубы — до и после' },
+        { src: '/images/perekroj-gallery/012.jpg', alt: 'Перекрой в современный силуэт' },
+        { src: '/images/perekroj-gallery/019.jpg', alt: 'Перешив шубы — готовая работа' },
+        { src: '/images/perekroj-gallery/021.jpg', alt: 'Перекрой мехового пальто' },
+        { src: '/images/perekroj-gallery/back-main.jpg', alt: 'Перекрой шубы — вид сзади' },
       ]}
       relatedServices={[
         { title: 'Ремонт шуб', href: '/uslugi/remont-shub' },

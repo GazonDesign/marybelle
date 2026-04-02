@@ -33,11 +33,18 @@ export default function RemontPaltoPage() {
         { label: 'Изменить фасон воротника', price: 'от 10 000 ₽' },
       ]}
       gallery={[
-        { src: '/images/gov-import/modeli/palto.jpg', alt: 'Ремонт пальто — готовая работа' },
-        { src: '/images/gov-import/modeli/palto2.jpg', alt: 'Реставрация пальто — результат' },
-        { src: '/images/gov-import/modeli/palto3.jpg', alt: 'Пальто после ремонта — вид сзади' },
-        { src: '/images/gov-import/modeli/palto-back.jpg', alt: 'Детали ремонта пальто' },
-        { src: '/images/gov-import/modeli/palto-back-1.jpg', alt: 'Пальто — качество швов после реставрации' },
+        { src: '/images/palto-gallery/0220012.jpg', alt: 'Пальто из шерсти — ателье Mary Belle' },
+        { src: '/images/palto-gallery/0220038.jpg', alt: 'Реставрация кашемирового пальто' },
+        { src: '/images/palto-gallery/0220072.jpg', alt: 'Пальто после ремонта — идеальный силуэт' },
+        { src: '/images/palto-gallery/1-e1746367363465-794x1024.jpg', alt: 'Пальто с меховым воротником — готовая работа' },
+        { src: '/images/palto-gallery/photo_2023-02-20_17-16-31-767x1024.jpg', alt: 'Классическое пальто — реставрация' },
+        { src: '/images/palto-gallery/shal-2-767x1024.jpg', alt: 'Пальто с шалью — ателье Mary Belle' },
+        { src: '/images/palto-gallery/perekroj-0220011.jpg', alt: 'Модель в пальто — индивидуальный пошив' },
+        { src: '/images/palto-gallery/perekroj-0220019.jpg', alt: 'Пальто — вид сбоку' },
+        { src: '/images/palto-gallery/perekroj-0220028.jpg', alt: 'Пальто с поясом — реставрация' },
+        { src: '/images/palto-gallery/perekroj-0220032.jpg', alt: 'Пальто — результат перекроя' },
+        { src: '/images/palto-gallery/perekroj-0220036.jpg', alt: 'Пальто из перекроенного меха' },
+        { src: '/images/palto-gallery/perekroj-0220042.jpg', alt: 'Элегантное пальто — работа ателье' },
       ]}
       relatedServices={[
         { title: 'Ремонт шуб', href: '/uslugi/remont-shub' },

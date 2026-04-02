@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import HolodilnikFAQ from './HolodilnikFAQ'
 import Link from 'next/link'
+import CrossSellBanner from '@/components/ui/CrossSellBanner'
 
 export const metadata = {
   title: 'Хранение шуб в меховом холодильнике в Москве — Цены 2026 | Mary Belle',
@@ -13,7 +14,7 @@ export const metadata = {
     title: 'Хранение шуб в меховом холодильнике в Москве — Цены 2026',
     description: 'Хранение шуб в меховом холодильнике в Москве — цена от 5 000 ₽ за сезон. Температура +5°C, влажность 50–60%. Забор и доставка по Москве. Хранение меховых изделий в ателье Mary Belle.',
     url: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik',
-    images: [{ url: '/images/holodilnik/hero.jpg' }],
+    images: [{ url: '/images/holodilnik/hero-new.jpg' }],
   },
 }
 
@@ -50,7 +51,7 @@ export default function MehovojHolodilnikPage() {
         <section className="relative h-[80vh] min-h-[550px] w-full overflow-hidden">
           <div
             className="absolute inset-0 parallax-bg"
-            style={{ backgroundImage: 'url(/images/holodilnik/hero.jpg)' }}
+            style={{ backgroundImage: 'url(/images/holodilnik/hero-new.jpg)' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           <div className="relative z-10 h-full flex flex-col justify-end pb-14 px-6 text-center">
@@ -183,6 +184,9 @@ export default function MehovojHolodilnikPage() {
 
         {/* FAQ */}
         <HolodilnikFAQ />
+
+        {/* Cross-sell banner */}
+        <CrossSellBanner currentService="mehovoj-holodilnik" />
 
         {/* Related */}
         <section className="py-20 md:py-28 bg-bg-warm">

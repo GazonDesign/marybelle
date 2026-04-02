@@ -31,11 +31,18 @@ export default function RemontBrendovojOdezhdyPage() {
         { label: 'Замена подкладки', price: 'от 7 000 ₽' },
         { label: 'Штопка / реставрация ткани', price: 'от 2 500 ₽' },
       ]}
+      galleryAspect="3/2"
       gallery={[
-        { src: '/images/gov-import/modeli/palto-back.jpg', alt: 'Ремонт брендового пальто — вид сзади' },
-        { src: '/images/gov-import/modeli/palto-back-1.jpg', alt: 'Реставрация брендовой одежды — детали' },
-        { src: '/images/gov-import/proizvodstvo/img_7195-kopiya.jpg', alt: 'Мастер работает с брендовым изделием' },
-        { src: '/images/gov-import/proizvodstvo/sh-ceh-sh.jpg', alt: 'Цех ателье — премиальный ремонт' },
+        { src: '/images/kozha-gallery/001-2.webp', alt: 'Ремонт дублёнки — до и после' },
+        { src: '/images/kozha-gallery/003-2.webp', alt: 'Реставрация кожаной куртки — до и после' },
+        { src: '/images/kozha-gallery/005-1.webp', alt: 'Ремонт дублёнки с мехом — до и после' },
+        { src: '/images/kozha-gallery/002-1.webp', alt: 'Восстановление кожаного изделия' },
+        { src: '/images/kozha-gallery/004-1.webp', alt: 'Ремонт зимней куртки — до и после' },
+        { src: '/images/kozha-gallery/006-1.webp', alt: 'Реставрация дублёнки — результат' },
+        { src: '/images/kozha-gallery/007-1.webp', alt: 'Ремонт кожаной одежды — до и после' },
+        { src: '/images/kozha-gallery/008-1.webp', alt: 'Восстановление меховой отделки' },
+        { src: '/images/kozha-gallery/009-1.webp', alt: 'Ремонт брендовой куртки — результат' },
+        { src: '/images/kozha-gallery/010-6.webp', alt: 'Реставрация кожи — до и после' },
       ]}
       relatedServices={[
         { title: 'Ремонт пальто', href: '/uslugi/remont-palto' },

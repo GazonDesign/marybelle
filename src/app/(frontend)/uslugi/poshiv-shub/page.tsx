@@ -38,13 +38,16 @@ export default function PoshivShubPage() {
         { label: 'Пошив аксессуаров (муфта, воротник)', price: 'от 15 000 ₽' },
       ]}
       gallery={[
-        { src: '/images/gov-import/modeli/prima.jpg', alt: 'Модель Прима — пошив шубы на заказ' },
-        { src: '/images/gov-import/modeli/prima-1.jpg', alt: 'Шуба Прима — индивидуальный пошив' },
-        { src: '/images/gov-import/modeli/betti-1.jpg', alt: 'Модель Бетти — меховое ателье Mary Belle' },
-        { src: '/images/gov-import/modeli/russkij-sobol.jpg', alt: 'Шуба из русского соболя — пошив на заказ' },
-        { src: '/images/gov-import/modeli/iz-norki.jpg', alt: 'Шуба из норки — индивидуальный крой' },
-        { src: '/images/gov-import/modeli/manizhka-1.jpg', alt: 'Меховая манишка — аксессуар на заказ' },
-        { src: '/images/gov-import/proizvodstvo/img_7184-kopiya.jpg', alt: 'Мастерская пошива — ателье Mary Belle' },
+        { src: '/images/poshiv-gallery/russkij-sobol.jpg', alt: 'Шуба из русского соболя — пошив на заказ' },
+        { src: '/images/poshiv-gallery/0220001.jpg', alt: 'Норковая шуба — индивидуальный пошив' },
+        { src: '/images/poshiv-gallery/0220020.jpg', alt: 'Шуба из норки — авторский крой' },
+        { src: '/images/poshiv-gallery/14.webp', alt: 'Меховое пальто — пошив на заказ' },
+        { src: '/images/poshiv-gallery/15.webp', alt: 'Шуба из соболя — индивидуальный дизайн' },
+        { src: '/images/poshiv-gallery/16.webp', alt: 'Элегантная шуба — пошив в ателье' },
+        { src: '/images/poshiv-gallery/34.webp', alt: 'Норковая шуба — модель из каталога' },
+        { src: '/images/poshiv-gallery/397.webp', alt: 'Шуба из каракуля — пошив на заказ' },
+        { src: '/images/poshiv-gallery/img_5670-scaled-1080x1440.jpg', alt: 'Реальная модель в норковой шубе' },
+        { src: '/images/poshiv-gallery/img_5679-scaled-1080x1441.jpg', alt: 'Пошив шубы — результат работы' },
       ]}
       relatedServices={[
         { title: 'Пошив шуб из соболя', href: '/uslugi/poshiv-shub/iz-sobolya' },

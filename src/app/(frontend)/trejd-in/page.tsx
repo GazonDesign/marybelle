@@ -52,7 +52,7 @@ export default function TrejdInPage() {
         }),
       })
       if (typeof window !== 'undefined' && (window as any).ym) {
-        (window as any).ym(106018856, 'reachGoal', 'form_submit_success')
+        (window as any).ym(29448140, 'reachGoal', 'form_submit_success')
       }
       // Envybox автозвонок
       const phone = formData.get('phone') as string

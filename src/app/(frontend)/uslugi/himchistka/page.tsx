@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import HimchistkaFAQ from './HimchistkaFAQ'
+import CrossSellBanner from '@/components/ui/CrossSellBanner'
 
 export const metadata = {
   title: 'Химчистка шубы в Москве — Чистка меха из норки, цены | Mary Belle',
@@ -224,6 +225,9 @@ export default function HimchistkaPage() {
 
         {/* FAQ */}
         <HimchistkaFAQ />
+
+        {/* Cross-sell banner */}
+        <CrossSellBanner currentService="himchistka" />
 
         {/* Related */}
         <section className="py-20 md:py-28 bg-bg-warm">

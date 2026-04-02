@@ -79,13 +79,13 @@ export default function FrontendLayout({
             for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
             (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
-            ym(106018856,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+            ym(29448140,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
           `,
         }}
       />
       <noscript>
         <div>
-          <img src="https://mc.yandex.ru/watch/106018856" style={{ position: 'absolute', left: '-9999px' }} alt="" />
+          <img src="https://mc.yandex.ru/watch/29448140" style={{ position: 'absolute', left: '-9999px' }} alt="" />
         </div>
       </noscript>
       {/* VK Pixel */}

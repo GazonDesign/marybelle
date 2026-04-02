@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useState } from 'react'
 
 const gallery = [
+  { src: '/images/before-after/case-10-remont.jpg', alt: 'Ремонт норковой шубы — до и после' },
   { src: '/images/gov-import/remont-do-posle/remont-shub.jpg', alt: 'Ремонт шубы из норки — результат работы мастера' },
-  { src: '/images/gov-import/remont-do-posle/remont-shub-1.jpg', alt: 'Реставрация меховой шубы — до и после' },
   { src: '/images/gov-import/remont-do-posle/remont061225.jpg', alt: 'Ремонт мехового изделия — восстановление мездры' },
   { src: '/images/gov-import/remont-do-posle/remont26.jpg', alt: 'Ремонт шубы — восстановление меха' },
   { src: '/images/gov-import/remont-do-posle/restovratsiya.jpg', alt: 'Реставрация шубы из норки — ателье Mary Belle' },
@@ -53,7 +53,7 @@ export default function RemontShubGallery() {
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full aspect-[4/5] object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             ))}

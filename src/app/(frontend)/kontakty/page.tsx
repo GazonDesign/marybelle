@@ -130,7 +130,7 @@ export default function KontaktyPage() {
                 <div className="w-full h-[500px] lg:h-full min-h-[400px] bg-bg-light border border-border-light">
                   {/* Yandex Map embed */}
                   <iframe
-                    src="https://yandex.ru/map-widget/v1/?um=constructor%3Afalse&amp;source=constructor&amp;ll=37.498173%2C55.818812&amp;z=16&amp;pt=37.498173%2C55.818812%2Cpm2rdm"
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3Afalse&amp;source=constructor&amp;ll=37.503935%2C55.816232&amp;z=16&amp;pt=37.503935%2C55.816232%2Cpm2rdm"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}

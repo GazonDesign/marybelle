@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/sections/HeroSection'
+import HeroBannerCarousel from '@/components/ui/HeroBannerCarousel'
 import ServicesSection from '@/components/sections/ServicesSection'
 import WhyUsSection from '@/components/sections/WhyUsSection'
 import BeforeAfterSection from '@/components/sections/BeforeAfterSection'
@@ -54,9 +55,10 @@ export default async function HomePage() {
       <Header />
       <main>
         <HeroSection />
+        <HeroBannerCarousel />
         <ServicesSection />
         <WhyUsSection />
-        <BeforeAfterSection cases={beforeAfterCases.length > 0 ? beforeAfterCases : undefined} />
+        <BeforeAfterSection />
         <GuaranteeSection />
         <HowWeWorkSection />
         <ReviewsSection reviews={reviews} />

@@ -64,7 +64,7 @@ export default function FloatingCTA() {
         }),
       })
       if (typeof window !== 'undefined' && (window as any).ym) {
-        (window as any).ym(106018856, 'reachGoal', 'form_submit_success')
+        (window as any).ym(29448140, 'reachGoal', 'form_submit_success')
       }
       // Envybox автозвонок — передаём номер, Envybox сам перезванивает клиенту
       const phone = formData.get('phone') as string
