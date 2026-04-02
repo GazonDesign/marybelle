@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import CrossSellBanner from '@/components/ui/CrossSellBanner'
+import FadeIn from '@/components/ui/FadeIn'
 
 export const metadata = {
   title: 'Хранение норковой шубы в холодильнике в Москве — от 2 450 ₽/мес | Mary Belle',
@@ -166,7 +167,7 @@ export default function HranenieNorkovojShubyPage() {
         {/* Pain section */}
         <section className="py-20 md:py-28">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <FadeIn className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="font-serif text-3xl md:text-4xl text-black mb-6">
                   Почему норка особенно уязвима
@@ -199,7 +200,7 @@ export default function HranenieNorkovojShubyPage() {
               <div className="relative overflow-hidden">
                 <img src="/images/holodilnik/climate.jpg" alt="Меховой холодильник — норковая шуба при +4°C" className="w-full h-auto" />
               </div>
-            </div>
+            </FadeIn>
           </div>
         </section>
 
@@ -214,7 +215,7 @@ export default function HranenieNorkovojShubyPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {/* Bad — home */}
-              <div className="bg-white border border-border-light p-8">
+              <FadeIn className="bg-white border border-border-light p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <span className="w-3 h-3 rounded-full bg-red-400" />
                   <h3 className="font-serif text-xl text-black">В шкафу дома</h3>
@@ -241,9 +242,9 @@ export default function HranenieNorkovojShubyPage() {
                     <span className="text-red-500 font-medium">тусклый, ломкий мех</span>
                   </div>
                 </div>
-              </div>
+              </FadeIn>
               {/* Good — fridge */}
-              <div className="bg-white border border-brand/30 p-8">
+              <FadeIn delay={150} className="bg-white border border-brand/30 p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <span className="w-3 h-3 rounded-full bg-brand" />
                   <h3 className="font-serif text-xl text-black">В холодильнике +4°C</h3>
@@ -270,7 +271,7 @@ export default function HranenieNorkovojShubyPage() {
                     <span className="text-brand font-medium">блестящий, мягкий мех</span>
                   </div>
                 </div>
-              </div>
+              </FadeIn>
             </div>
           </div>
         </section>
@@ -284,7 +285,7 @@ export default function HranenieNorkovojShubyPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((f, i) => (
-                <div key={i} className="bg-white border border-border-light overflow-hidden group hover:border-brand/30 transition-colors">
+                <FadeIn key={i} delay={i * 80} className="bg-white border border-border-light overflow-hidden group hover:border-brand/30 transition-colors">
                   <div className="p-8">
                     <div className="flex items-start gap-4 mb-4">
                       <span className="shrink-0 w-10 h-10 rounded-full bg-brand/10 text-brand flex items-center justify-center font-serif text-sm">
@@ -294,7 +295,7 @@ export default function HranenieNorkovojShubyPage() {
                     </div>
                     <p className="text-text-muted text-sm leading-relaxed">{f.description}</p>
                   </div>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
@@ -303,7 +304,7 @@ export default function HranenieNorkovojShubyPage() {
         {/* ===== D — DESIRE ===== */}
         {/* Prices */}
         <section id="price" className="py-20 md:py-28 bg-bg-light">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <FadeIn className="max-w-[1200px] mx-auto px-6 md:px-12">
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-4">Стоимость хранения норковой шубы</h2>
             <p className="text-text-muted mb-12 max-w-2xl">
               Фиксированная цена за месяц. Скидки при длительном хранении
@@ -319,7 +320,7 @@ export default function HranenieNorkovojShubyPage() {
                 * Стоимость действительна для сезона 2026. Курьер бесплатно при сдаче от 3 изделий
               </p>
             </div>
-          </div>
+          </FadeIn>
         </section>
 
         {/* Trust stats bar */}

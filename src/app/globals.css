@@ -127,7 +127,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
     font-weight: 400;
-    line-height: 1;
+    line-height: 1.1;
   }
 
   h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); }
@@ -322,6 +322,16 @@
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up,
+    .animate-fade-in,
+    .animate-slide-left {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 
 }

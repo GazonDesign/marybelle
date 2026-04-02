@@ -40,7 +40,7 @@ const quizConfig = [
       host: '//quiz.marquiz.ru',
       region: 'ru',
       id: '68869cc6ed329700199fff28',
-      autoOpen: 17,
+      autoOpen: 42,
       autoOpenFreq: 'once',
       openOnExit: false,
       disableOnMobile: false,
@@ -76,7 +76,7 @@ const quizConfig = [
       host: '//quiz.marquiz.ru',
       region: 'ru',
       id: '6925ef277deeb20019fe0baf',
-      autoOpen: 12,
+      autoOpen: 42,
       autoOpenFreq: 'once',
       openOnExit: false,
       disableOnMobile: false,
@@ -111,7 +111,7 @@ const quizConfig = [
       host: '//quiz.marquiz.ru',
       region: 'ru',
       id: '69a5814256a96f00193eb8c6',
-      autoOpen: 18,
+      autoOpen: 42,
       autoOpenFreq: 'once',
       openOnExit: false,
       disableOnMobile: false,
@@ -145,7 +145,7 @@ const quizConfig = [
       host: '//quiz.marquiz.ru',
       region: 'ru',
       id: '69a848a4d655e300194ae5f6',
-      autoOpen: 16,
+      autoOpen: 42,
       autoOpenFreq: 'once',
       openOnExit: true,
       disableOnMobile: false,
@@ -219,20 +219,8 @@ export default function MarquizQuiz() {
 
     if (!activeQuiz) return
 
-    // AIDA-подстраницы: увеличенный таймер автооткрытия (пользователь дольше читает)
-    const aidaPages = [
-      '/uslugi/remont-shub/norkovye',
-      '/uslugi/remont-shub/sobolinye',
-      '/uslugi/poshiv-shub/iz-sobolya',
-      '/uslugi/poshiv-shub/iz-norki',
-    ]
-    const isAidaPage = aidaPages.includes(normalizedPath)
-    const initOverride = isAidaPage
-      ? { ...activeQuiz.init, autoOpen: 25 }
-      : activeQuiz.init
-    const popOverride = isAidaPage
-      ? { ...activeQuiz.pop, delay: 8 }
-      : activeQuiz.pop
+    const initOverride = activeQuiz.init
+    const popOverride = activeQuiz.pop
 
     // --- Envybox: загружаем на страницах с квизом (десктоп/планшет) ---
     let envyCleanup: (() => void) | null = null

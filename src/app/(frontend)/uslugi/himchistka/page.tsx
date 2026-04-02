@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import HimchistkaFAQ from './HimchistkaFAQ'
 import CrossSellBanner from '@/components/ui/CrossSellBanner'
+import FadeIn from '@/components/ui/FadeIn'
 
 export const metadata = {
   title: 'Химчистка шубы в Москве — Чистка меха из норки, цены | Mary Belle',
@@ -92,7 +93,7 @@ export default function HimchistkaPage() {
         {/* Intro */}
         <section className="py-20 md:py-28">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-            <div className="max-w-3xl">
+            <FadeIn className="max-w-3xl">
               <h2 className="font-serif text-3xl md:text-4xl text-black mb-6">Зачем нужна химчистка меха?</h2>
               <div className="space-y-4 text-text-body leading-relaxed">
                 <p>
@@ -107,14 +108,14 @@ export default function HimchistkaPage() {
                   Рекомендуем делать химчистку шубы перед сезонным хранением — это продлевает жизнь изделия на годы.
                 </p>
               </div>
-            </div>
+            </FadeIn>
           </div>
         </section>
 
         {/* Detailed text — SEO content */}
         <section className="py-20 md:py-28 bg-bg-warm">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-            <div className="max-w-3xl">
+            <FadeIn className="max-w-3xl">
               <h2 className="font-serif text-3xl md:text-4xl text-black mb-6">
                 Профессиональная химчистка меха в Москве
               </h2>
@@ -138,7 +139,7 @@ export default function HimchistkaPage() {
                   бережного отношения к вашему изделию.
                 </p>
               </div>
-            </div>
+            </FadeIn>
           </div>
         </section>
 
@@ -148,7 +149,7 @@ export default function HimchistkaPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-14 text-center">Что мы делаем</h2>
             <div className="space-y-12">
               {features.map((feature, i) => (
-                <div key={i} className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${i % 2 === 1 ? 'md:direction-rtl' : ''}`}>
+                <FadeIn key={i} delay={i * 100} className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${i % 2 === 1 ? 'md:direction-rtl' : ''}`}>
                   <div className={`relative overflow-hidden ${i % 2 === 1 ? 'md:order-2' : ''}`}>
                     <img
                       src={feature.image}
@@ -163,7 +164,7 @@ export default function HimchistkaPage() {
                     <h3 className="font-serif text-2xl text-black mb-3">{feature.title}</h3>
                     <p className="text-text-muted leading-relaxed">{feature.description}</p>
                   </div>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
@@ -177,13 +178,13 @@ export default function HimchistkaPage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {cleaningTypes.map((type, i) => (
-                <div key={i} className="bg-white p-8 border border-border-light">
+                <FadeIn key={i} delay={i * 100} className="bg-white p-8 border border-border-light hover:border-brand/30 transition-colors">
                   <span className="font-serif text-3xl text-brand/15 block mb-2">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <h3 className="font-serif text-xl text-black mb-3">{type.title}</h3>
                   <p className="text-text-muted leading-relaxed">{type.description}</p>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
@@ -209,7 +210,7 @@ export default function HimchistkaPage() {
 
         {/* Prices */}
         <section className="py-20 md:py-28">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <FadeIn className="max-w-[1200px] mx-auto px-6 md:px-12">
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-12">Стоимость</h2>
             <div className="max-w-2xl">
               {prices.map((item, i) => (
@@ -220,7 +221,7 @@ export default function HimchistkaPage() {
               ))}
               <p className="mt-6 text-sm text-text-muted">* Точная стоимость определяется после осмотра изделия мастером</p>
             </div>
-          </div>
+          </FadeIn>
         </section>
 
         {/* FAQ */}

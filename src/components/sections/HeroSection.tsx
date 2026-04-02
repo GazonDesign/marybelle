@@ -13,12 +13,19 @@ export default function HeroSection() {
   useEffect(() => {
     setIsVisible(true)
 
-    // Defer video loading until page is fully rendered
-    const timer = setTimeout(() => {
-      setVideoLoaded(true)
-    }, 1500)
+    // Defer video loading — let main content render and hydrate first
+    const startLoad = () => setVideoLoaded(true)
+    const timer = typeof window !== 'undefined' && 'requestIdleCallback' in window
+      ? (window as any).requestIdleCallback(startLoad, { timeout: 5000 })
+      : setTimeout(startLoad, 5000)
 
-    return () => clearTimeout(timer)
+    return () => {
+      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+        (window as any).cancelIdleCallback(timer)
+      } else {
+        clearTimeout(timer)
+      }
+    }
   }, [])
 
   // When video element mounts, trigger load

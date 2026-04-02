@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import NorkiFAQ from './NorkiFAQ'
+import FadeIn from '@/components/ui/FadeIn'
 
 export const metadata = {
   title: 'Пошив шуб из норки на заказ в Москве — Цены | Mary Belle',
@@ -183,7 +184,7 @@ export default function PoshivNorkiPage() {
         {/* ======================================== */}
         <section className="py-20 md:py-28">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <FadeIn className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="font-serif text-3xl md:text-4xl text-black mb-6">
                   Почему индивидуальный пошив — это совсем другой уровень
@@ -224,7 +225,7 @@ export default function PoshivNorkiPage() {
                   с 1870 года
                 </div>
               </div>
-            </div>
+            </FadeIn>
           </div>
         </section>
 
@@ -240,14 +241,14 @@ export default function PoshivNorkiPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {advantages.map((item, i) => (
-                <div key={i} className="bg-white p-8 border border-border-light relative group hover:border-brand/30 transition-colors">
+                <FadeIn key={i} delay={i * 80} className="bg-white p-8 border border-border-light relative group hover:border-brand/30 transition-colors">
                   <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                   <span className="font-serif text-3xl text-brand/15 block mb-3">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <h3 className="font-serif text-xl text-black mb-3">{item.title}</h3>
                   <p className="text-text-muted text-sm leading-relaxed">{item.description}</p>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
@@ -321,7 +322,7 @@ export default function PoshivNorkiPage() {
         {/* D — DESIRE: Prices                        */}
         {/* ======================================== */}
         <section className="py-20 md:py-28 bg-bg-warm">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <FadeIn className="max-w-[1200px] mx-auto px-6 md:px-12">
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-4">Стоимость пошива из норки</h2>
             <p className="text-text-muted mb-10 max-w-2xl">
               Мы открыто говорим о ценах. Финальная стоимость зависит от длины изделия,
@@ -340,7 +341,7 @@ export default function PoshivNorkiPage() {
                 На консультации мастер рассчитает точную цену именно для вашей модели.
               </p>
             </div>
-          </div>
+          </FadeIn>
         </section>
 
         {/* ======================================== */}

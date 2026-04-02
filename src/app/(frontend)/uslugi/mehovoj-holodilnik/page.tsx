@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import HolodilnikFAQ from './HolodilnikFAQ'
 import Link from 'next/link'
 import CrossSellBanner from '@/components/ui/CrossSellBanner'
+import FadeIn from '@/components/ui/FadeIn'
 
 export const metadata = {
   title: 'Хранение шуб в меховом холодильнике в Москве — Цены 2026 | Mary Belle',
@@ -81,7 +82,7 @@ export default function MehovojHolodilnikPage() {
         {/* Intro + image */}
         <section className="py-20 md:py-28">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <FadeIn className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="font-serif text-3xl md:text-4xl text-black mb-6">Зачем хранить шубу в холодильнике?</h2>
                 <div className="space-y-4 text-text-body leading-relaxed">
@@ -102,7 +103,7 @@ export default function MehovojHolodilnikPage() {
               <div className="relative overflow-hidden">
                 <img src="/images/holodilnik/climate.jpg" alt="Меховой холодильник +4°C" className="w-full h-auto" />
               </div>
-            </div>
+            </FadeIn>
           </div>
         </section>
 
@@ -113,7 +114,7 @@ export default function MehovojHolodilnikPage() {
             <p className="text-text-muted text-center mb-14 max-w-2xl mx-auto">От приёмки до выдачи — 4 простых шага</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {steps.map((step, i) => (
-                <div key={i} className="bg-white overflow-hidden group">
+                <FadeIn key={i} delay={i * 100} className="bg-white overflow-hidden group">
                   <div className="relative h-[280px] overflow-hidden">
                     <img src={step.image} alt={step.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute top-4 left-4 w-10 h-10 bg-brand text-white flex items-center justify-center font-serif text-lg">
@@ -124,7 +125,7 @@ export default function MehovojHolodilnikPage() {
                     <h3 className="font-serif text-lg text-black mb-2">{step.title}</h3>
                     <p className="text-text-muted text-sm leading-relaxed">{step.description}</p>
                   </div>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
@@ -136,7 +137,7 @@ export default function MehovojHolodilnikPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-12 text-center">Преимущества хранения</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {advantages.map((adv, i) => (
-                <div key={i} className="group overflow-hidden">
+                <FadeIn key={i} delay={i * 80} className="group overflow-hidden">
                   <div className="relative h-[220px] overflow-hidden">
                     <img src={adv.image} alt={adv.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -145,7 +146,7 @@ export default function MehovojHolodilnikPage() {
                   <div className="p-4 bg-bg-light">
                     <p className="text-text-muted text-sm leading-relaxed">{adv.description}</p>
                   </div>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
@@ -168,7 +169,7 @@ export default function MehovojHolodilnikPage() {
 
         {/* Prices */}
         <section className="py-20 md:py-28">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <FadeIn className="max-w-[1200px] mx-auto px-6 md:px-12">
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-12">Стоимость</h2>
             <div className="max-w-2xl">
               {prices.map((item, i) => (
@@ -179,7 +180,7 @@ export default function MehovojHolodilnikPage() {
               ))}
               <p className="mt-6 text-sm text-text-muted">* Точная стоимость определяется после осмотра изделия мастером</p>
             </div>
-          </div>
+          </FadeIn>
         </section>
 
         {/* FAQ */}
