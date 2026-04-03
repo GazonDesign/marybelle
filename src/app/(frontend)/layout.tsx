@@ -3,6 +3,7 @@ import LuxuryShimmerProvider from '@/components/ui/LuxuryShimmerProvider'
 import FloatingCTA from '@/components/ui/FloatingCTA'
 import UtmCapture from '@/components/ui/UtmCapture'
 import MarquizQuiz from '@/components/ui/MarquizQuiz'
+import EnvyboxWidget from '@/components/ui/EnvyboxWidget'
 
 export default function FrontendLayout({
   children,
@@ -105,6 +106,7 @@ export default function FrontendLayout({
         <LuxuryShimmerProvider />
         <UtmCapture />
         <MarquizQuiz />
+        <EnvyboxWidget />
         {children}
         <FloatingCTA />
       </div>

@@ -222,36 +222,7 @@ export default function MarquizQuiz() {
     const initOverride = activeQuiz.init
     const popOverride = activeQuiz.pop
 
-    // --- Envybox: загружаем на страницах с квизом (десктоп/планшет) ---
-    let envyCleanup: (() => void) | null = null
-    if (window.innerWidth >= 768 && !document.querySelector('script[data-envybox]')) {
-      const style = document.createElement('style')
-      style.setAttribute('data-envybox', 'style')
-      style.textContent = [
-        '[class*="callbackkiller"] { opacity: 0 !important; pointer-events: none !important; width: 0 !important; height: 0 !important; overflow: hidden !important; position: fixed !important; left: -9999px !important; }',
-        '[class*="callbackkiller"][class*="open"], [class*="callbackkiller"][class*="active"], [class*="callbackkiller"][class*="showed"] { opacity: 1 !important; pointer-events: auto !important; width: auto !important; height: auto !important; overflow: visible !important; left: auto !important; }',
-      ].join('\n')
-      document.head.appendChild(style)
-
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = 'https://cdn.envybox.io/widget/cbk.css'
-      link.setAttribute('data-envybox', 'css')
-      document.head.appendChild(link)
-
-      const envyScript = document.createElement('script')
-      envyScript.src = 'https://cdn.envybox.io/widget/cbk.js?wcb_code=45933bcf817cd4419c6d6867576a5000'
-      envyScript.charset = 'UTF-8'
-      envyScript.async = true
-      envyScript.setAttribute('data-envybox', 'js')
-      document.body.appendChild(envyScript)
-
-      envyCleanup = () => {
-        style.remove()
-        link.remove()
-        envyScript.remove()
-      }
-    }
+    // Envybox теперь загружается глобально через EnvyboxWidget
 
     // Очистка предыдущего Marquiz
     document.querySelectorAll('script[data-marquiz]').forEach((el) => el.remove())
@@ -331,7 +302,6 @@ export default function MarquizQuiz() {
       window.removeEventListener('message', onMessage)
       document.querySelectorAll('[class*="marquiz"]').forEach((el) => el.remove())
       delete (window as any).Marquiz
-      if (envyCleanup) envyCleanup()
     }
   }, [pathname])
 
