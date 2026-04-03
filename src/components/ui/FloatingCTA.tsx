@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Phone, MessageCircle, X } from 'lucide-react'
+import { Phone, MessageCircle, X, Send } from 'lucide-react'
 import Link from 'next/link'
 import { getTracking } from '@/lib/utm'
 import PhoneInput from '@/components/ui/PhoneInput'
@@ -97,19 +97,44 @@ export default function FloatingCTA() {
               <MessageCircle size={20} strokeWidth={1.5} />
               <span className="text-sm font-medium">WhatsApp</span>
             </a>
+            <a
+              href="https://t.me/JuliaDenisova71"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-[#2AABEE] text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            >
+              <Send size={20} strokeWidth={1.5} />
+              <span className="text-sm font-medium">Telegram</span>
+            </a>
+            <a
+              href="https://vk.com/im?sel=-marybelle.atelie"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-[#0077FF] text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.547 7.007c.15-.455 0-.789-.648-.789h-2.145c-.546 0-.798.289-.948.607 0 0-1.108 2.701-2.677 4.456-.508.508-.739.67-1.016.67-.138 0-.34-.162-.34-.617V7.007c0-.546-.158-.789-.612-.789H10.05c-.34 0-.545.252-.545.491 0 .516.77.635.849 2.086v3.152c0 .69-.125.817-.397.817-.739 0-2.536-2.714-3.602-5.82C6.154 6.46 5.95 6.218 5.4 6.218H3.255c-.613 0-.736.289-.736.607 0 .568.693 3.387 3.225 7.114C7.427 16.822 9.92 18 12.194 18c1.362 0 1.53-.306 1.53-.833v-1.926c0-.613.129-.735.56-.735.318 0 .862.16 2.133 1.385 1.453 1.453 1.692 2.106 2.509 2.106h2.145c.613 0 .92-.306.743-.91-.194-.602-.893-1.475-1.819-2.511-.503-.594-1.256-1.234-1.485-1.554-.317-.41-.226-.593 0-.958 0 0 2.632-3.707 2.905-4.964z"/></svg>
+              <span className="text-sm font-medium">VK</span>
+            </a>
+            <a
+              href="https://max.ru/u/f9LHodD0cOKhnfmL8NoSlJR-8QBqTMS7oEkTPkRg7FV-H-DcmghVHUCNNH4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-[#168DE2] text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            >
+              <MessageCircle size={20} strokeWidth={1.5} />
+              <span className="text-sm font-medium">Max</span>
+            </a>
             <button
               onClick={() => {
-                // Envybox API: открыть форму обратного звонка
                 const w = window as any
                 if (w.CallbackKillerApi) {
                   w.CallbackKillerApi.open()
                 } else {
-                  // Фолбэк — наша модалка, если Envybox не загрузился
                   setIsCallbackOpen(true)
                 }
                 setIsOpen(false)
               }}
-              className="flex items-center gap-3 bg-brand text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+              className="flex items-center gap-3 bg-brand text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all cursor-pointer"
             >
               <Phone size={20} strokeWidth={1.5} />
               <span className="text-sm font-medium">Перезвоните мне</span>
@@ -156,6 +181,15 @@ export default function FloatingCTA() {
           >
             <MessageCircle size={16} strokeWidth={1.5} />
             WhatsApp
+          </a>
+          <a
+            href="https://t.me/JuliaDenisova71"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#2AABEE]/90 backdrop-blur-md text-white text-sm font-medium tracking-wide rounded-2xl shadow-lg"
+          >
+            <Send size={16} strokeWidth={1.5} />
+            Telegram
           </a>
           <button
             onClick={() => setIsCallbackOpen(true)}
