@@ -17,8 +17,11 @@ export default function PhoneClickInterceptor() {
 
       e.preventDefault()
       const w = window as any
+      const envyBtn = document.querySelector('a.cbk-phone') as HTMLElement
       if (w.CallbackKillerApi) {
         w.CallbackKillerApi.open()
+      } else if (envyBtn) {
+        envyBtn.click()
       }
     }
 

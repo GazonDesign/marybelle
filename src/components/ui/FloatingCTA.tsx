@@ -126,9 +126,13 @@ export default function FloatingCTA() {
             </a>
             <button
               onClick={() => {
+                // Пробуем открыть Envybox: сначала API, потом клик по скрытой кнопке
                 const w = window as any
+                const envyBtn = document.querySelector('a.cbk-phone') as HTMLElement
                 if (w.CallbackKillerApi) {
                   w.CallbackKillerApi.open()
+                } else if (envyBtn) {
+                  envyBtn.click()
                 } else {
                   setIsCallbackOpen(true)
                 }
