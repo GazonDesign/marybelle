@@ -194,24 +194,7 @@ export default function CrossSellBanner({ currentService }: CrossSellBannerProps
       setShowPopup(true)
     } else if (banner.quiz && banner.quizId) {
       e.preventDefault()
-      const M = (window as any).Marquiz
-      if (M) {
-        // Marquiz v2: showFullScreen — программное открытие квиза
-        if (typeof M.showFullScreen === 'function') {
-          M.showFullScreen(banner.quizId)
-        } else {
-          // Фолбэк: кликаем по кнопке попапа Marquiz, если она есть на странице
-          const popBtn = document.querySelector('.marquiz__button-open') as HTMLElement
-            || document.querySelector('[class*="marquiz"] button') as HTMLElement
-          if (popBtn) {
-            popBtn.click()
-          } else {
-            window.open(`https://quiz.marquiz.ru/quiz/${banner.quizId}`, '_blank')
-          }
-        }
-      } else {
-        window.open(`https://quiz.marquiz.ru/quiz/${banner.quizId}`, '_blank')
-      }
+      window.open(`https://quiz.marquiz.ru/quiz/${banner.quizId}`, '_blank')
     }
   }
 
