@@ -3,4 +3,4 @@ Allow: /
 
 Sitemap: https://mary-belle.ru/sitemap.xml
 
-Host: mary-belle.ru
+Host: https://mary-belle.ru

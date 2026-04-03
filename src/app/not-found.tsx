@@ -1,5 +1,10 @@
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'Страница не найдена — Mary Belle',
+  description: 'Запрашиваемая страница не найдена. Вернитесь на главную или перейдите к услугам мехового ателье Mary Belle.',
+}
+
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-bg-warm px-6 text-center">

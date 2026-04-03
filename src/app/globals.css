@@ -354,12 +354,11 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .animate-fade-up,
-    .animate-fade-in,
-    .animate-slide-left {
-      animation: none;
-      opacity: 1;
-      transform: none;
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
   }
 
