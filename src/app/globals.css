@@ -109,13 +109,8 @@
     box-sizing: border-box;
   }
   /* Кнопка Envybox — скрыть за пределы экрана */
-  .callbackkiller_btn,
-  [class*="callbackkiller_btn"],
-  .cbk-phone-bgr,
-  .cbk-phone-content,
-  .cbk-phone-circle,
-  .cbk-phone-second_circle,
-  .cbk-phone-third_circle {
+  .cbk-phone,
+  a.callbackkiller.cbk-phone {
     position: fixed !important;
     left: -9999px !important;
     top: -9999px !important;
