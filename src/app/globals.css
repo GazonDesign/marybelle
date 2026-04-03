@@ -81,6 +81,35 @@
   }
 }
 
+/*
+  Envybox (CallbackKiller) fix: Tailwind preflight сбрасывает
+  стили виджета — revert всё внутри контейнера Envybox.
+*/
+@layer payload-fix {
+  [class*="callbackkiller"] *,
+  [class*="callbackkiller"] *::before,
+  [class*="callbackkiller"] *::after,
+  [id*="callbackkiller"] *,
+  [id*="callbackkiller"] *::before,
+  [id*="callbackkiller"] *::after,
+  [class*="cbk-"] *,
+  [class*="cbk-"] *::before,
+  [class*="cbk-"] *::after,
+  [id*="cbk-"] *,
+  [id*="cbk-"] *::before,
+  [id*="cbk-"] *::after {
+    all: revert;
+    box-sizing: border-box;
+  }
+  [class*="callbackkiller"],
+  [id*="callbackkiller"],
+  [class*="cbk-"],
+  [id*="cbk-"] {
+    all: revert;
+    box-sizing: border-box;
+  }
+}
+
 @theme {
   --color-brand: #8b6d4b;
   --color-brand-light: #a3845e;

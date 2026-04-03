@@ -13,6 +13,13 @@ export default function EnvyboxWidget() {
     if (window.innerWidth < 768) return
     if (document.querySelector('script[data-envybox]')) return
 
+    // CSS виджета — без него Envybox рендерится без стилей
+    const envyCss = document.createElement('link')
+    envyCss.rel = 'stylesheet'
+    envyCss.href = 'https://cdn.envybox.io/widget/cbk.css'
+    envyCss.setAttribute('data-envybox', 'css')
+    document.head.appendChild(envyCss)
+
     const envyScript = document.createElement('script')
     envyScript.src = 'https://cdn.envybox.io/widget/cbk.js?wcb_code=45933bcf817cd4419c6d6867576a5000'
     envyScript.charset = 'UTF-8'
