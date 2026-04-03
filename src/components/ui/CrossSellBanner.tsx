@@ -61,10 +61,8 @@ const allBanners: Record<string, BannerData> = {
     href: '/uslugi/mehovoj-holodilnik',
     image: '/images/holodilnik/hero-new.jpg',
     gradient: 'from-sky-950/80 via-sky-950/50 to-transparent',
-    popup: true,
-    popupTitle: 'Сдайте шубу на хранение',
-    popupInfo: 'Идеальный климат +5 °C, защита от моли, страховка изделия. Курьер заберёт от 3-х шуб — бесплатно.',
-    popupCta: 'Оставить заявку',
+    quiz: true,
+    quizId: QUIZ_HOLODILNIK,
   },
   okrashivanie: {
     tag: 'Новый цвет',
@@ -196,7 +194,15 @@ export default function CrossSellBanner({ currentService }: CrossSellBannerProps
       setShowPopup(true)
     } else if (banner.quiz && banner.quizId) {
       e.preventDefault()
-      window.open(`https://quiz.marquiz.ru/quiz/${banner.quizId}`, '_blank')
+      document.querySelectorAll('*').forEach((el) => {
+        if ((el as any).__NA === '') (el as any).__NA = {}
+      })
+      const M = (window as any).Marquiz
+      if (M && typeof M.showModal === 'function') {
+        M.showModal(banner.quizId)
+      } else {
+        window.open(`https://quiz.marquiz.ru/quiz/${banner.quizId}`, '_blank')
+      }
     }
   }
 

@@ -37,7 +37,8 @@ const slides: Slide[] = [
     cta: 'Сдать на хранение',
     href: '/uslugi/mehovoj-holodilnik',
     image: '/images/holodilnik/hero-new.jpg',
-    popup: true,
+    quiz: true,
+    quizId: QUIZ_HOLODILNIK,
   },
   {
     tag: 'Реставрация любой сложности',
@@ -46,7 +47,8 @@ const slides: Slide[] = [
     cta: 'Рассчитать стоимость',
     href: '/uslugi/remont-shub',
     image: '/images/hero-remont-shub.jpg',
-    popup: true,
+    quiz: true,
+    quizId: QUIZ_FUR,
   },
   {
     tag: 'Бережный уход',
@@ -200,7 +202,16 @@ export default function HeroBannerCarousel() {
       setShowPopup(true)
     } else if (s.quiz && s.quizId) {
       e.preventDefault()
-      window.open(`https://quiz.marquiz.ru/quiz/${s.quizId}`, '_blank')
+      // Патчим __NA конфликт Next.js ↔ Marquiz перед вызовом
+      document.querySelectorAll('*').forEach((el) => {
+        if ((el as any).__NA === '') (el as any).__NA = {}
+      })
+      const M = (window as any).Marquiz
+      if (M && typeof M.showModal === 'function') {
+        M.showModal(s.quizId)
+      } else {
+        window.open(`https://quiz.marquiz.ru/quiz/${s.quizId}`, '_blank')
+      }
     }
   }
 
