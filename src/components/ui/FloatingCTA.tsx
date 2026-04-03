@@ -21,6 +21,13 @@ export default function FloatingCTA() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Открытие попапа по клику на tel: ссылки (из PhoneClickInterceptor)
+  useEffect(() => {
+    const handleOpen = () => setIsCallbackOpen(true)
+    window.addEventListener('openCallback', handleOpen)
+    return () => window.removeEventListener('openCallback', handleOpen)
+  }, [])
+
   // Watch for Marquiz popup appearing/disappearing
   useEffect(() => {
     function measureQuiz() {
@@ -126,16 +133,7 @@ export default function FloatingCTA() {
             </a>
             <button
               onClick={() => {
-                // Пробуем открыть Envybox: сначала API, потом клик по скрытой кнопке
-                const w = window as any
-                const envyBtn = document.querySelector('a.cbk-phone') as HTMLElement
-                if (w.CallbackKillerApi) {
-                  w.CallbackKillerApi.open()
-                } else if (envyBtn) {
-                  envyBtn.click()
-                } else {
-                  setIsCallbackOpen(true)
-                }
+                setIsCallbackOpen(true)
                 setIsOpen(false)
               }}
               className="flex items-center gap-3 bg-brand text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all cursor-pointer"

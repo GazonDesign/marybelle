@@ -16,13 +16,8 @@ export default function PhoneClickInterceptor() {
       if (!target) return
 
       e.preventDefault()
-      const w = window as any
-      const envyBtn = document.querySelector('a.cbk-phone') as HTMLElement
-      if (w.CallbackKillerApi) {
-        w.CallbackKillerApi.open()
-      } else if (envyBtn) {
-        envyBtn.click()
-      }
+      // Открываем наш попап обратного звонка через кастомное событие
+      window.dispatchEvent(new CustomEvent('openCallback'))
     }
 
     document.addEventListener('click', handleClick)
