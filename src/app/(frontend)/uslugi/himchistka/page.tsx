@@ -214,11 +214,11 @@ export default function HimchistkaPage() {
         <section className="py-20 md:py-28">
           <FadeIn className="max-w-[1200px] mx-auto px-6 md:px-12">
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-12">Стоимость</h2>
-            <div className="max-w-2xl">
+            <div className="max-w-3xl">
               {prices.map((item, i) => (
-                <div key={i} className="flex justify-between items-center py-5 border-b border-border-light">
+                <div key={i} className={`flex justify-between items-center px-6 py-5 ${i % 2 === 0 ? 'bg-white' : 'bg-bg-light'}`}>
                   <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide">{item.price}</span>
+                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
                 </div>
               ))}
               <p className="mt-6 text-sm text-text-muted">* Точная стоимость определяется после осмотра изделия мастером</p>

@@ -8,6 +8,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/politika-konfidencialnosti',
   },
+  openGraph: {
+    title: 'Политика конфиденциальности — Mary Belle',
+    description: 'Политика конфиденциальности и обработки персональных данных сайта mary-belle.ru.',
+    url: 'https://mary-belle.ru/politika-konfidencialnosti',
+    images: [{ url: '/images/hero-bg.jpg' }],
+  },
 }
 
 export default function PolitikaPage() {

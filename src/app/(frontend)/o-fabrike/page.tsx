@@ -8,6 +8,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/o-fabrike',
   },
+  openGraph: {
+    title: 'О фабрике Mary Belle — Московская меховая фабрика с 1870 года',
+    description: 'История меховой фабрики Mary Belle — более 150 лет работы с мехом.',
+    url: 'https://mary-belle.ru/o-fabrike',
+    images: [{ url: '/images/o-fabrike/mary_belle_workshop_panoramic.jpg' }],
+  },
 }
 
 const milestones = [

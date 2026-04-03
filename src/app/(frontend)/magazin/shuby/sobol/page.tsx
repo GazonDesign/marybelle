@@ -12,6 +12,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/shuby/sobol',
   },
+  openGraph: {
+    title: 'Шубы из соболя — Купить соболиную шубу | Mary Belle',
+    description: 'Индивидуальный пошив из соболя, эксклюзивные модели от Mary Belle.',
+    url: 'https://mary-belle.ru/magazin/shuby/sobol',
+    images: [{ url: '/images/gov-import/modeli/sobol-e1746367903636.jpg' }],
+  },
 }
 
 const sobolAdvantages = [

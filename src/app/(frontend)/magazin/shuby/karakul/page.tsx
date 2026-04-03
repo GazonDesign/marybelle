@@ -11,6 +11,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/shuby/karakul',
   },
+  openGraph: {
+    title: 'Шубы из каракуля — Купить каракулевую шубу | Mary Belle',
+    description: 'Каракулевые шубы и полушубки от московской фабрики Mary Belle.',
+    url: 'https://mary-belle.ru/magazin/shuby/karakul',
+    images: [{ url: '/images/magazin/shuby/afgan-karakul/01.jpg' }],
+  },
 }
 
 export default async function KarakulPage() {

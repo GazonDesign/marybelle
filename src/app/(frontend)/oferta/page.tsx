@@ -8,6 +8,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/oferta',
   },
+  openGraph: {
+    title: 'Публичная оферта — Mary Belle',
+    description: 'Условия заказа, оплаты, гарантии и возврата мехового ателье Mary Belle.',
+    url: 'https://mary-belle.ru/oferta',
+    images: [{ url: '/images/hero-bg.jpg' }],
+  },
 }
 
 export default function OfertaPage() {

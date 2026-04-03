@@ -155,7 +155,7 @@ export default function PoshivNorkiPage() {
         {/* ======================================== */}
         {/* Desire trigger — CTA #1                  */}
         {/* ======================================== */}
-        <section className="py-14 md:py-16 bg-white">
+        <section className="py-16 md:py-20 bg-white">
           <div className="max-w-[900px] mx-auto px-6 text-center">
             <p className="font-serif text-2xl md:text-3xl text-black leading-snug mb-8">
               Норковая шуба, сшитая по вашим меркам — идеальная посадка, уникальный фасон, ваш стиль
@@ -257,10 +257,10 @@ export default function PoshivNorkiPage() {
         {/* ======================================== */}
         {/* D — DESIRE: Photo gallery                 */}
         {/* ======================================== */}
-        <section className="py-16 md:py-20">
+        <section className="py-20 md:py-28">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10 text-center">Наши работы</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {[
                 { src: '/images/gov-import/modeli/iz-norki.jpg', alt: 'Шуба из норки — индивидуальный пошив' },
                 { src: '/images/gov-import/modeli/prima.jpg', alt: 'Модель Прима — норковая шуба' },
@@ -282,7 +282,7 @@ export default function PoshivNorkiPage() {
         {/* ======================================== */}
         {/* D — DESIRE: Trust bar                     */}
         {/* ======================================== */}
-        <section className="py-14 md:py-16 bg-bg-dark">
+        <section className="py-16 md:py-20 bg-bg-dark">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {trustStats.map((stat, i) => (
@@ -329,11 +329,11 @@ export default function PoshivNorkiPage() {
               типа норки и сложности фасона. Точную цену мастер назовёт до начала работ —
               после того как вы вместе выберете мех и обсудите модель.
             </p>
-            <div className="max-w-2xl">
+            <div className="max-w-3xl">
               {prices.map((item, i) => (
-                <div key={i} className="flex justify-between items-center py-5 border-b border-border-light">
+                <div key={i} className={`flex justify-between items-center px-6 py-5 ${i % 2 === 0 ? 'bg-white' : 'bg-bg-light'}`}>
                   <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide">{item.price}</span>
+                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
                 </div>
               ))}
               <p className="mt-6 text-sm text-text-muted">
@@ -347,7 +347,7 @@ export default function PoshivNorkiPage() {
         {/* ======================================== */}
         {/* Mid-CTA #2                                */}
         {/* ======================================== */}
-        <section className="py-16 md:py-20 bg-white">
+        <section className="py-20 md:py-28 bg-white">
           <div className="max-w-[800px] mx-auto px-6 text-center">
             <h2 className="font-serif text-2xl md:text-3xl text-black mb-4">
               Приезжайте — покажем образцы норки, обсудим фасон

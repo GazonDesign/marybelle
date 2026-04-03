@@ -11,6 +11,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/shuby/norka',
   },
+  openGraph: {
+    title: 'Шубы из норки — Купить норковую шубу | Mary Belle',
+    description: 'Норковые шубы собственного производства — классические и современные модели.',
+    url: 'https://mary-belle.ru/magazin/shuby/norka',
+    images: [{ url: '/images/history/2025/banner-okrashivanie.jpg' }],
+  },
 }
 
 export default async function NorkaPage() {

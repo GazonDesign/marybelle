@@ -309,9 +309,9 @@ export default function HranenieNorkovojShubyPage() {
             <p className="text-text-muted mb-12 max-w-2xl">
               Фиксированная цена за месяц. Скидки при длительном хранении
             </p>
-            <div className="max-w-2xl">
+            <div className="max-w-3xl">
               {prices.map((item, i) => (
-                <div key={i} className="flex justify-between items-center py-5 border-b border-border-light">
+                <div key={i} className={`flex justify-between items-center px-6 py-5 ${i % 2 === 0 ? 'bg-white' : 'bg-bg-light'}`}>
                   <span className="text-text-body">{item.label}</span>
                   <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
                 </div>
@@ -324,7 +324,7 @@ export default function HranenieNorkovojShubyPage() {
         </section>
 
         {/* Trust stats bar */}
-        <section className="py-12 bg-bg-dark">
+        <section className="py-16 md:py-20 bg-bg-dark">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {trustStats.map((stat, i) => (

@@ -11,6 +11,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/kozha',
   },
+  openGraph: {
+    title: 'Кожаные изделия — Купить в Москве | Mary Belle',
+    description: 'Кожаные куртки, дублёнки и аксессуары от фабрики Mary Belle.',
+    url: 'https://mary-belle.ru/magazin/kozha',
+    images: [{ url: '/images/magazin/kozha/bomber-aviator/01.jpg' }],
+  },
 }
 
 export default async function KozhaPage() {

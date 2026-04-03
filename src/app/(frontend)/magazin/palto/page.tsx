@@ -11,6 +11,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/palto',
   },
+  openGraph: {
+    title: 'Пальто из шерсти и экомеха | Mary Belle',
+    description: 'Женские пальто московского производства от фабрики Mary Belle.',
+    url: 'https://mary-belle.ru/magazin/palto',
+    images: [{ url: '/images/gov-import/modeli/palto.jpg' }],
+  },
 }
 
 export default async function PaltoPage() {
