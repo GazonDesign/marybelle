@@ -108,9 +108,14 @@
     all: revert;
     box-sizing: border-box;
   }
-  /* Зелёная кнопка Envybox — скрыть за пределы экрана */
+  /* Кнопка Envybox — скрыть за пределы экрана */
   .callbackkiller_btn,
-  [class*="callbackkiller_btn"] {
+  [class*="callbackkiller_btn"],
+  .cbk-phone-bgr,
+  .cbk-phone-content,
+  .cbk-phone-circle,
+  .cbk-phone-second_circle,
+  .cbk-phone-third_circle {
     position: fixed !important;
     left: -9999px !important;
     top: -9999px !important;
