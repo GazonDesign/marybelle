@@ -6,8 +6,8 @@ import nodemailer from 'nodemailer'
 const AMO_SUBDOMAIN = process.env.AMO_SUBDOMAIN
 const AMO_TOKEN = process.env.AMO_TOKEN
 // Telegram — прямой вызов Bot API (Vercel на AWS, Telegram API доступен)
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID
+const TELEGRAM_BOT_TOKEN = process.env.MB_TG_BOT_TOKEN
+const TELEGRAM_CHAT_ID = process.env.MB_TG_CHAT_ID
 const EMAIL_TO = process.env.EMAIL_TO || 'gazonmarketing@yandex.ru'
 const SMTP_USER = process.env.SMTP_USER
 const SMTP_PASS = process.env.SMTP_PASS
