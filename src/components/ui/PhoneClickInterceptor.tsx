@@ -16,8 +16,11 @@ export default function PhoneClickInterceptor() {
       if (!target) return
 
       e.preventDefault()
-      // Открываем наш попап обратного звонка через кастомное событие
-      window.dispatchEvent(new CustomEvent('openCallback'))
+      // Открываем Envybox — он соединяет звонок автоматически
+      const envyBtn = document.querySelector('a.cbk-phone') as HTMLElement
+      if (envyBtn) {
+        envyBtn.click()
+      }
     }
 
     document.addEventListener('click', handleClick)

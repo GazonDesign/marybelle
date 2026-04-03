@@ -133,7 +133,13 @@ export default function FloatingCTA() {
             </a>
             <button
               onClick={() => {
-                setIsCallbackOpen(true)
+                // Открываем Envybox — он соединяет звонок автоматически
+                const envyBtn = document.querySelector('a.cbk-phone') as HTMLElement
+                if (envyBtn) {
+                  envyBtn.click()
+                } else {
+                  setIsCallbackOpen(true)
+                }
                 setIsOpen(false)
               }}
               className="flex items-center gap-3 bg-brand text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all cursor-pointer"
