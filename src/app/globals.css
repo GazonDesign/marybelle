@@ -108,6 +108,15 @@
     all: revert;
     box-sizing: border-box;
   }
+  /* Зелёная кнопка Envybox — скрыть за пределы экрана */
+  .callbackkiller_btn,
+  [class*="callbackkiller_btn"] {
+    position: fixed !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
 
 @theme {

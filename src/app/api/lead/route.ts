@@ -5,9 +5,8 @@ import nodemailer from 'nodemailer'
 
 const AMO_SUBDOMAIN = process.env.AMO_SUBDOMAIN
 const AMO_TOKEN = process.env.AMO_TOKEN
-// Telegram via Cloudflare Worker bridge (bot token stays in Worker, not here)
-const CF_WORKER_URL = process.env.CF_TELEGRAM_WORKER_URL
-const CF_WORKER_SECRET = process.env.CF_TELEGRAM_WORKER_SECRET
+// Telegram — прямой вызов Bot API (Vercel на AWS, Telegram API доступен)
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID
 const EMAIL_TO = process.env.EMAIL_TO || 'gazonmarketing@yandex.ru'
 const SMTP_USER = process.env.SMTP_USER
@@ -229,10 +228,10 @@ async function sendToAmoCRM(data: LeadData) {
   }
 }
 
-// Send notification to Telegram via Cloudflare Worker bridge
+// Send notification to Telegram via Bot API (direct)
 async function sendToTelegram(data: LeadData) {
-  if (!CF_WORKER_URL || !CF_WORKER_SECRET || !TELEGRAM_CHAT_ID) {
-    console.warn('Telegram Worker not configured, skipping')
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.warn('Telegram not configured (need TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID), skipping')
     return null
   }
 
@@ -268,12 +267,9 @@ async function sendToTelegram(data: LeadData) {
   ].filter(Boolean).join('\n')
 
   try {
-    const res = await fetch(CF_WORKER_URL, {
+    const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${CF_WORKER_SECRET}`,
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
         text,
@@ -282,10 +278,11 @@ async function sendToTelegram(data: LeadData) {
     })
 
     if (!res.ok) {
-      console.error(`Telegram Worker error: ${res.status} ${res.statusText}`)
+      const body = await res.text()
+      console.error(`Telegram API error: ${res.status} ${body}`)
     }
   } catch (error) {
-    console.error('Telegram Worker error:', error)
+    console.error('Telegram API error:', error)
   }
 }
 

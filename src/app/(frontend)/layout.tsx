@@ -4,6 +4,7 @@ import FloatingCTA from '@/components/ui/FloatingCTA'
 import UtmCapture from '@/components/ui/UtmCapture'
 import MarquizQuiz from '@/components/ui/MarquizQuiz'
 import EnvyboxWidget from '@/components/ui/EnvyboxWidget'
+import PhoneClickInterceptor from '@/components/ui/PhoneClickInterceptor'
 
 export default function FrontendLayout({
   children,
@@ -107,6 +108,7 @@ export default function FrontendLayout({
         <UtmCapture />
         <MarquizQuiz />
         <EnvyboxWidget />
+        <PhoneClickInterceptor />
         {children}
         <FloatingCTA />
       </div>
