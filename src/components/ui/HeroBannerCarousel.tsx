@@ -37,8 +37,7 @@ const slides: Slide[] = [
     cta: 'Сдать на хранение',
     href: '/uslugi/mehovoj-holodilnik',
     image: '/images/holodilnik/hero-new.jpg',
-    quiz: true,
-    quizId: QUIZ_HOLODILNIK,
+    popup: true,
   },
   {
     tag: 'Реставрация любой сложности',
@@ -47,8 +46,7 @@ const slides: Slide[] = [
     cta: 'Рассчитать стоимость',
     href: '/uslugi/remont-shub',
     image: '/images/hero-remont-shub.jpg',
-    quiz: true,
-    quizId: QUIZ_FUR,
+    popup: true,
   },
   {
     tag: 'Бережный уход',

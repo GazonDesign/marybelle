@@ -61,8 +61,10 @@ const allBanners: Record<string, BannerData> = {
     href: '/uslugi/mehovoj-holodilnik',
     image: '/images/holodilnik/hero-new.jpg',
     gradient: 'from-sky-950/80 via-sky-950/50 to-transparent',
-    quiz: true,
-    quizId: QUIZ_HOLODILNIK,
+    popup: true,
+    popupTitle: 'Сдайте шубу на хранение',
+    popupInfo: 'Идеальный климат +5 °C, защита от моли, страховка изделия. Курьер заберёт от 3-х шуб — бесплатно.',
+    popupCta: 'Оставить заявку',
   },
   okrashivanie: {
     tag: 'Новый цвет',
