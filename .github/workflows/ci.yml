@@ -51,6 +51,7 @@ jobs:
         env:
           STRAPI_URL: ${{ secrets.STRAPI_URL }}
           STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET || 'ci-build-placeholder-secret-at-least-32-chars-long' }}
 
       - name: Check build output
         run: |
