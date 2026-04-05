@@ -97,7 +97,6 @@ export default function CrossSellBanner({ currentService }: CrossSellBannerProps
   const hasAnimated = useRef(false)
 
   const banner = allBanners[bannerKeys[active]]
-  if (!banner) return null
 
   // Scroll-triggered entrance
   useEffect(() => {
@@ -145,6 +144,8 @@ export default function CrossSellBanner({ currentService }: CrossSellBannerProps
       window.removeEventListener('keydown', handleKey)
     }
   }, [showPopup])
+
+  if (!banner) return null
 
   // Switch between banners
   const switchBanner = (index: number) => {
