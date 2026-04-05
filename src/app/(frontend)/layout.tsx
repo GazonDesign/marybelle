@@ -1,4 +1,5 @@
 import '../globals.css'
+import Script from 'next/script'
 import LuxuryShimmerProvider from '@/components/ui/LuxuryShimmerProvider'
 import FloatingCTA from '@/components/ui/FloatingCTA'
 import UtmCapture from '@/components/ui/UtmCapture'
@@ -73,31 +74,23 @@ export default function FrontendLayout({
         }}
       />
       {/* Яндекс.Метрика */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
-            ym(29448140,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
-          `,
-        }}
-      />
+      <Script id="yandex-metrika" strategy="afterInteractive">
+        {`(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+          (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+          ym(29448140,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});`}
+      </Script>
       <noscript>
         <div>
           <img src="https://mc.yandex.ru/watch/29448140" style={{ position: 'absolute', left: '-9999px' }} alt="" />
         </div>
       </noscript>
       {/* VK Pixel */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            !function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://vk.com/js/api/openapi.js?173",t.onload=function(){VK.Retargeting.Init("VK-RTRG-1000039157"),VK.Retargeting.Hit()},document.head.appendChild(t)}();
-          `,
-        }}
-      />
+      <Script id="vk-pixel" strategy="afterInteractive">
+        {`!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://vk.com/js/api/openapi.js?173",t.onload=function(){VK.Retargeting.Init("VK-RTRG-1000039157"),VK.Retargeting.Hit()},document.head.appendChild(t)}();`}
+      </Script>
       <noscript>
         <div>
           <img src="https://vk.com/rtrg?p=VK-RTRG-1000039157" style={{ position: 'absolute', left: '-9999px' }} alt="" />
