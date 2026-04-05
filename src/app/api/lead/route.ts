@@ -231,7 +231,7 @@ async function sendToAmoCRM(data: LeadData) {
 // Send notification to Telegram via Bot API (direct)
 async function sendToTelegram(data: LeadData) {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-    console.warn('Telegram not configured (need TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID), skipping')
+    console.warn('Telegram not configured (need MB_TG_BOT_TOKEN + MB_TG_CHAT_ID), skipping')
     return null
   }
 
