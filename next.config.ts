@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  experimental: {
+    // Tree-shake тяжёлых библиотек (lucide-react: 1000+ иконок → только используемые)
+    optimizePackageImports: ['lucide-react'],
+  },
   async redirects() {
     return [
       // === КРИТИЧЕСКИЕ (сохраняем SEO-позиции) ===

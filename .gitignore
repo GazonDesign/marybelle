@@ -2,8 +2,11 @@ node_modules/
 .next/
 .env.local
 .env*.local
+deploy/.env
 *.log
 .DS_Store
 payload.db
 payload.db-journal
 public/media/
+
+.vercel

@@ -14,9 +14,12 @@ export default function EnvyboxWidget() {
     if (document.querySelector('script[data-envybox]')) return
 
     // CSS виджета — без него Envybox рендерится без стилей
+    // media=print → браузер грузит CSS без блокировки рендера, onload переключает на all
     const envyCss = document.createElement('link')
     envyCss.rel = 'stylesheet'
     envyCss.href = 'https://cdn.envybox.io/widget/cbk.css'
+    envyCss.media = 'print'
+    envyCss.onload = () => { envyCss.media = 'all' }
     envyCss.setAttribute('data-envybox', 'css')
     document.head.appendChild(envyCss)
 
@@ -25,6 +28,9 @@ export default function EnvyboxWidget() {
     envyScript.charset = 'UTF-8'
     envyScript.async = true
     envyScript.setAttribute('data-envybox', 'js')
+    envyScript.onload = () => {
+      console.log('[Envybox] script loaded, CallbackKillerApi:', typeof (window as any).CallbackKillerApi)
+    }
     document.body.appendChild(envyScript)
 
     return () => {

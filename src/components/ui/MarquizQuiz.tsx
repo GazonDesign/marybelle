@@ -207,6 +207,14 @@ function patchNextDomForMarquiz() {
   })
 }
 
+/**
+ * Загружает Marquiz с отложенной инициализацией:
+ * скрипт начинает грузиться через DEFER_MS после загрузки страницы
+ * ИЛИ при первом скролле — что наступит раньше.
+ * Это убирает ~800 КБ из критического пути рендеринга.
+ */
+const DEFER_MS = 5000
+
 export default function MarquizQuiz() {
   const pathname = usePathname()
 
@@ -221,46 +229,63 @@ export default function MarquizQuiz() {
 
     const initOverride = activeQuiz.init
     const popOverride = activeQuiz.pop
+    const quizId = activeQuiz.init.id
 
-    // Envybox теперь загружается глобально через EnvyboxWidget
+    let loaded = false
+    let timer: ReturnType<typeof setTimeout> | null = null
+    // Храним ссылку на обработчик marquizLoaded для корректной очистки при SPA-навигации
+    let onMarquizLoaded: (() => void) | null = null
 
-    // Очистка предыдущего Marquiz
-    document.querySelectorAll('script[data-marquiz]').forEach((el) => el.remove())
-    document.querySelectorAll('[class*="marquiz"]').forEach((el) => el.remove())
-    delete (window as any).Marquiz
+    function loadMarquiz() {
+      if (loaded) return
+      loaded = true
 
-    patchNextDomForMarquiz()
+      // Убираем слушатели отложенной загрузки
+      if (timer) clearTimeout(timer)
+      window.removeEventListener('scroll', loadMarquiz)
 
-    // --- 1. Код инициализации (в head, как в официальной инструкции) ---
-    const script = document.createElement('script')
-    script.async = true
-    script.src = '//script.marquiz.ru/v2.js'
-    script.setAttribute('data-marquiz', activeQuiz.init.id)
-    script.onload = function () {
+      // Очистка предыдущего Marquiz
+      document.querySelectorAll('script[data-marquiz]').forEach((el) => el.remove())
+      document.querySelectorAll('[class*="marquiz"]').forEach((el) => el.remove())
+      delete (window as any).Marquiz
+
       patchNextDomForMarquiz()
 
-      if (document.readyState !== 'loading') {
-        window.Marquiz!.init(initOverride)
-      } else {
-        document.addEventListener('DOMContentLoaded', function () {
+      // --- 1. Код инициализации (в head, как в официальной инструкции) ---
+      const script = document.createElement('script')
+      script.async = true
+      script.src = '//script.marquiz.ru/v2.js'
+      script.setAttribute('data-marquiz', quizId)
+      script.onload = function () {
+        patchNextDomForMarquiz()
+
+        if (document.readyState !== 'loading') {
           window.Marquiz!.init(initOverride)
-        })
+        } else {
+          document.addEventListener('DOMContentLoaded', function () {
+            window.Marquiz!.init(initOverride)
+          })
+        }
+      }
+      document.head.insertBefore(script, document.head.firstElementChild)
+
+      // --- 2. Код баннера (marquizLoaded — официальный паттерн) ---
+      const addPop = () => {
+        patchNextDomForMarquiz()
+        window.Marquiz!.add(['Pop', popOverride])
+      }
+
+      onMarquizLoaded = () => addPop()
+      document.addEventListener('marquizLoaded', onMarquizLoaded)
+
+      if (window.Marquiz) {
+        addPop()
       }
     }
-    document.head.insertBefore(script, document.head.firstElementChild)
 
-    // --- 2. Код баннера (marquizLoaded — официальный паттерн) ---
-    const addPop = () => {
-      patchNextDomForMarquiz()
-      window.Marquiz!.add(['Pop', popOverride])
-    }
-
-    const onMarquizLoaded = () => addPop()
-    document.addEventListener('marquizLoaded', onMarquizLoaded)
-
-    if (window.Marquiz) {
-      addPop()
-    }
+    // Отложенная загрузка: через DEFER_MS или при скролле
+    timer = setTimeout(loadMarquiz, DEFER_MS)
+    window.addEventListener('scroll', loadMarquiz, { once: true, passive: true })
 
     // Marquiz → Envybox: после отправки квиза передаём номер в Envybox для автозвонка
     const onMarquizSubmit = (e: any) => {
@@ -273,6 +298,8 @@ export default function MarquizQuiz() {
     document.addEventListener('marquizSubmit', onMarquizSubmit)
     // Marquiz также шлёт postMessage из iframe
     const onMessage = (e: MessageEvent) => {
+      // Принимаем postMessage только от Marquiz
+      if (!e.origin.includes('marquiz.ru')) return
       if (e.data?.type === 'marquizSubmit' && e.data?.phone) {
         const w = window as any
         if (w.CallbackKillerApi) {
@@ -295,9 +322,11 @@ export default function MarquizQuiz() {
     observer.observe(document.body, { childList: true, subtree: true })
 
     return () => {
-      script.remove()
+      if (timer) clearTimeout(timer)
+      window.removeEventListener('scroll', loadMarquiz)
+      document.querySelectorAll('script[data-marquiz]').forEach((s) => s.remove())
       observer.disconnect()
-      document.removeEventListener('marquizLoaded', onMarquizLoaded)
+      if (onMarquizLoaded) document.removeEventListener('marquizLoaded', onMarquizLoaded)
       document.removeEventListener('marquizSubmit', onMarquizSubmit)
       window.removeEventListener('message', onMessage)
       document.querySelectorAll('[class*="marquiz"]').forEach((el) => el.remove())

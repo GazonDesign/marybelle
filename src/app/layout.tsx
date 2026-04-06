@@ -43,6 +43,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" suppressHydrationWarning className={`${dmSerif.variable} ${libreFranklin.variable}`}>
+      <head>
+        {/* Preconnect для доменов, к которым точно будем обращаться (полный handshake заранее) */}
+        <link rel="preconnect" href="//mc.yandex.ru" />
+        <link rel="preconnect" href="//script.marquiz.ru" />
+        {/* DNS prefetch для доменов, которые подключаются позже или условно */}
+        <link rel="dns-prefetch" href="//quiz.marquiz.ru" />
+        <link rel="dns-prefetch" href="//cdn.envybox.io" />
+        <link rel="dns-prefetch" href="//vk.com" />
+      </head>
       <body>
         {children}
       </body>
