@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -11,9 +12,13 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Static Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}
+      <Image
+        src="/images/hero-bg.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
       />
 
       {/* Dark Overlay */}

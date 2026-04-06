@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface BeforeAfterCase {
   title: string
@@ -46,11 +47,11 @@ export default function PortfolioClient({
               <div key={i} className="bg-white p-6 md:p-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="relative">
-                    <img src={item.beforeImage || ''} alt={`${item.title} — до`} className="w-full h-auto" />
+                    <Image src={item.beforeImage || '/images/placeholder.jpg'} alt={`${item.title} — до`} width={640} height={480} sizes="(max-width: 768px) 100vw, 50vw" className="w-full h-auto" />
                     <div className="absolute top-4 left-4 bg-black/70 text-white text-xs px-4 py-2 tracking-wider uppercase font-medium">До</div>
                   </div>
                   <div className="relative">
-                    <img src={item.afterImage || ''} alt={`${item.title} — после`} className="w-full h-auto" />
+                    <Image src={item.afterImage || '/images/placeholder.jpg'} alt={`${item.title} — после`} width={640} height={480} sizes="(max-width: 768px) 100vw, 50vw" className="w-full h-auto" />
                     <div className="absolute top-4 left-4 bg-brand text-white text-xs px-4 py-2 tracking-wider uppercase font-medium">После</div>
                   </div>
                 </div>
@@ -101,9 +102,12 @@ export default function PortfolioClient({
             {filtered.map((item, i) => (
               <div key={i} className="group">
                 <div className="relative overflow-hidden bg-bg-light">
-                  <img
-                    src={item.singleImage || ''}
+                  <Image
+                    src={item.singleImage || '/images/placeholder.jpg'}
                     alt={`${item.title} — до и после`}
+                    width={640}
+                    height={480}
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="w-full h-auto"
                   />
                   <div className="absolute top-4 left-4 bg-black/60 text-white text-xs px-3 py-1 tracking-wider uppercase">

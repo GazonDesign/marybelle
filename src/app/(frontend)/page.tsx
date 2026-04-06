@@ -1,18 +1,20 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/sections/HeroSection'
 import HeroBannerCarousel from '@/components/ui/HeroBannerCarousel'
 import ServicesSection from '@/components/sections/ServicesSection'
-import WhyUsSection from '@/components/sections/WhyUsSection'
-import BeforeAfterSection from '@/components/sections/BeforeAfterSection'
-import GuaranteeSection from '@/components/sections/GuaranteeSection'
-import HowWeWorkSection from '@/components/sections/HowWeWorkSection'
-import ReviewsSection from '@/components/sections/ReviewsSection'
 import { getReviews, getPortfolio } from '@/lib/strapi'
-import FAQSection from '@/components/sections/FAQSection'
-import SubHeroSection from '@/components/sections/SubHeroSection'
-import ContactSection from '@/components/sections/ContactSection'
+
+const WhyUsSection = dynamic(() => import('@/components/sections/WhyUsSection'))
+const BeforeAfterSection = dynamic(() => import('@/components/sections/BeforeAfterSection'))
+const GuaranteeSection = dynamic(() => import('@/components/sections/GuaranteeSection'))
+const HowWeWorkSection = dynamic(() => import('@/components/sections/HowWeWorkSection'))
+const ReviewsSection = dynamic(() => import('@/components/sections/ReviewsSection'))
+const FAQSection = dynamic(() => import('@/components/sections/FAQSection'))
+const SubHeroSection = dynamic(() => import('@/components/sections/SubHeroSection'))
+const ContactSection = dynamic(() => import('@/components/sections/ContactSection'))
 
 export const metadata: Metadata = {
   title: 'Меховое ателье в Москве — Ремонт шуб, пошив, хранение | Mary Belle с 1870',

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const fallbackCases = [
   {
@@ -117,9 +118,12 @@ export default function BeforeAfterSection({ cases: propCases }: Props) {
               style={{ transitionDelay: `${400 + index * 100}ms` }}
             >
               <div className="relative overflow-hidden bg-bg-light">
-                <img
+                <Image
                   src={item.image}
                   alt={`${item.title} — до и после`}
+                  width={560}
+                  height={448}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="w-full aspect-[5/4] object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex">

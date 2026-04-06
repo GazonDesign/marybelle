@@ -45,12 +45,8 @@ export default function FloatingCTA() {
     const observer = new MutationObserver(() => measureQuiz())
     observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] })
 
-    // Poll every 300ms — Marquiz animates in and external script timing varies
-    const interval = setInterval(measureQuiz, 300)
-
     return () => {
       observer.disconnect()
-      clearInterval(interval)
     }
   }, [])
 

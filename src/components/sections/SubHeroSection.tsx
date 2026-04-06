@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 function useInView(threshold = 0.2) {
   const ref = useRef<HTMLDivElement>(null)
@@ -102,10 +103,12 @@ export default function SubHeroSection() {
                 transition: 'clip-path 1.4s cubic-bezier(0.77, 0, 0.18, 1) 0.2s',
               }}
             >
-              <img
+              <Image
                 src="/images/production/workshop-hands-sobol.jpg"
                 alt="Руки мастера на соболином мехе — фабрика Mary Belle, 2025"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 85vw, 42vw"
+                className="object-cover"
               />
             </div>
             <div
@@ -115,10 +118,12 @@ export default function SubHeroSection() {
                 transition: 'clip-path 1.4s cubic-bezier(0.77, 0, 0.18, 1) 0.6s',
               }}
             >
-              <img
+              <Image
                 src="/images/history/2025/pudra-01.jpg"
                 alt="Модель Пудра — коллекция Mary Belle, 2025"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 60vw, 30vw"
+                className="object-cover"
               />
             </div>
             {/* Decorative */}

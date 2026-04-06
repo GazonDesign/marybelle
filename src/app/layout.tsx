@@ -1,4 +1,20 @@
 import type { Metadata } from 'next'
+import { DM_Serif_Display, Libre_Franklin } from 'next/font/google'
+
+const dmSerif = DM_Serif_Display({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-dm-serif',
+})
+
+const libreFranklin = Libre_Franklin({
+  subsets: ['latin', 'latin-ext', 'cyrillic', 'cyrillic-ext'],
+  weight: ['300', '400', '500', '600'],
+  display: 'swap',
+  variable: '--font-libre',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -26,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="ru" suppressHydrationWarning className={`${dmSerif.variable} ${libreFranklin.variable}`}>
       <body>
         {children}
       </body>

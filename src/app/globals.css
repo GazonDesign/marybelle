@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Libre+Franklin:wght@200;300;400;500;600;700&display=swap');
-
 @import "tailwindcss";
 
 /*
@@ -145,8 +143,8 @@
   --color-border: #e5e0d8;
   --color-border-light: #f0f0f0;
 
-  --font-serif: 'DM Serif Display', serif;
-  --font-sans: 'Libre Franklin', sans-serif;
+  --font-serif: var(--font-dm-serif), 'DM Serif Display', serif;
+  --font-sans: var(--font-libre), 'Libre Franklin', sans-serif;
 }
 
 @layer base {

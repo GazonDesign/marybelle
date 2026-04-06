@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const services = [
   {
@@ -110,10 +111,12 @@ export default function ServicesSection() {
             >
               {/* Image */}
               <div className="relative h-[320px] overflow-hidden">
-                <img
+                <Image
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
@@ -122,7 +125,7 @@ export default function ServicesSection() {
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   {service.icon && (
                     <div className="w-14 h-14 bg-white/15 backdrop-blur-sm rounded-sm flex items-center justify-center mb-4">
-                      <img src={service.icon} alt="" className="w-8 h-8 brightness-0 invert" />
+                      <Image src={service.icon} alt="" width={32} height={32} className="brightness-0 invert" />
                     </div>
                   )}
                   <h3 className="font-serif text-2xl text-white mb-2 leading-tight">
