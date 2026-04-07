@@ -113,7 +113,7 @@ export default function Header() {
               className="absolute top-6 right-6 lg:right-20 p-2 hover:opacity-60 transition-opacity"
               aria-label="Закрыть меню"
             >
-              <X size={28} strokeWidth={1.5} />
+              <X size={40} strokeWidth={1.5} className="text-black" />
             </button>
 
             <nav className="flex flex-col items-center gap-6">
