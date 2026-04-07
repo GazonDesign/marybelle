@@ -38,17 +38,18 @@ export default function RemontKozhiPage() {
         { label: 'Частичная реставрация подкладки', price: '5 500–8 200 ₽' },
         { label: 'Ремонт дублёнки', price: 'от 4 000 ₽' },
       ]}
+      galleryAspect="5/4"
       gallery={[
-        { src: '/images/uslugi-kozha/poshiv-kozha-01.jpg', alt: 'Пошив кожаного изделия — процесс работы' },
-        { src: '/images/uslugi-kozha/poshiv-kozha-02.jpg', alt: 'Кожаная куртка — ручная работа мастера' },
-        { src: '/images/uslugi-kozha/poshiv-kozha-03.jpg', alt: 'Раскрой натуральной кожи' },
-        { src: '/images/uslugi-kozha/poshiv-kozha-04.jpg', alt: 'Детали кожаного изделия — швы и фурнитура' },
-        { src: '/images/uslugi-kozha/poshiv-kozha-05.jpg', alt: 'Готовое кожаное изделие — результат работы' },
-        { src: '/images/uslugi-kozha/poshiv-kozha-06.jpg', alt: 'Мастер работает с кожей — ателье Mary Belle' },
-        { src: '/images/uslugi-kozha/poshiv-kozha-07.jpg', alt: 'Пошив кожаного платья — индивидуальный заказ' },
-        { src: '/images/uslugi-kozha/poshiv-kozha-08.jpg', alt: 'Кожаные изделия — примерка в ателье' },
-        { src: '/images/uslugi-kozha/poshiv-kozha-09.jpg', alt: 'Ремонт кожаной куртки — восстановление' },
-        { src: '/images/uslugi-kozha/poshiv-kozha-10.jpg', alt: 'Готовое изделие из кожи — Mary Belle' },
+        { src: '/images/gov-import/katalog-shuby/02-001.webp', alt: 'Ремонт кожаной куртки — до и после реставрации' },
+        { src: '/images/gov-import/katalog-shuby/02-004.webp', alt: 'Реставрация дублёнки с меховым воротником — до и после' },
+        { src: '/images/gov-import/katalog-shuby/02-002.webp', alt: 'Окрашивание кожаной куртки — до и после' },
+        { src: '/images/gov-import/katalog-shuby/02-007.webp', alt: 'Ремонт кожаного пальто — восстановление низа' },
+        { src: '/images/gov-import/katalog-shuby/02-005.webp', alt: 'Ремонт кожаной косухи — устранение пореза' },
+        { src: '/images/gov-import/katalog-shuby/02-008.webp', alt: 'Реставрация коричневой дублёнки — до и после' },
+        { src: '/images/gov-import/katalog-shuby/02-003.webp', alt: 'Восстановление кожаной куртки — до и после' },
+        { src: '/images/gov-import/katalog-shuby/02-009.webp', alt: 'Ремонт чёрного кожаного пальто — до и после' },
+        { src: '/images/gov-import/katalog-shuby/02-006.webp', alt: 'Реставрация дублёнки с мехом — до и после' },
+        { src: '/images/gov-import/katalog-shuby/02-010.webp', alt: 'Ремонт мужской кожаной куртки — до и после' },
       ]}
       relatedServices={[
         { title: 'Ремонт шуб', href: '/uslugi/remont-shub' },
