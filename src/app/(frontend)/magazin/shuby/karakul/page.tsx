@@ -6,13 +6,13 @@ import Link from 'next/link'
 import { getProductsByCategory } from '@/lib/get-products'
 
 export const metadata = {
-  title: 'Шубы из каракуля — Купить каракулевую шубу в Москве | Mary Belle',
+  title: 'Шубы из каракуля — Купить в Москве',
   description: 'Шубы из каракуля от московской фабрики Mary Belle. Каракулевые шубы и полушубки, индивидуальный пошив. С 1870 года.',
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/shuby/karakul',
   },
   openGraph: {
-    title: 'Шубы из каракуля — Купить каракулевую шубу | Mary Belle',
+    title: 'Шубы из каракуля — Купить в Москве',
     description: 'Каракулевые шубы и полушубки от московской фабрики Mary Belle.',
     url: 'https://mary-belle.ru/magazin/shuby/karakul',
     images: [{ url: '/images/magazin/shuby/afgan-karakul/01.jpg' }],

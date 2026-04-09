@@ -19,6 +19,7 @@ interface Slide {
   cta: string
   href: string
   image: string
+  imageMobile?: string
   popup?: boolean
   /** Если true — CTA открывает квиз Marquiz */
   quiz?: boolean
@@ -36,7 +37,8 @@ const slides: Slide[] = [
     accent: 'Курьер заберёт от 3-х шуб — бесплатно',
     cta: 'Сдать на хранение',
     href: '/uslugi/mehovoj-holodilnik',
-    image: '/images/holodilnik/hero-new.jpg',
+    image: '/images/holodilnik/hero-new.webp',
+    imageMobile: '/images/holodilnik/hero-new-mobile.webp',
     quiz: true,
     quizId: QUIZ_HOLODILNIK,
   },
@@ -46,7 +48,8 @@ const slides: Slide[] = [
     subtitle: 'Замена подкладки, ремонт швов, перекрой — норка, соболь, каракуль. Гарантия на все работы.',
     cta: 'Рассчитать стоимость',
     href: '/uslugi/remont-shub',
-    image: '/images/hero-remont-shub.jpg',
+    image: '/images/hero-remont-shub.webp',
+    imageMobile: '/images/hero-remont-shub-mobile.webp',
     quiz: true,
     quizId: QUIZ_FUR,
   },
@@ -56,7 +59,8 @@ const slides: Slide[] = [
     subtitle: 'Профессиональная чистка шуб, дублёнок и кожи. Безопасные составы, восстановление блеска.',
     cta: 'Заказать химчистку',
     href: '/uslugi/himchistka',
-    image: '/images/himchistka/banner-bg.jpg',
+    image: '/images/himchistka/banner-bg.webp',
+    imageMobile: '/images/himchistka/banner-bg-mobile.webp',
     popup: true,
   },
 ]
@@ -66,7 +70,6 @@ const TRANSITION_SPEED = 1.2
 
 export default function HeroBannerCarousel() {
   const [current, setCurrent] = useState(0)
-  const [isReady, setIsReady] = useState(false)
   const [showPopup, setShowPopup] = useState(false)
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle')
   const containerRef = useRef<HTMLDivElement>(null)
@@ -75,10 +78,6 @@ export default function HeroBannerCarousel() {
   const progressRef = useRef<HTMLDivElement>(null)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const isAnimating = useRef(false)
-
-  useEffect(() => {
-    setIsReady(true)
-  }, [])
 
   // Close popup on Escape
   useEffect(() => {
@@ -253,9 +252,34 @@ export default function HeroBannerCarousel() {
   }
 
   const slide = slides[current]
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+
+  const currentImage = isMobile && slide.imageMobile ? slide.imageMobile : slide.image
 
   return (
     <>
+      {/* Preload first hero image for LCP */}
+      <link
+        rel="preload"
+        as="image"
+        href={slides[0].imageMobile || slides[0].image}
+        media="(max-width: 768px)"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={slides[0].image}
+        media="(min-width: 769px)"
+      />
+
       {/* Strip */}
       <div className="bg-white py-5 flex items-center justify-center">
         <span className="text-[11px] tracking-[0.35em] uppercase text-text-muted font-light">
@@ -274,7 +298,7 @@ export default function HeroBannerCarousel() {
         <div
           ref={imageRef}
           className="absolute inset-0 bg-cover bg-top will-change-transform"
-          style={{ backgroundImage: `url(${slide.image})` }}
+          style={{ backgroundImage: `url(${currentImage})` }}
         />
 
         {/* Gradient overlay */}
@@ -286,9 +310,7 @@ export default function HeroBannerCarousel() {
           <div className="max-w-[1400px] mx-auto w-full px-6 md:px-12">
             <div
               ref={textRef}
-              className={`max-w-2xl transition-all duration-1000 ${
-                isReady ? 'opacity-100' : 'opacity-0 translate-y-8'
-              }`}
+              className="max-w-2xl"
             >
               {/* Tag */}
               <span className="inline-block mb-4 px-4 py-1.5 border border-white/30 text-white/80 text-xs tracking-[0.25em] uppercase backdrop-blur-sm">

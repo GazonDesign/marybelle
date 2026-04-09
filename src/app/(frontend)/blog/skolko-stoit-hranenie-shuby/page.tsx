@@ -3,15 +3,16 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Сколько стоит хранение шубы в Москве в 2026 году — Mary Belle',
+  title: 'Сколько стоит хранение шубы в Москве — 2026',
   description: 'Сколько стоит хранение шубы в Москве? Сравнение цен: Меха Екатерина, rufurs, Mary Belle. Что входит в стоимость, как сэкономить на хранении и химчистке меха.',
   alternates: {
     canonical: 'https://mary-belle.ru/blog/skolko-stoit-hranenie-shuby',
   },
   openGraph: {
-    title: 'Сколько стоит хранение шубы в Москве в 2026 году',
+    title: 'Сколько стоит хранение шубы в Москве — 2026',
     description: 'Сколько стоит хранение шубы в Москве? Сравнение цен: Меха Екатерина, rufurs, Mary Belle. Что входит в стоимость, как сэкономить на хранении и химчистке меха.',
     url: 'https://mary-belle.ru/blog/skolko-stoit-hranenie-shuby',
+    images: [{ url: '/images/og-blog.jpg' }],
   },
 }
 
@@ -23,6 +24,7 @@ export default function SkolkoStoitHranenieShuby() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
+          "image": "https://mary-belle.ru/images/og-blog.jpg",
           "headline": "Сколько стоит хранение шубы в Москве в 2026 году",
           "description": "Сколько стоит хранение шубы в Москве? Сравнение цен: Меха Екатерина, rufurs, Mary Belle. Что входит в стоимость, как сэкономить на хранении и химчистке меха.",
           "author": {

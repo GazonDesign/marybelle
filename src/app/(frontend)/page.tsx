@@ -17,13 +17,13 @@ const SubHeroSection = dynamic(() => import('@/components/sections/SubHeroSectio
 const ContactSection = dynamic(() => import('@/components/sections/ContactSection'))
 
 export const metadata: Metadata = {
-  title: 'Меховое ателье в Москве — Ремонт шуб, пошив, хранение | Mary Belle с 1870',
+  title: 'Меховое ателье — Ремонт шуб, пошив, хранение',
   description: 'Меховое ателье Mary Belle — ремонт шуб из норки и соболя, пошив на заказ, хранение в меховом холодильнике, химчистка меха. Москва, м. Войковская. Семейная фабрика с 1870 года.',
   alternates: {
     canonical: 'https://mary-belle.ru',
   },
   openGraph: {
-    title: 'Меховое ателье в Москве — Ремонт шуб, пошив, хранение | Mary Belle с 1870',
+    title: 'Меховое ателье — Ремонт шуб, пошив, хранение',
     description: 'Меховое ателье Mary Belle — ремонт шуб из норки и соболя, пошив на заказ, хранение в меховом холодильнике, химчистка меха. Москва, м. Войковская.',
     url: 'https://mary-belle.ru',
     images: [{ url: '/images/hero-bg.jpg' }],

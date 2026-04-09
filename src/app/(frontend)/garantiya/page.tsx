@@ -4,13 +4,13 @@ import Link from 'next/link'
 import { Phone } from 'lucide-react'
 
 export const metadata = {
-  title: 'Российская гарантия на работы — Меховое ателье Mary Belle | Москва',
+  title: 'Гарантия на работы — Меховое ателье Москва',
   description: 'Российская гарантия на все виды работ мехового ателье Mary Belle. До 12 месяцев на пошив и ремонт шуб. Москва, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/garantiya',
   },
   openGraph: {
-    title: 'Российская гарантия на работы — Mary Belle',
+    title: 'Гарантия на работы — Меховое ателье Москва',
     description: 'Российская гарантия на все виды работ мехового ателье Mary Belle. До 12 месяцев на пошив и ремонт шуб.',
     url: 'https://mary-belle.ru/garantiya',
     images: [{ url: '/images/production/designer-production.webp' }],
@@ -213,7 +213,7 @@ export default function GarantiyaPage() {
         <section className="relative h-[50vh] min-h-[350px] w-full overflow-hidden">
           <div
             className="absolute inset-0 parallax-bg"
-            style={{ backgroundImage: 'url(/images/production/workshop-hands-sobol.jpg)' }}
+            style={{ backgroundImage: 'url(/images/production/workshop-hands-sobol.webp)' }}
           />
           <div className="absolute inset-0 bg-black/50" />
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">

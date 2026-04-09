@@ -4,13 +4,13 @@ import Link from 'next/link'
 import SobolinyeFAQ from './SobolinyeFAQ'
 
 export const metadata = {
-  title: 'Ремонт шуб из соболя в Москве — Реставрация соболя | Mary Belle',
+  title: 'Ремонт шуб из соболя в Москве — Реставрация',
   description: 'Ремонт шуб из соболя в Москве: реставрация соболиного меха, замена подкладки, восстановление мездры. Бережный ремонт дорогих изделий. Ателье Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-shub/sobolinye',
   },
   openGraph: {
-    title: 'Ремонт шуб из соболя в Москве — Реставрация соболя',
+    title: 'Ремонт шуб из соболя в Москве — Реставрация',
     description: 'Ремонт шуб из соболя в Москве: реставрация соболиного меха, замена подкладки, восстановление мездры. Бережный ремонт дорогих изделий.',
     url: 'https://mary-belle.ru/uslugi/remont-shub/sobolinye',
     images: [{ url: '/images/gov-import/modeli/russkij-sobol.jpg' }],

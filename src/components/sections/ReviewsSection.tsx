@@ -99,6 +99,7 @@ export default function ReviewsSection({ reviews }: { reviews?: Review[] }) {
                     size={16}
                     className={j < review.rating ? 'text-gold fill-gold' : 'text-border'}
                     strokeWidth={1.5}
+                    aria-hidden="true"
                   />
                 ))}
               </div>

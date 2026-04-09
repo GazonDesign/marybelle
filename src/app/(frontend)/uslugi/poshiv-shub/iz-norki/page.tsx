@@ -5,13 +5,13 @@ import NorkiFAQ from './NorkiFAQ'
 import FadeIn from '@/components/ui/FadeIn'
 
 export const metadata = {
-  title: 'Пошив шуб из норки на заказ в Москве — Цены | Mary Belle',
+  title: 'Пошив шуб из норки на заказ — Цены, Москва',
   description: 'Пошив шубы из норки на заказ в Москве. Скандинавская норка NAFA и Kopenhagen Fur, индивидуальный крой, три примерки за 21 день. Ателье Mary Belle — от 120 000 ₽. М. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/poshiv-shub/iz-norki',
   },
   openGraph: {
-    title: 'Пошив шуб из норки на заказ в Москве — Цены',
+    title: 'Пошив шуб из норки на заказ — Цены, Москва',
     description: 'Пошив шубы из норки на заказ в Москве. Скандинавская норка NAFA и Kopenhagen Fur, индивидуальный крой, три примерки за 21 день. Ателье Mary Belle — от 120 000 ₽.',
     url: 'https://mary-belle.ru/uslugi/poshiv-shub/iz-norki',
     images: [{ url: '/images/gov-import/modeli/iz-norki.jpg' }],

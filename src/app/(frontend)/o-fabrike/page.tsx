@@ -3,13 +3,13 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'О фабрике Mary Belle — Московская меховая фабрика с 1870 года',
+  title: 'О фабрике — Меховая фабрика с 1870 года',
   description: 'История меховой фабрики Mary Belle — более 150 лет работы с мехом. Пошив, ремонт и хранение шуб в Москве. Ателье у м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/o-fabrike',
   },
   openGraph: {
-    title: 'О фабрике Mary Belle — Московская меховая фабрика с 1870 года',
+    title: 'О фабрике — Меховая фабрика с 1870 года',
     description: 'История меховой фабрики Mary Belle — более 150 лет работы с мехом.',
     url: 'https://mary-belle.ru/o-fabrike',
     images: [{ url: '/images/o-fabrike/mary_belle_workshop_panoramic.jpg' }],
@@ -121,7 +121,7 @@ export default function OFabrikePage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="lg:col-span-2 relative overflow-hidden group">
-                <img src="/images/production/workshop-table-01.jpg" alt="Раскройный стол мастерской Mary Belle — соболь в работе, 2025" className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img src="/images/production/workshop-table-01.webp" alt="Раскройный стол мастерской Mary Belle — соболь в работе, 2025" className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-6 left-6">
                   <h3 className="font-serif text-xl text-white">Мастерская</h3>
@@ -129,7 +129,7 @@ export default function OFabrikePage() {
                 </div>
               </div>
               <div className="relative overflow-hidden group">
-                <img src="/images/production/workshop-hands-sobol.jpg" alt="Руки мастера на соболином мехе — фабрика Mary Belle, 2025" className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img src="/images/production/workshop-hands-sobol.webp" alt="Руки мастера на соболином мехе — фабрика Mary Belle, 2025" className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-6 left-6">
                   <h3 className="font-serif text-xl text-white">Ручная работа</h3>
@@ -144,7 +144,7 @@ export default function OFabrikePage() {
                 </div>
               </div>
               <div className="relative overflow-hidden group">
-                <img src="/images/production/workshop-table-02.jpg" alt="Соболиный мех на раскройном столе — крупный план, 2025" className="w-full h-[192px] object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img src="/images/production/workshop-table-02.webp" alt="Соболиный мех на раскройном столе — крупный план, 2025" className="w-full h-[192px] object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-4">
                   <h3 className="font-serif text-lg text-white">Раскройка</h3>

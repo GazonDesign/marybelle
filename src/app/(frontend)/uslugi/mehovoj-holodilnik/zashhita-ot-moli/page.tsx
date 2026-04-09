@@ -4,13 +4,13 @@ import ZashhitaMoliFAQ from './ZashhitaMoliFAQ'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Защита шубы от моли — меховой холодильник +4°C в Москве | Mary Belle',
+  title: 'Защита шубы от моли — Холодильник +4°C, Москва',
   description: 'При +4°C моль не выживает. Профессиональная защита шуб от моли и жука-кожееда в меховом холодильнике. Антимольная обработка, страховка. Фабрика с 1870 года.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik/zashhita-ot-moli',
   },
   openGraph: {
-    title: 'Защита шубы от моли — меховой холодильник +4°C в Москве',
+    title: 'Защита шубы от моли — Холодильник +4°C, Москва',
     description: 'При +4°C моль не выживает. Профессиональная защита шуб от моли и жука-кожееда в меховом холодильнике. Антимольная обработка, страховка. Фабрика с 1870 года.',
     url: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik/zashhita-ot-moli',
     images: [{ url: '/images/holodilnik/hero-new.jpg' }],

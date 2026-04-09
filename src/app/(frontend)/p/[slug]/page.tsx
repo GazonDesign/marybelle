@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Params }) {
     : undefined
 
   return {
-    title: page.seoTitle || `${page.title} — Mary Belle`,
+    title: page.seoTitle || page.title,
     description: page.seoDescription || '',
     alternates: {
       canonical: `https://mary-belle.ru/p/${slug}`,

@@ -6,13 +6,13 @@ import CrossSellBanner from '@/components/ui/CrossSellBanner'
 import FadeIn from '@/components/ui/FadeIn'
 
 export const metadata = {
-  title: 'Химчистка шубы в Москве — Чистка меха из норки, цены | Mary Belle',
+  title: 'Химчистка шубы в Москве — Чистка норки, цены',
   description: 'Химчистка шубы из норки в Москве от 3 500 ₽. Химчистка меха, дублёнок и кожаных изделий на профессиональном оборудовании. Антимолевая обработка. Ателье Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/himchistka',
   },
   openGraph: {
-    title: 'Химчистка шубы в Москве — Чистка меха из норки, цены',
+    title: 'Химчистка шубы в Москве — Чистка норки, цены',
     description: 'Химчистка шубы из норки в Москве от 3 500 ₽. Химчистка меха, дублёнок и кожаных изделий на профессиональном оборудовании. Антимолевая обработка. Ателье Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/uslugi/himchistka',
     images: [{ url: '/images/uslugi-himchistka-hero.webp' }],

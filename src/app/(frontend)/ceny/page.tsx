@@ -4,13 +4,13 @@ import Link from 'next/link'
 import { getPrices } from '@/lib/strapi'
 
 export const metadata = {
-  title: 'Цены на ремонт шуб, пошив, хранение и химчистку — Mary Belle | Москва',
+  title: 'Цены на ремонт шуб, пошив и хранение — Москва',
   description: 'Прайс-лист мехового ателье Mary Belle. Цены на ремонт шуб, хранение шуб в холодильнике, пошив на заказ, окрашивание, химчистку. Москва, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/ceny',
   },
   openGraph: {
-    title: 'Цены на ремонт шуб, пошив, хранение — Mary Belle',
+    title: 'Цены на ремонт шуб, пошив и хранение — Москва',
     description: 'Прайс-лист мехового ателье Mary Belle. Цены на ремонт шуб, хранение, пошив на заказ, окрашивание, химчистку.',
     url: 'https://mary-belle.ru/ceny',
     images: [{ url: '/images/production/karakul-detail.jpg' }],

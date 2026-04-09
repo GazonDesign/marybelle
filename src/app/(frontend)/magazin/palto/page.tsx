@@ -6,13 +6,13 @@ import Link from 'next/link'
 import { getProductsByCategory } from '@/lib/get-products'
 
 export const metadata = {
-  title: 'Пальто из шерсти и экомеха — Купить в Москве | Mary Belle',
+  title: 'Пальто из шерсти и экомеха — Купить в Москве',
   description: 'Пальто из натуральной шерсти и экомеха в Mary Belle. Женские пальто московского производства. С 1870 года.',
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/palto',
   },
   openGraph: {
-    title: 'Пальто из шерсти и экомеха | Mary Belle',
+    title: 'Пальто из шерсти и экомеха — Купить в Москве',
     description: 'Женские пальто московского производства от фабрики Mary Belle.',
     url: 'https://mary-belle.ru/magazin/palto',
     images: [{ url: '/images/gov-import/modeli/palto.jpg' }],

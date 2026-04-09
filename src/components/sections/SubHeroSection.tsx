@@ -104,7 +104,7 @@ export default function SubHeroSection() {
               }}
             >
               <Image
-                src="/images/production/workshop-hands-sobol.jpg"
+                src="/images/production/workshop-hands-sobol.webp"
                 alt="Руки мастера на соболином мехе — фабрика Mary Belle, 2025"
                 fill
                 sizes="(max-width: 1024px) 85vw, 42vw"

@@ -4,13 +4,13 @@ import Link from 'next/link'
 import SobolyaFAQ from './SobolyaFAQ'
 
 export const metadata = {
-  title: 'Пошив шуб из соболя на заказ в Москве — Цены | Mary Belle',
+  title: 'Пошив шуб из соболя на заказ — Цены, Москва',
   description: 'Пошив шубы из соболя на заказ в Москве. Русский и канадский соболь, индивидуальный крой, три примерки. Меховое ателье Mary Belle — шубы из соболя от 350 000 ₽. М. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/poshiv-shub/iz-sobolya',
   },
   openGraph: {
-    title: 'Пошив шуб из соболя на заказ в Москве — Цены',
+    title: 'Пошив шуб из соболя на заказ — Цены, Москва',
     description: 'Пошив шубы из соболя на заказ в Москве. Русский и канадский соболь, индивидуальный крой, три примерки. Меховое ателье Mary Belle — шубы из соболя от 350 000 ₽.',
     url: 'https://mary-belle.ru/uslugi/poshiv-shub/iz-sobolya',
     images: [{ url: '/images/gov-import/modeli/russkij-sobol.jpg' }],

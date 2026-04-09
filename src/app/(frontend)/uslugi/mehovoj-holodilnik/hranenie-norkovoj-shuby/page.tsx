@@ -5,13 +5,13 @@ import CrossSellBanner from '@/components/ui/CrossSellBanner'
 import FadeIn from '@/components/ui/FadeIn'
 
 export const metadata = {
-  title: 'Хранение норковой шубы в холодильнике в Москве — от 2 450 ₽/мес | Mary Belle',
+  title: 'Хранение норковой шубы — от 2 450 ₽/мес',
   description: 'Профессиональное хранение норковой шубы в меховом холодильнике +4°C. Влажность 55% сохраняет блеск норки. Страховка, антимоль, курьер. Фабрика с 1870 года.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik/hranenie-norkovoj-shuby',
   },
   openGraph: {
-    title: 'Хранение норковой шубы в холодильнике в Москве — от 2 450 ₽/мес',
+    title: 'Хранение норковой шубы — от 2 450 ₽/мес',
     description: 'Профессиональное хранение норковой шубы в меховом холодильнике +4°C. Влажность 55% сохраняет блеск норки. Страховка, антимоль, курьер. Фабрика с 1870 года.',
     url: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik/hranenie-norkovoj-shuby',
     images: [{ url: '/images/holodilnik/hero-new.jpg' }],

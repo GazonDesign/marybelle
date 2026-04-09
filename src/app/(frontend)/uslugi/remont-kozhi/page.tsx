@@ -2,13 +2,13 @@ import ServicePageTemplate from '@/components/services/ServicePageTemplate'
 import RemontKozhiFAQ from './RemontKozhiFAQ'
 
 export const metadata = {
-  title: 'Ремонт дублёнок в Москве — Восстановление кожаных изделий | Mary Belle',
+  title: 'Ремонт дублёнок и кожаных изделий в Москве',
   description: 'Ремонт дублёнок в Москве: восстановление дублёнки, реставрация кожаных изделий, окрашивание кожи. Ремонт кожаных курток, замена фурнитуры. Ателье Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-kozhi',
   },
   openGraph: {
-    title: 'Ремонт дублёнок в Москве — Восстановление кожаных изделий',
+    title: 'Ремонт дублёнок и кожаных изделий в Москве',
     description: 'Ремонт дублёнок в Москве: восстановление дублёнки, реставрация кожаных изделий, окрашивание кожи. Ремонт кожаных курток, замена фурнитуры. Ателье Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/uslugi/remont-kozhi',
     images: [{ url: '/images/uslugi-remont-kozhi-hero.webp' }],

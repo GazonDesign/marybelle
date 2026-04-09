@@ -3,15 +3,16 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Как правильно хранить шубу летом: полное руководство 2026 — Mary Belle',
+  title: 'Как правильно хранить шубу летом — Гайд 2026',
   description: 'Как правильно хранить шубу летом? Узнайте 5 главных ошибок домашнего хранения и почему профессиональный меховой холодильник — единственное решение для сохранности меха.',
   alternates: {
     canonical: 'https://mary-belle.ru/blog/kak-pravilno-hranit-shubu-letom',
   },
   openGraph: {
-    title: 'Как правильно хранить шубу летом: полное руководство 2026',
+    title: 'Как правильно хранить шубу летом — Гайд 2026',
     description: 'Как правильно хранить шубу летом? Узнайте 5 главных ошибок домашнего хранения и почему профессиональный меховой холодильник — единственное решение для сохранности меха.',
     url: 'https://mary-belle.ru/blog/kak-pravilno-hranit-shubu-letom',
+    images: [{ url: '/images/og-blog.jpg' }],
   },
 }
 
@@ -23,6 +24,7 @@ export default function KakPravilnoHranitShubuLetom() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
+          "image": "https://mary-belle.ru/images/og-blog.jpg",
           "headline": "Как правильно хранить шубу летом: полное руководство 2026",
           "description": "Как правильно хранить шубу летом? Узнайте 5 главных ошибок домашнего хранения и почему профессиональный меховой холодильник — единственное решение для сохранности меха.",
           "author": {

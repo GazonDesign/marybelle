@@ -43,9 +43,30 @@ const services = [
   {
     title: 'Химчистка',
     description: 'Профессиональная чистка меховых и кожаных изделий. Удаление загрязнений и запахов, антимольная обработка, восстановление блеска.',
-    image: '/images/uslugi-himchistka-new.jpg',
+    image: '/images/uslugi-himchistka-new.webp',
     href: '/uslugi/himchistka',
     icon: '/icons/services/cleaning.svg',
+  },
+  {
+    title: 'Перекрой шубы',
+    description: 'Новый фасон из старой шубы — перешив, укорачивание, модернизация. Полный и частичный перекрой.',
+    image: '/images/uslugi-perekroj.jpg',
+    href: '/uslugi/perekroj',
+    icon: '/icons/services/repair.svg',
+  },
+  {
+    title: 'Ремонт пальто',
+    description: 'Реставрация шерстяных, кашемировых и драповых пальто. Замена подкладки, ремонт швов.',
+    image: '/images/product-palto.webp',
+    href: '/uslugi/remont-palto',
+    icon: '/icons/services/sewing.svg',
+  },
+  {
+    title: 'Ремонт брендовой одежды',
+    description: 'Moncler, Max Mara, Burberry — работаем с люксовыми брендами. Оригинальная фурнитура.',
+    image: '/images/uslugi-brendovaya.webp',
+    href: '/uslugi/remont-brendovoj-odezhdy',
+    icon: '/icons/services/leather.svg',
   },
 ]
 
@@ -143,19 +164,34 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* View All */}
+        {/* CTA — десктоп: Envybox callback, мобайл: прямой звонок */}
         <div
           className={`text-center mt-12 transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
           style={{ transitionDelay: '1200ms' }}
         >
-          <Link
-            href="/uslugi"
-            className="inline-block px-12 py-4 border-2 border-brand text-brand font-light tracking-widest text-sm btn-shimmer-outline"
+          {/* Мобайл: прямой звонок */}
+          <a
+            href="tel:+74952254444"
+            className="md:hidden inline-block px-12 py-4 border-2 border-brand text-brand font-light tracking-widest text-sm btn-shimmer-outline"
           >
-            Все услуги
-          </Link>
+            Позвонить
+          </a>
+          {/* Десктоп: Envybox callback */}
+          <button
+            onClick={() => {
+              const envyBtn = document.querySelector('a.cbk-phone') as HTMLElement
+              if (envyBtn) {
+                envyBtn.click()
+              } else {
+                window.location.href = 'tel:+74952254444'
+              }
+            }}
+            className="hidden md:inline-block px-12 py-4 border-2 border-brand text-brand font-light tracking-widest text-sm btn-shimmer-outline cursor-pointer"
+          >
+            Позвонить
+          </button>
         </div>
       </div>
     </section>

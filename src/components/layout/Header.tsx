@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Phone, X, Search } from 'lucide-react'
@@ -19,14 +20,20 @@ const menuLinks = [
 ]
 
 export default function Header() {
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(!isHomePage)
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    const handleScroll = () => {
+      if (isHomePage) {
+        setIsScrolled(window.scrollY > 50)
+      }
+    }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isHomePage])
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -73,7 +80,7 @@ export default function Header() {
               className="hidden md:flex items-center gap-2 text-sm tracking-wide btn-hover"
               style={{ color: isScrolled ? '#8b6d4b' : '#fff' }}
             >
-              <Phone size={16} strokeWidth={1.5} />
+              <Phone size={16} strokeWidth={1.5} aria-hidden="true" />
               <span>+7 (495) 225-44-44</span>
             </a>
 
@@ -113,7 +120,7 @@ export default function Header() {
               className="absolute top-6 right-6 lg:right-20 p-2 hover:opacity-60 transition-opacity"
               aria-label="Закрыть меню"
             >
-              <X size={40} strokeWidth={1.5} className="text-black" />
+              <X size={40} strokeWidth={1.5} className="text-black" aria-hidden="true" />
             </button>
 
             <nav className="flex flex-col items-center gap-6">

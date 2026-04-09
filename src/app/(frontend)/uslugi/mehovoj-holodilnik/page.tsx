@@ -6,13 +6,13 @@ import CrossSellBanner from '@/components/ui/CrossSellBanner'
 import FadeIn from '@/components/ui/FadeIn'
 
 export const metadata = {
-  title: 'Хранение шуб в меховом холодильнике в Москве — Цены 2026 | Mary Belle',
+  title: 'Хранение шуб в холодильнике — Цены 2026, Москва',
   description: 'Хранение шуб в меховом холодильнике в Москве — цена от 5 000 ₽ за сезон. Температура +5°C, влажность 50–60%. Забор и доставка по Москве. Хранение меховых изделий в ателье Mary Belle.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik',
   },
   openGraph: {
-    title: 'Хранение шуб в меховом холодильнике в Москве — Цены 2026',
+    title: 'Хранение шуб в холодильнике — Цены 2026, Москва',
     description: 'Хранение шуб в меховом холодильнике в Москве — цена от 5 000 ₽ за сезон. Температура +5°C, влажность 50–60%. Забор и доставка по Москве. Хранение меховых изделий в ателье Mary Belle.',
     url: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik',
     images: [{ url: '/images/holodilnik/hero-new.jpg' }],
@@ -35,12 +35,38 @@ const advantages = [
   { image: '/images/holodilnik/safe.jpg', title: 'Страховка и безопасность', description: 'Каждое изделие застраховано. Охрана и контроль доступа 24/7.' },
 ]
 
-const prices = [
-  { label: 'Хранение шубы (сезон, апрель–октябрь)', price: 'от 5 000 ₽' },
-  { label: 'Хранение дублёнки', price: 'от 3 500 ₽' },
-  { label: 'Забор курьером по Москве', price: '1 500 ₽' },
-  { label: 'Доставка обратно', price: '1 500 ₽' },
-  { label: 'Химчистка перед хранением', price: 'от 4 000 ₽' },
+const packages = [
+  {
+    name: 'На месяц',
+    price: 'от 1 150 ₽/мес.',
+    features: ['Климат +4°C, влажность 50%', 'Фото-фиксация при приёме', 'Материальная гарантия'],
+    highlighted: false,
+  },
+  {
+    name: 'На сезон',
+    subtitle: '6 месяцев, апрель–октябрь',
+    price: 'от 6 900 ₽/сезон',
+    features: ['Климат +4°C, влажность 50%', 'Фото-фиксация при приёме', 'Материальная гарантия', 'Бесплатный курьер от 3 шуб'],
+    highlighted: true,
+  },
+  {
+    name: 'На год',
+    subtitle: '12 месяцев, скидка 25%',
+    price: 'от 10 350 ₽/год',
+    features: ['Климат +4°C, влажность 50%', 'Фото-фиксация при приёме', 'Материальная гарантия', 'Бесплатный курьер всегда'],
+    highlighted: false,
+  },
+]
+
+const priceTable = [
+  { fur: 'Шиншилла', month: '3 200 ₽', season: '19 200 ₽', year: '28 800 ₽' },
+  { fur: 'Соболь', month: '2 900 ₽', season: '17 400 ₽', year: '26 100 ₽' },
+  { fur: 'Норка', month: '2 450 ₽', season: '14 700 ₽', year: '22 050 ₽' },
+  { fur: 'Лиса / Песец', month: '2 100 ₽', season: '12 600 ₽', year: '18 900 ₽' },
+  { fur: 'Бобер / Нерпа', month: '1 750 ₽', season: '10 500 ₽', year: '15 750 ₽' },
+  { fur: 'Кролик / Мутон', month: '1 250 ₽', season: '7 500 ₽', year: '11 250 ₽' },
+  { fur: 'Дублёнка', month: '1 500 ₽', season: '9 000 ₽', year: '13 500 ₽' },
+  { fur: 'Меховой жилет', month: '1 150 ₽', season: '6 900 ₽', year: '10 350 ₽' },
 ]
 
 export default function MehovojHolodilnikPage() {
@@ -68,7 +94,48 @@ export default function MehovojHolodilnikPage() {
           </div>
         </section>
 
-        {/* Breadcrumbs */}
+        {/* Breadcrumbs + Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://mary-belle.ru/' },
+                { '@type': 'ListItem', position: 2, name: 'Услуги', item: 'https://mary-belle.ru/uslugi' },
+                { '@type': 'ListItem', position: 3, name: 'Меховой холодильник' },
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Service',
+              name: 'Хранение шуб в меховом холодильнике',
+              description: 'Профессиональное хранение шуб и меховых изделий в меховом холодильнике при температуре +4°C и влажности 50–60%. Забор и доставка по Москве.',
+              provider: {
+                '@type': 'LocalBusiness',
+                name: 'Mary Belle',
+                '@id': 'https://mary-belle.ru/#organization',
+              },
+              areaServed: { '@type': 'City', name: 'Москва' },
+              offers: priceTable.map((row) => ({
+                '@type': 'Offer',
+                name: `Хранение — ${row.fur}`,
+                priceSpecification: {
+                  '@type': 'PriceSpecification',
+                  minPrice: row.month.replace(/[^\d]/g, ''),
+                  priceCurrency: 'RUB',
+                  unitText: 'месяц',
+                },
+              })),
+            }),
+          }}
+        />
         <div className="bg-bg-warm border-b border-border-light">
           <div className="max-w-[1200px] mx-auto px-6 py-3 text-sm text-text-muted">
             <Link href="/" className="hover:text-brand transition-colors">Главная</Link>
@@ -167,18 +234,79 @@ export default function MehovojHolodilnikPage() {
           </div>
         </section>
 
-        {/* Prices */}
+        {/* Packages */}
         <section className="py-20 md:py-28">
-          <FadeIn className="max-w-[1200px] mx-auto px-6 md:px-12">
-            <h2 className="font-serif text-3xl md:text-4xl text-black mb-12">Стоимость</h2>
-            <div className="max-w-3xl">
-              {prices.map((item, i) => (
-                <div key={i} className={`flex justify-between items-center px-6 py-5 ${i % 2 === 0 ? 'bg-white' : 'bg-bg-light'}`}>
-                  <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
-                </div>
+          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+            <FadeIn>
+              <h2 className="font-serif text-3xl md:text-4xl text-black mb-4 text-center">Тарифы хранения</h2>
+              <p className="text-text-muted text-center mb-14 max-w-2xl mx-auto">Выберите удобный период — чем дольше, тем выгоднее</p>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {packages.map((pkg, i) => (
+                <FadeIn key={i} delay={i * 100} className={`relative p-8 border ${pkg.highlighted ? 'border-brand bg-brand/[0.02]' : 'border-border-light bg-white'}`}>
+                  {pkg.highlighted && (
+                    <span className="absolute -top-3 left-8 bg-brand text-white text-xs tracking-widest uppercase px-4 py-1">
+                      Популярный
+                    </span>
+                  )}
+                  <h3 className="font-serif text-2xl text-black mb-1">{pkg.name}</h3>
+                  {pkg.subtitle && <p className="text-text-muted text-sm mb-4">{pkg.subtitle}</p>}
+                  {!pkg.subtitle && <div className="mb-4" />}
+                  <p className="text-brand text-2xl font-medium mb-6">{pkg.price}</p>
+                  <ul className="space-y-3">
+                    {pkg.features.map((f, j) => (
+                      <li key={j} className="flex items-start gap-3 text-text-body text-sm">
+                        <span className="text-brand mt-0.5 shrink-0">&#10003;</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="tel:+74952254444"
+                    className={`block text-center mt-8 px-8 py-3 font-light tracking-widest text-sm ${
+                      pkg.highlighted
+                        ? 'bg-brand text-white btn-shimmer'
+                        : 'border-2 border-brand text-brand btn-shimmer-outline'
+                    }`}
+                  >
+                    Забронировать
+                  </a>
+                </FadeIn>
               ))}
-              <p className="mt-6 text-sm text-text-muted">* Точная стоимость определяется после осмотра изделия мастером</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Price Table */}
+        <section className="py-20 md:py-28 bg-bg-warm">
+          <FadeIn className="max-w-[1200px] mx-auto px-6 md:px-12">
+            <h2 className="font-serif text-3xl md:text-4xl text-black mb-4 text-center">Цены по виду меха</h2>
+            <p className="text-text-muted text-center mb-12 max-w-2xl mx-auto">Стоимость зависит от типа изделия и периода хранения</p>
+            <div className="overflow-x-auto">
+              <table className="w-full max-w-4xl mx-auto">
+                <thead>
+                  <tr className="border-b-2 border-brand/20">
+                    <th className="text-left py-4 pr-4 font-serif text-lg text-black">Вид меха</th>
+                    <th className="text-right py-4 px-4 text-sm text-text-muted font-medium tracking-wide">Месяц</th>
+                    <th className="text-right py-4 px-4 text-sm text-text-muted font-medium tracking-wide">Сезон (6 мес.)</th>
+                    <th className="text-right py-4 pl-4 text-sm text-text-muted font-medium tracking-wide">Год (−25%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {priceTable.map((row, i) => (
+                    <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-transparent'}>
+                      <td className="py-4 pr-4 text-text-body">{row.fur}</td>
+                      <td className="py-4 px-4 text-right text-text-body whitespace-nowrap">{row.month}</td>
+                      <td className="py-4 px-4 text-right text-brand font-medium whitespace-nowrap">{row.season}</td>
+                      <td className="py-4 pl-4 text-right text-text-body whitespace-nowrap">{row.year}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="max-w-4xl mx-auto mt-8 space-y-2 text-sm text-text-muted">
+              <p>* Курьерская доставка — от 500 ₽ по Москве (бесплатно при сдаче 3+ изделий или годовом пакете)</p>
+              <p>* Химчистка перед хранением — скидка 10% при заказе вместе с хранением</p>
             </div>
           </FadeIn>
         </section>

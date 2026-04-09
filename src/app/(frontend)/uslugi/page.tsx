@@ -3,16 +3,16 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 
 export const metadata = {
-  title: 'Услуги мехового ателье — Ремонт шуб, пошив, хранение | Mary Belle',
+  title: 'Услуги мехового ателье — Ремонт, пошив, хранение',
   description: 'Все услуги мехового ателье Mary Belle: ремонт шуб, пошив на заказ, перекрой, окрашивание меха, химчистка, хранение в меховом холодильнике. Москва, м. Войковская. С 1870 года.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi',
   },
   openGraph: {
-    title: 'Услуги мехового ателье — Ремонт шуб, пошив, хранение | Mary Belle',
+    title: 'Услуги мехового ателье — Ремонт, пошив, хранение',
     description: 'Все услуги мехового ателье Mary Belle: ремонт шуб, пошив на заказ, перекрой, окрашивание меха, химчистка, хранение.',
     url: 'https://mary-belle.ru/uslugi',
-    images: [{ url: '/images/production/workshop-hands-sobol.jpg' }],
+    images: [{ url: '/images/production/workshop-hands-sobol.webp' }],
   },
 }
 
@@ -55,7 +55,7 @@ const services = [
   {
     title: 'Химчистка',
     description: 'Профессиональная чистка меховых и кожаных изделий. Удаление загрязнений, антимольная обработка.',
-    image: '/images/uslugi-himchistka-new.jpg',
+    image: '/images/uslugi-himchistka-new.webp',
     href: '/uslugi/himchistka',
     icon: '/icons/services/cleaning.svg',
   },
@@ -69,14 +69,14 @@ const services = [
   {
     title: 'Ремонт пальто',
     description: 'Реставрация шерстяных, кашемировых и драповых пальто. Замена подкладки, ремонт швов.',
-    image: '/images/product-palto.jpg',
+    image: '/images/product-palto.webp',
     href: '/uslugi/remont-palto',
     icon: '/icons/services/sewing.svg',
   },
   {
     title: 'Ремонт брендовой одежды',
     description: 'Moncler, Max Mara, Burberry — работаем с люксовыми брендами. Оригинальная фурнитура.',
-    image: '/images/uslugi-brendovaya.jpg',
+    image: '/images/uslugi-brendovaya.webp',
     href: '/uslugi/remont-brendovoj-odezhdy',
     icon: '/icons/services/leather.svg',
   },
@@ -91,7 +91,7 @@ export default function UslugiPage() {
         <section className="relative h-[80vh] min-h-[550px] w-full overflow-hidden">
           <div
             className="absolute inset-0 parallax-bg"
-            style={{ backgroundImage: 'url(/images/production/workshop-hands-sobol.jpg)' }}
+            style={{ backgroundImage: 'url(/images/production/workshop-hands-sobol.webp)' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           <div className="relative z-10 h-full flex flex-col justify-end pb-14 px-6 text-center">

@@ -6,13 +6,13 @@ import Link from 'next/link'
 import { getProductsByTag } from '@/lib/get-products'
 
 export const metadata = {
-  title: 'Шубы больших размеров в Москве — Купить от 52 до 62 | Mary Belle',
+  title: 'Шубы больших размеров — Купить от 52 до 62',
   description: 'Шубы больших размеров (52–62) из скандинавской норки. Изготовим по вашим меркам за 21 день. Московская меховая фабрика Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/bolshie-razmery',
   },
   openGraph: {
-    title: 'Шубы больших размеров в Москве — Купить от 52 до 62',
+    title: 'Шубы больших размеров — Купить от 52 до 62',
     description: 'Шубы больших размеров (52–62) из скандинавской норки. Изготовим по вашим меркам за 21 день. Московская меховая фабрика Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/magazin/bolshie-razmery',
     images: [{ url: '/images/gov-import/katalog-shuby/01-img_5695.jpg' }],

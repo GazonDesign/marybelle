@@ -4,13 +4,13 @@ import Link from 'next/link'
 import VideoGallery from './VideoGallery'
 
 export const metadata = {
-  title: 'Наша мастерская — Видео работ мехового ателье Mary Belle',
+  title: 'Наша мастерская — Видео работ ателье',
   description: 'Видео из мастерской мехового ателье Mary Belle: перекрой шуб, реставрация меха, создание изделий на заказ. Смотрите процесс работы наших мастеров.',
   alternates: {
     canonical: 'https://mary-belle.ru/nasha-masterskaya',
   },
   openGraph: {
-    title: 'Наша мастерская — Видео работ Mary Belle',
+    title: 'Наша мастерская — Видео работ ателье',
     description: 'Видео из мастерской мехового ателье Mary Belle: перекрой шуб, реставрация меха, создание изделий на заказ.',
     url: 'https://mary-belle.ru/nasha-masterskaya',
     images: [{ url: '/images/gov-import/proizvodstvo/s-ceh-s.jpg' }],

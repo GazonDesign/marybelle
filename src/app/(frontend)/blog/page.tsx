@@ -4,16 +4,16 @@ import Link from 'next/link'
 import { getBlogPosts, formatDate } from '@/lib/strapi'
 
 export const metadata = {
-  title: 'Блог о мехе и уходе за шубами — Mary Belle | Москва',
+  title: 'Блог о мехе и уходе за шубами',
   description: 'Полезные статьи о мехе, уходе за шубами, выборе меха и хранении меховых изделий. Блог мехового ателье Mary Belle.',
   alternates: {
     canonical: 'https://mary-belle.ru/blog',
   },
   openGraph: {
-    title: 'Блог о мехе и уходе за шубами — Mary Belle',
+    title: 'Блог о мехе и уходе за шубами',
     description: 'Полезные статьи о мехе, уходе за шубами, выборе меха и хранении меховых изделий.',
     url: 'https://mary-belle.ru/blog',
-    images: [{ url: '/images/about-bg.jpg' }],
+    images: [{ url: '/images/og-blog.jpg' }],
   },
 }
 

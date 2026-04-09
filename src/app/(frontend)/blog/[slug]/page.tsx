@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   const post = await getBlogPostBySlug(slug)
   if (!post) return {}
   return {
-    title: `${post.title} — Mary Belle`,
+    title: post.title,
     description: post.excerpt,
     alternates: {
       canonical: `https://mary-belle.ru/blog/${post.slug}`,
@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: { params: Params }) {
       title: post.title,
       description: post.excerpt,
       url: `https://mary-belle.ru/blog/${post.slug}`,
+      images: [{ url: post.imagePath || '/images/og-blog.jpg' }],
     },
   }
 }
@@ -78,6 +79,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             "@type": "WebPage",
             "@id": `https://mary-belle.ru/blog/${post.slug}`,
           },
+          "image": post.imagePath ? `https://mary-belle.ru${post.imagePath}` : 'https://mary-belle.ru/images/og-blog.jpg',
           "datePublished": post.publishedDate || post.publishedAt,
           "dateModified": post.publishedDate || post.publishedAt,
         }) }}

@@ -4,13 +4,13 @@ import Link from 'next/link'
 import NorkovyeFAQ from './NorkovyeFAQ'
 
 export const metadata = {
-  title: 'Ремонт норковых шуб в Москве — Реставрация норки | Mary Belle',
+  title: 'Ремонт норковых шуб в Москве — Реставрация',
   description: 'Ремонт норковых шуб в Москве: зашить разрыв, заменить подкладку, восстановить мездру. Ремонт шубы из норки любой сложности. Ателье Mary Belle — от 1 500 ₽, гарантия 1 год. М. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-shub/norkovye',
   },
   openGraph: {
-    title: 'Ремонт норковых шуб в Москве — Реставрация норки',
+    title: 'Ремонт норковых шуб в Москве — Реставрация',
     description: 'Ремонт норковых шуб в Москве: зашить разрыв, заменить подкладку, восстановить мездру. Ремонт шубы из норки любой сложности. Ателье Mary Belle — от 1 500 ₽, гарантия 1 год.',
     url: 'https://mary-belle.ru/uslugi/remont-shub/norkovye',
     images: [{ url: '/images/uslugi-remont-mehov-hero.webp' }],

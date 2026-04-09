@@ -3,15 +3,16 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Моль в шубе: что делать и как защитить мех — Mary Belle',
+  title: 'Моль в шубе: что делать и как защитить мех',
   description: 'Моль в шубе — что делать? Узнайте, как определить повреждения от моли, почему народные средства не работают и как единственный способ — температура +4°C — защищает мех.',
   alternates: {
     canonical: 'https://mary-belle.ru/blog/mol-v-shube-chto-delat',
   },
   openGraph: {
-    title: 'Моль в шубе: что делать и как защитить мех',
+    title: 'Моль в шубе: что делать и как защитить',
     description: 'Моль в шубе — что делать? Узнайте, как определить повреждения от моли, почему народные средства не работают и как единственный способ — температура +4°C — защищает мех.',
     url: 'https://mary-belle.ru/blog/mol-v-shube-chto-delat',
+    images: [{ url: '/images/og-blog.jpg' }],
   },
 }
 
@@ -23,6 +24,7 @@ export default function MolVShubeChtoDelat() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
+          "image": "https://mary-belle.ru/images/og-blog.jpg",
           "headline": "Моль в шубе: что делать и как защитить мех",
           "description": "Моль в шубе — что делать? Узнайте, как определить повреждения от моли, почему народные средства не работают и как единственный способ — температура +4°C — защищает мех.",
           "author": {

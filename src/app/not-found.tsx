@@ -20,13 +20,13 @@ export default function NotFound() {
       <div className="flex flex-col sm:flex-row gap-4">
         <Link
           href="/"
-          className="px-10 py-4 bg-brand text-white font-light tracking-widest text-sm btn-shimmer"
+          className="px-10 py-4 bg-brand text-white font-light tracking-widest text-sm btn-shimmer inline-block"
         >
           На главную
         </Link>
         <Link
           href="/uslugi"
-          className="px-10 py-4 border border-brand/30 text-brand font-light tracking-widest text-sm btn-shimmer-outline"
+          className="px-10 py-4 border border-brand/30 text-brand font-light tracking-widest text-sm btn-shimmer-outline inline-block hover:bg-brand/5 transition-colors"
         >
           Наши услуги
         </Link>

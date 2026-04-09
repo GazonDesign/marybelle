@@ -7,13 +7,13 @@ import { Phone } from 'lucide-react'
 import { getProductsByCategory } from '@/lib/get-products'
 
 export const metadata = {
-  title: 'Шубы из соболя — Купить соболиную шубу в Москве | Mary Belle',
+  title: 'Шубы из соболя — Купить в Москве',
   description: 'Шубы из соболя от московской фабрики Mary Belle. Индивидуальный пошив из соболя, эксклюзивные модели. С 1870 года.',
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/shuby/sobol',
   },
   openGraph: {
-    title: 'Шубы из соболя — Купить соболиную шубу | Mary Belle',
+    title: 'Шубы из соболя — Купить в Москве',
     description: 'Индивидуальный пошив из соболя, эксклюзивные модели от Mary Belle.',
     url: 'https://mary-belle.ru/magazin/shuby/sobol',
     images: [{ url: '/images/gov-import/modeli/sobol-e1746367903636.jpg' }],

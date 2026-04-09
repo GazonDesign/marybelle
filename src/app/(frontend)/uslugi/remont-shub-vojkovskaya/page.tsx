@@ -2,7 +2,7 @@ import ServicePageTemplate from '@/components/services/ServicePageTemplate'
 import VojkovskayaFAQ from './VojkovskayaFAQ'
 
 export const metadata = {
-  title: 'Ремонт шуб у метро Войковская — Меховое ателье Mary Belle',
+  title: 'Ремонт шуб у метро Войковская — Ателье',
   description: 'Ремонт шуб у метро Войковская — меховое ателье Mary Belle в 5 минутах от станции. Ремонт шуб Войковская: реставрация, перешив, химчистка. 1-й Новоподмосковный пер., д. 2/1.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-shub-vojkovskaya',

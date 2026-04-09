@@ -4,13 +4,13 @@ import Link from 'next/link'
 import PremiumFurFAQ from './PremiumFurFAQ'
 
 export const metadata = {
-  title: 'Хранение соболя, шиншиллы и рыси в холодильнике — от 3 200 ₽/мес | Mary Belle',
+  title: 'Хранение соболя и шиншиллы — от 3 200 ₽/мес',
   description: 'Хранение элитных шуб из соболя, шиншиллы, рыси, горностая в меховом холодильнике +4°C. Индивидуальный режим, полная страховка. Меховая фабрика с 1870 года.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik/hranenie-sobolya-shinshilly',
   },
   openGraph: {
-    title: 'Хранение соболя, шиншиллы и рыси в холодильнике — от 3 200 ₽/мес',
+    title: 'Хранение соболя и шиншиллы — от 3 200 ₽/мес',
     description: 'Хранение элитных шуб из соболя, шиншиллы, рыси, горностая в меховом холодильнике +4°C. Индивидуальный режим, полная страховка. Меховая фабрика с 1870 года.',
     url: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik/hranenie-sobolya-shinshilly',
     images: [{ url: '/images/holodilnik/hero-new.jpg' }],

@@ -3,15 +3,16 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Какой мех самый тёплый? Рейтинг мехов по теплоте — Mary Belle',
+  title: 'Какой мех самый тёплый? Рейтинг по теплоте',
   description: 'Какой мех самый тёплый для русской зимы? Рейтинг мехов: мутон, песец, лиса, бобр, норка, соболь. Разбираемся, какую шубу выбрать для морозов.',
   alternates: {
     canonical: 'https://mary-belle.ru/blog/kakoj-meh-samyj-teplyj',
   },
   openGraph: {
-    title: 'Какой мех самый тёплый? Рейтинг мехов по теплоте',
+    title: 'Какой мех самый тёплый? Рейтинг по теплоте',
     description: 'Какой мех самый тёплый для русской зимы? Рейтинг мехов: мутон, песец, лиса, бобр, норка, соболь. Разбираемся, какую шубу выбрать для морозов.',
     url: 'https://mary-belle.ru/blog/kakoj-meh-samyj-teplyj',
+    images: [{ url: '/images/og-blog.jpg' }],
   },
 }
 
@@ -23,6 +24,7 @@ export default function KakojMehSamyjTeplyj() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
+          "image": "https://mary-belle.ru/images/og-blog.jpg",
           "headline": "Какой мех самый тёплый?",
           "description": "Какой мех самый тёплый для русской зимы? Рейтинг мехов: мутон, песец, лиса, бобр, норка, соболь. Разбираемся, какую шубу выбрать для морозов.",
           "author": {

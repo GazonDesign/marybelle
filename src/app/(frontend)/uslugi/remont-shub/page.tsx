@@ -5,7 +5,7 @@ import RemontShubFAQ from './RemontShubFAQ'
 import RemontShubGallery from './RemontShubGallery'
 
 export const metadata = {
-  title: 'Ремонт шуб в Москве — Реставрация норковых шуб | Mary Belle',
+  title: 'Ремонт шуб в Москве — Реставрация норковых шуб',
   description: 'Ремонт шуб в Москве любой сложности: ремонт шубы из норки, реставрация меховых изделий, перекрой и перешив. Меховое ателье Mary Belle — мастера с опытом 15+ лет, гарантия на работы. М. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-shub',

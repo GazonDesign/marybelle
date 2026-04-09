@@ -2,13 +2,13 @@ import ServicePageTemplate from '@/components/services/ServicePageTemplate'
 import OkrashivanieFAQ from './OkrashivanieFAQ'
 
 export const metadata = {
-  title: 'Покраска шубы из норки в Москве — Окрашивание меха | Mary Belle',
+  title: 'Покраска шубы из норки — Окрашивание в Москве',
   description: 'Покраска шубы из норки в Москве — профессиональное окрашивание меха без потери качества. Покрасить шубу в Москве: обновление цвета, тонирование, омбре. Ателье Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/okrashivanie',
   },
   openGraph: {
-    title: 'Покраска шубы из норки в Москве — Окрашивание меха',
+    title: 'Покраска шубы из норки — Окрашивание в Москве',
     description: 'Покраска шубы из норки в Москве — профессиональное окрашивание меха без потери качества. Покрасить шубу в Москве: обновление цвета, тонирование, омбре. Ателье Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/uslugi/okrashivanie',
     images: [{ url: '/images/uslugi-okrashivanie-hero.webp' }],

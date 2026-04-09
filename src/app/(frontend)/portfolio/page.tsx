@@ -5,13 +5,13 @@ import PortfolioClient from '@/components/sections/PortfolioClient'
 import { getPortfolio } from '@/lib/strapi'
 
 export const metadata = {
-  title: 'Портфолио — до и после | Меховое ателье Mary Belle, Москва',
+  title: 'Портфолио — Работы до и после, Москва',
   description: 'Реальные работы мехового ателье Mary Belle: ремонт шуб, перекрой, окрашивание меха. Фотографии до и после реставрации.',
   alternates: {
     canonical: 'https://mary-belle.ru/portfolio',
   },
   openGraph: {
-    title: 'Портфолио — до и после | Меховое ателье Mary Belle',
+    title: 'Портфолио — Работы до и после, Москва',
     description: 'Реальные работы мехового ателье Mary Belle: ремонт шуб, перекрой, окрашивание меха. Фотографии до и после.',
     url: 'https://mary-belle.ru/portfolio',
     images: [{ url: '/images/hero-bg.jpg' }],

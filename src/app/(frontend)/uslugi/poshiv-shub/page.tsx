@@ -2,13 +2,13 @@ import ServicePageTemplate from '@/components/services/ServicePageTemplate'
 import PoshivShubFAQ from './PoshivShubFAQ'
 
 export const metadata = {
-  title: 'Пошив шуб на заказ в Москве — Шубы из соболя и норки | Mary Belle',
+  title: 'Пошив шуб на заказ — Соболь и норка, Москва',
   description: 'Индивидуальный пошив шуб в Москве: шубы из соболя, норки, каракуля на заказ. Три примерки, срок 21 день. Пошив шуб на заказ в меховом ателье Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/poshiv-shub',
   },
   openGraph: {
-    title: 'Пошив шуб на заказ в Москве — Шубы из соболя и норки',
+    title: 'Пошив шуб на заказ — Соболь и норка, Москва',
     description: 'Индивидуальный пошив шуб в Москве: шубы из соболя, норки, каракуля на заказ. Три примерки, срок 21 день. Пошив шуб на заказ в меховом ателье Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/uslugi/poshiv-shub',
     images: [{ url: '/images/uslugi-poshiv-hero.webp' }],

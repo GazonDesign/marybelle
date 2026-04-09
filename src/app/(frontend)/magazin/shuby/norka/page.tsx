@@ -6,13 +6,13 @@ import Link from 'next/link'
 import { getProductsByCategory } from '@/lib/get-products'
 
 export const metadata = {
-  title: 'Шубы из норки — Купить норковую шубу в Москве | Mary Belle',
+  title: 'Шубы из норки — Купить норковую шубу в Москве',
   description: 'Шубы из норки от московской фабрики Mary Belle. Норковые шубы собственного производства — классические и современные модели. Примерка в ателье у м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/shuby/norka',
   },
   openGraph: {
-    title: 'Шубы из норки — Купить норковую шубу | Mary Belle',
+    title: 'Шубы из норки — Купить норковую шубу в Москве',
     description: 'Норковые шубы собственного производства — классические и современные модели.',
     url: 'https://mary-belle.ru/magazin/shuby/norka',
     images: [{ url: '/images/history/2025/banner-okrashivanie.jpg' }],

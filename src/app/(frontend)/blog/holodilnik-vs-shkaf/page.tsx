@@ -3,15 +3,16 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Меховой холодильник vs обычный шкаф: сравнение условий хранения — Mary Belle',
+  title: 'Холодильник vs шкаф: сравнение хранения шуб',
   description: 'Меховой холодильник или шкаф — где хранить шубу летом? Сравнение температуры, влажности, защиты от моли. Мифы о кондиционере, чехлах и антимоли.',
   alternates: {
     canonical: 'https://mary-belle.ru/blog/holodilnik-vs-shkaf',
   },
   openGraph: {
-    title: 'Меховой холодильник vs обычный шкаф: сравнение условий хранения',
+    title: 'Холодильник vs шкаф: сравнение хранения шуб',
     description: 'Меховой холодильник или шкаф — где хранить шубу летом? Сравнение температуры, влажности, защиты от моли. Мифы о кондиционере, чехлах и антимоли.',
     url: 'https://mary-belle.ru/blog/holodilnik-vs-shkaf',
+    images: [{ url: '/images/og-blog.jpg' }],
   },
 }
 
@@ -23,6 +24,7 @@ export default function HolodilnikVsShkaf() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
+          "image": "https://mary-belle.ru/images/og-blog.jpg",
           "headline": "Меховой холодильник vs обычный шкаф: сравнение условий хранения",
           "description": "Меховой холодильник или шкаф — где хранить шубу летом? Сравнение температуры, влажности, защиты от моли. Мифы о кондиционере, чехлах и антимоли.",
           "author": {

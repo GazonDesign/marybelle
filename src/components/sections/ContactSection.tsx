@@ -83,7 +83,7 @@ export default function ContactSection() {
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <MapPin size={20} className="text-brand mt-1 shrink-0" strokeWidth={1.5} />
+                <MapPin size={20} className="text-brand mt-1 shrink-0" strokeWidth={1.5} aria-hidden="true" />
                 <div>
                   <p className="font-medium text-text-body">Адрес</p>
                   <a
@@ -98,7 +98,7 @@ export default function ContactSection() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <Phone size={20} className="text-brand mt-1 shrink-0" strokeWidth={1.5} />
+                <Phone size={20} className="text-brand mt-1 shrink-0" strokeWidth={1.5} aria-hidden="true" />
                 <div>
                   <p className="font-medium text-text-body">Телефон</p>
                   <a href="tel:+74952254444" className="text-text-muted hover:text-brand transition-colors block">
@@ -110,7 +110,7 @@ export default function ContactSection() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <Clock size={20} className="text-brand mt-1 shrink-0" strokeWidth={1.5} />
+                <Clock size={20} className="text-brand mt-1 shrink-0" strokeWidth={1.5} aria-hidden="true" />
                 <div>
                   <p className="font-medium text-text-body">Режим работы</p>
                   <p className="text-text-muted">Пн–Пт: 11:00–20:00</p>

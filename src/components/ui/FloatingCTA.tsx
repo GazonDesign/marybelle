@@ -178,15 +178,6 @@ export default function FloatingCTA() {
             Позвонить
           </a>
           <a
-            href="https://wa.me/79670555978?text=Здравствуйте!%20Хочу%20записаться%20на%20консультацию."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#25D366]/90 backdrop-blur-md text-white text-sm font-medium tracking-wide rounded-2xl shadow-lg"
-          >
-            <MessageCircle size={16} strokeWidth={1.5} />
-            WhatsApp
-          </a>
-          <a
             href="https://t.me/JuliaDenisova71"
             target="_blank"
             rel="noopener noreferrer"

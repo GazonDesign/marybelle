@@ -4,13 +4,13 @@ import { MapPin, Phone, Clock, Mail, Navigation } from 'lucide-react'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Контакты мехового ателье Mary Belle — Москва, м. Войковская',
+  title: 'Контакты — Москва, м. Войковская',
   description: 'Меховое ателье Mary Belle: адрес, телефон, режим работы. Москва, 1-й Новоподмосковный пер., д. 2/1, 5 минут от м. Войковская. Звоните: +7 (495) 225-44-44.',
   alternates: {
     canonical: 'https://mary-belle.ru/kontakty',
   },
   openGraph: {
-    title: 'Контакты мехового ателье Mary Belle — м. Войковская',
+    title: 'Контакты — Москва, м. Войковская',
     description: 'Меховое ателье Mary Belle: адрес, телефон, режим работы. Москва, 5 минут от м. Войковская.',
     url: 'https://mary-belle.ru/kontakty',
     images: [{ url: '/images/hero-bg.jpg' }],

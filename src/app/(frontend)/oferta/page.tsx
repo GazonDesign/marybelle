@@ -3,13 +3,13 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Публичная оферта — Mary Belle',
+  title: 'Публичная оферта',
   description: 'Публичная оферта на оказание услуг мехового ателье Mary Belle. Условия заказа, оплаты, гарантии и возврата.',
   alternates: {
     canonical: 'https://mary-belle.ru/oferta',
   },
   openGraph: {
-    title: 'Публичная оферта — Mary Belle',
+    title: 'Публичная оферта',
     description: 'Условия заказа, оплаты, гарантии и возврата мехового ателье Mary Belle.',
     url: 'https://mary-belle.ru/oferta',
     images: [{ url: '/images/hero-bg.jpg' }],

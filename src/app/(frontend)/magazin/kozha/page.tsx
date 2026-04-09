@@ -6,13 +6,13 @@ import Link from 'next/link'
 import { getProductsByCategory } from '@/lib/get-products'
 
 export const metadata = {
-  title: 'Кожаные изделия — Купить в Москве | Mary Belle',
+  title: 'Кожаные изделия — Купить в Москве',
   description: 'Кожаные куртки, дублёнки и аксессуары от московской фабрики Mary Belle. Натуральная кожа, ручная работа. С 1870 года.',
   alternates: {
     canonical: 'https://mary-belle.ru/magazin/kozha',
   },
   openGraph: {
-    title: 'Кожаные изделия — Купить в Москве | Mary Belle',
+    title: 'Кожаные изделия — Купить в Москве',
     description: 'Кожаные куртки, дублёнки и аксессуары от фабрики Mary Belle.',
     url: 'https://mary-belle.ru/magazin/kozha',
     images: [{ url: '/images/magazin/kozha/bomber-aviator/01.jpg' }],

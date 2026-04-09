@@ -25,7 +25,10 @@ export const metadata: Metadata = {
     'Пошив, ремонт и хранение меховых изделий премиум-класса. Шубы из норки и соболя, пальто, кожаные изделия. Московская меховая фабрика с 1870 года.',
   metadataBase: new URL('https://mary-belle.ru'),
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-120.png', sizes: '120x120', type: 'image/png' },
+    ],
     apple: '/favicon-512.png',
   },
   openGraph: {
@@ -44,6 +47,9 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning className={`${dmSerif.variable} ${libreFranklin.variable}`}>
       <head>
+        {/* Preload LCP hero image */}
+        <link rel="preload" as="image" type="image/webp" href="/images/holodilnik/hero-new-mobile.webp" media="(max-width: 768px)" />
+        <link rel="preload" as="image" type="image/webp" href="/images/holodilnik/hero-new.webp" media="(min-width: 769px)" />
         {/* Preconnect для доменов, к которым точно будем обращаться (полный handshake заранее) */}
         <link rel="preconnect" href="//mc.yandex.ru" />
         {/* DNS prefetch для доменов, которые подключаются позже или условно */}

@@ -2,13 +2,13 @@ import ServicePageTemplate from '@/components/services/ServicePageTemplate'
 import PerekrojFAQ from './PerekrojFAQ'
 
 export const metadata = {
-  title: 'Перекрой шубы из норки в Москве — Перешить шубу | Mary Belle',
+  title: 'Перекрой шубы из норки — Перешить в Москве',
   description: 'Перекрой шубы из норки в Москве — перешив шубы из соболя, модернизация мехового изделия. Перешить шубу из норки: новый фасон из старой шубы. Ателье Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/perekroj',
   },
   openGraph: {
-    title: 'Перекрой шубы из норки в Москве — Перешить шубу',
+    title: 'Перекрой шубы из норки — Перешить в Москве',
     description: 'Перекрой шубы из норки в Москве — перешив шубы из соболя, модернизация мехового изделия. Перешить шубу из норки: новый фасон из старой шубы. Ателье Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/uslugi/perekroj',
     images: [{ url: '/images/uslugi-remont-mehov-hero.webp' }],

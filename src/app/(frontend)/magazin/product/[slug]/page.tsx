@@ -25,10 +25,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = categoryLabels[product.category] || product.category
 
   return {
-    title: `${product.title} — ${category} | Купить в Москве`,
+    title: `${product.title} — ${category}`,
     description: `${product.description} ${product.price}. Московская меховая фабрика Mary Belle — с 1870 года. Примерка, подгонка по фигуре. м. Войковская.`,
     openGraph: {
-      title: `${product.title} — ${category} | Mary Belle`,
+      title: `${product.title} — ${category}`,
       description: product.description,
       images: [{ url: product.images[0], width: 600, height: 800 }],
     },

@@ -2,13 +2,13 @@ import ServicePageTemplate from '@/components/services/ServicePageTemplate'
 import RemontPaltoFAQ from './RemontPaltoFAQ'
 
 export const metadata = {
-  title: 'Ремонт пальто в Москве — Профессиональная реставрация | Mary Belle',
+  title: 'Ремонт пальто в Москве — Реставрация пальто',
   description: 'Ремонт пальто в Москве — реставрация пальто любой сложности. Замена подкладки, ремонт швов, замена фурнитуры. Ателье Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-palto',
   },
   openGraph: {
-    title: 'Ремонт пальто в Москве — Mary Belle',
+    title: 'Ремонт пальто в Москве — Реставрация пальто',
     description: 'Ремонт пальто любой сложности. Замена подкладки, ремонт швов, замена фурнитуры. Ателье Mary Belle.',
     url: 'https://mary-belle.ru/uslugi/remont-palto',
     images: [{ url: '/images/product-palto.jpg' }],

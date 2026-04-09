@@ -69,7 +69,7 @@ export default function MagazinClient({ products }: { products: Product[] }) {
         <section className="relative h-[80vh] min-h-[550px] w-full overflow-hidden">
           <div
             className="absolute inset-0 parallax-bg"
-            style={{ backgroundImage: 'url(/images/history/2025/banner-okrashivanie.jpg)' }}
+            style={{ backgroundImage: 'url(/images/magazin-hero.jpg)' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           <div className="relative z-10 h-full flex flex-col justify-end pb-14 px-6 text-center">
@@ -77,7 +77,7 @@ export default function MagazinClient({ products }: { products: Product[] }) {
               Mary Belle
             </span>
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight">
-              Магазин
+              Шубы, пальто и кожаные изделия
             </h1>
             <p className="mt-4 text-white/70 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto">
               Шубы, пальто и кожаные изделия собственного производства. Каждое изделие можно примерить в ателье.

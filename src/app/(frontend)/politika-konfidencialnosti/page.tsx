@@ -3,13 +3,13 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Политика конфиденциальности — Mary Belle',
+  title: 'Политика конфиденциальности',
   description: 'Политика конфиденциальности и обработки персональных данных сайта mary-belle.ru.',
   alternates: {
     canonical: 'https://mary-belle.ru/politika-konfidencialnosti',
   },
   openGraph: {
-    title: 'Политика конфиденциальности — Mary Belle',
+    title: 'Политика конфиденциальности',
     description: 'Политика конфиденциальности и обработки персональных данных сайта mary-belle.ru.',
     url: 'https://mary-belle.ru/politika-konfidencialnosti',
     images: [{ url: '/images/hero-bg.jpg' }],

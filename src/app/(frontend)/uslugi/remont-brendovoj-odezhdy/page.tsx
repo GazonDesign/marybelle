@@ -2,13 +2,13 @@ import ServicePageTemplate from '@/components/services/ServicePageTemplate'
 import BrendovayaFAQ from './BrendovayaFAQ'
 
 export const metadata = {
-  title: 'Ремонт брендовой одежды в Москве — Mary Belle | Ателье премиум-класса',
+  title: 'Ремонт брендовой одежды в Москве — Премиум',
   description: 'Ремонт брендовой одежды в Москве — реставрация люксовых вещей: Moncler, Max Mara, Burberry и других брендов. Ателье Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-brendovoj-odezhdy',
   },
   openGraph: {
-    title: 'Ремонт брендовой одежды в Москве — Mary Belle',
+    title: 'Ремонт брендовой одежды в Москве — Премиум',
     description: 'Реставрация люксовых вещей: Moncler, Max Mara, Burberry. Ателье Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/uslugi/remont-brendovoj-odezhdy',
     images: [{ url: '/images/uslugi-poshiv-hero.webp' }],

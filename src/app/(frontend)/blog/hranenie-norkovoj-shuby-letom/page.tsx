@@ -3,15 +3,16 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Хранение норковой шубы летом: как сохранить блеск и мягкость — Mary Belle',
+  title: 'Хранение норковой шубы летом: блеск и мягкость',
   description: 'Как хранить норковую шубу летом? Почему норка чувствительна к теплу, как предотвратить пожелтение и ломкость ворса. Профессиональное хранение норки от 2 450 ₽/мес.',
   alternates: {
     canonical: 'https://mary-belle.ru/blog/hranenie-norkovoj-shuby-letom',
   },
   openGraph: {
-    title: 'Хранение норковой шубы летом: как сохранить блеск и мягкость',
+    title: 'Хранение норковой шубы летом: блеск и мягкость',
     description: 'Как хранить норковую шубу летом? Почему норка чувствительна к теплу, как предотвратить пожелтение и ломкость ворса. Профессиональное хранение норки от 2 450 ₽/мес.',
     url: 'https://mary-belle.ru/blog/hranenie-norkovoj-shuby-letom',
+    images: [{ url: '/images/og-blog.jpg' }],
   },
 }
 
@@ -23,6 +24,7 @@ export default function HranenieNorkovojShubyLetom() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
+          "image": "https://mary-belle.ru/images/og-blog.jpg",
           "headline": "Хранение норковой шубы летом: как сохранить блеск и мягкость",
           "description": "Как хранить норковую шубу летом? Почему норка чувствительна к теплу, как предотвратить пожелтение и ломкость ворса. Профессиональное хранение норки от 2 450 ₽/мес.",
           "author": {
