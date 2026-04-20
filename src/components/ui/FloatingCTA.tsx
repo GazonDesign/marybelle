@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Phone, MessageCircle, X, Send } from 'lucide-react'
 import Link from 'next/link'
 import { getTracking } from '@/lib/utm'
+import { reachGoal } from '@/lib/metrika'
 import PhoneInput from '@/components/ui/PhoneInput'
 
 export default function FloatingCTA() {
@@ -67,9 +68,7 @@ export default function FloatingCTA() {
           ...getTracking(),
         }),
       })
-      if (typeof window !== 'undefined' && (window as any).ym) {
-        (window as any).ym(29448140, 'reachGoal', 'form_submit_success')
-      }
+      reachGoal('form_submit_success')
       // Envybox автозвонок — передаём номер, Envybox сам перезванивает клиенту
       const phone = formData.get('phone') as string
       const w = window as any
@@ -110,7 +109,7 @@ export default function FloatingCTA() {
               <span className="text-sm font-medium">Telegram</span>
             </a>
             <a
-              href="https://vk.com/im?sel=-marybelle.atelie"
+              href="https://vk.com/im/convo/-223026646"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 bg-[#0077FF] text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
@@ -119,7 +118,7 @@ export default function FloatingCTA() {
               <span className="text-sm font-medium">VK</span>
             </a>
             <a
-              href="https://max.ru/u/f9LHodD0cOKhnfmL8NoSlJR-8QBqTMS7oEkTPkRg7FV-H-DcmghVHUCNNH4"
+              href="https://max.ru/u/f9LHodD0cOLNyLNiujTPMSvqXxb7ycSKzOE8olWY_pbGEExpmyKrJmRV2yA"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 bg-[#168DE2] text-white pl-5 pr-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
@@ -129,6 +128,7 @@ export default function FloatingCTA() {
             </a>
             <button
               onClick={() => {
+                reachGoal('click_booking_form_button')
                 // Открываем Envybox — он соединяет звонок автоматически
                 const envyBtn = document.querySelector('a.cbk-phone') as HTMLElement
                 if (envyBtn) {
@@ -172,6 +172,10 @@ export default function FloatingCTA() {
         }`}>
           <a
             href="tel:+74952254444"
+            onClick={() => {
+              reachGoal('click_call_button')
+              reachGoal('tel_click')
+            }}
             className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand/90 backdrop-blur-md text-white text-sm font-medium tracking-wide rounded-2xl shadow-lg"
           >
             <Phone size={16} strokeWidth={1.5} />
@@ -187,10 +191,15 @@ export default function FloatingCTA() {
             Telegram
           </a>
           <button
-            onClick={() => setIsCallbackOpen(true)}
+            onClick={() => {
+              reachGoal('click_booking_form_button')
+              setIsCallbackOpen(true)
+            }}
             className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand/15 backdrop-blur-md text-brand text-sm font-medium tracking-wide rounded-2xl shadow-lg border border-brand/30"
           >
-            <Phone size={16} strokeWidth={1.5} />
+            <span className="relative flex items-center justify-center w-[18px] h-[14px] border border-brand/60 rounded-[3px]">
+              <Phone size={10} strokeWidth={2} />
+            </span>
             Заявка
           </button>
         </div>
