@@ -2,20 +2,22 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import HimchistkaFAQ from './HimchistkaFAQ'
+import ServiceLeadForm from '@/components/forms/ServiceLeadForm'
 import CrossSellBanner from '@/components/ui/CrossSellBanner'
 import FadeIn from '@/components/ui/FadeIn'
+import PriceText from '@/components/ui/PriceText'
 
 export const metadata = {
   title: 'Химчистка шубы в Москве — Чистка норки, цены',
-  description: 'Химчистка шубы из норки в Москве от 3 500 ₽. Химчистка меха, дублёнок и кожаных изделий на профессиональном оборудовании. Антимолевая обработка. Ателье Mary Belle, м. Войковская.',
+  description: 'Химчистка шубы из норки в Москве от 10 500 ₽. Химчистка меха, дублёнок и кожаных изделий на профессиональном оборудовании. Антимолевая обработка. Ателье Mary Belle, м. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/himchistka',
   },
   openGraph: {
     title: 'Химчистка шубы в Москве — Чистка норки, цены',
-    description: 'Химчистка шубы из норки в Москве от 3 500 ₽. Химчистка меха, дублёнок и кожаных изделий на профессиональном оборудовании. Антимолевая обработка. Ателье Mary Belle, м. Войковская.',
+    description: 'Химчистка шубы из норки в Москве от 10 500 ₽. Химчистка меха, дублёнок и кожаных изделий на профессиональном оборудовании. Антимолевая обработка. Ателье Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/uslugi/himchistka',
-    images: [{ url: '/images/uslugi-himchistka-hero.webp' }],
+    images: [{ url: '/images/og/himchistka.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -39,6 +41,9 @@ const cleaningTypes = [
 ]
 
 const features = [
+  // Реальное фото работы — первым: живые «до/после» убеждают сильнее
+  // иллюстраций (вывод прогона «глазами клиенток» 20.07)
+  { image: '/images/okrashivanie-gallery/011.jpg', title: 'Реальный результат: было — стало', description: 'Светлая норка с пожелтевшим воротником — до и после обработки в нашем ателье. Пожелтение снимается чисткой и тонированием: мастер на бесплатном осмотре скажет, что нужно именно вашей шубе.' },
   { image: '/images/himchistka/sostavy.jpg', title: 'Безопасные составы', description: 'Используем профессиональные средства BioClean — деликатная чистка без повреждения меха и кожи.' },
   { image: '/images/himchistka/dezinsekcia.jpg', title: 'Дезинсекция', description: 'Антимольная обработка специальным аэрозолем — защита изделия от вредителей после чистки.' },
   { image: '/images/himchistka/blesk.jpg', title: 'Восстановление блеска', description: 'Мех после чистки выглядит как новый — глубокий цвет и естественный блеск возвращаются.' },
@@ -47,10 +52,14 @@ const features = [
 ]
 
 const prices = [
-  { label: 'Химчистка шубы', price: 'от 5 000 ₽' },
-  { label: 'Химчистка дублёнки', price: 'от 4 000 ₽' },
-  { label: 'Химчистка кожаной куртки', price: 'от 3 000 ₽' },
-  { label: 'Антимольная обработка', price: 'от 1 500 ₽' },
+  { label: 'Химчистка шубы (норка, каракульча)', price: '~~от 15 000 ₽~~ от 10 500 ₽' },
+  { label: 'Химчистка шубы (соболь, шиншилла, рысь, куница)', price: '~~от 18 500 ₽~~ от 13 000 ₽' },
+  { label: 'Химчистка шубы (лиса, песец, енот, волк)', price: '~~от 15 000 ₽~~ от 10 500 ₽' },
+  { label: 'Химчистка шубы (бобёр, нерпа, каракуль, котик)', price: '~~от 13 000 ₽~~ от 9 200 ₽' },
+  { label: 'Химчистка дублёнки', price: '~~от 8 500 ₽~~ от 6 000 ₽' },
+  { label: 'Химчистка кожаной куртки / пальто', price: '~~от 7 000 ₽~~ от 5 000 ₽' },
+  { label: 'Пуховики, стёганые изделия', price: '~~от 8 000 ₽~~ от 5 500 ₽' },
+  { label: 'Антимольная обработка', price: '~~от 2 100 ₽~~ от 1 500 ₽' },
   { label: 'Экспресс-чистка (1–2 дня)', price: '+50% к стоимости' },
 ]
 
@@ -218,13 +227,16 @@ export default function HimchistkaPage() {
               {prices.map((item, i) => (
                 <div key={i} className={`flex justify-between items-center px-6 py-5 ${i % 2 === 0 ? 'bg-white' : 'bg-bg-light'}`}>
                   <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
+                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4"><PriceText price={item.price} /></span>
                 </div>
               ))}
               <p className="mt-6 text-sm text-text-muted">* Точная стоимость определяется после осмотра изделия мастером</p>
             </div>
           </FadeIn>
         </section>
+
+        {/* Форма заявки — у химчистки нет квиза, лид собираем формой */}
+        <ServiceLeadForm serviceName="Химчистка меха" />
 
         {/* FAQ */}
         <HimchistkaFAQ />
@@ -238,15 +250,12 @@ export default function HimchistkaPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10">Другие услуги</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: 'Меховой холодильник', href: '/uslugi/mehovoj-holodilnik', icon: '/icons/services/storage.svg' },
-                { title: 'Окрашивание меха', href: '/uslugi/okrashivanie', icon: '/icons/services/coloring.svg' },
-                { title: 'Ремонт кожи и дублёнок', href: '/uslugi/remont-kozhi', icon: '/icons/services/leather.svg' },
+                { title: 'Меховой холодильник', href: '/uslugi/mehovoj-holodilnik' },
+                { title: 'Окрашивание меха', href: '/uslugi/okrashivanie' },
+                { title: 'Ремонт кожи и дублёнок', href: '/uslugi/remont-kozhi' },
               ].map((s) => (
                 <Link key={s.href} href={s.href} className="group p-8 border border-border-light bg-white hover:border-brand transition-colors">
-                  <div className="w-10 h-10 mb-4 flex items-center justify-center bg-brand/10 rounded-sm">
-                    <img src={s.icon} alt="" className="w-5 h-5 opacity-60" />
-                  </div>
-                  <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
+                                    <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
                   <span className="inline-flex items-center gap-2 text-text-muted text-sm mt-3 group-hover:text-brand group-hover:gap-4 transition-all duration-300">
                     Подробнее <span>&rarr;</span>
                   </span>

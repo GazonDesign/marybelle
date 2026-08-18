@@ -13,7 +13,7 @@ export const metadata = {
     title: 'Защита шубы от моли — Холодильник +4°C, Москва',
     description: 'При +4°C моль не выживает. Профессиональная защита шуб от моли и жука-кожееда в меховом холодильнике. Антимольная обработка, страховка. Фабрика с 1870 года.',
     url: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik/zashhita-ot-moli',
-    images: [{ url: '/images/holodilnik/hero-new.jpg' }],
+    images: [{ url: '/images/og/holodilnik.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -304,15 +304,12 @@ export default function ZashhitaOtMoliPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10">Смотрите также</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: 'Химчистка меха', href: '/uslugi/himchistka', icon: '/icons/services/cleaning.svg' },
-                { title: 'Ремонт шуб', href: '/uslugi/remont-shub', icon: '/icons/services/repair.svg' },
-                { title: 'Хранение в холодильнике', href: '/uslugi/mehovoj-holodilnik', icon: '/icons/services/storage.svg' },
+                { title: 'Химчистка меха', href: '/uslugi/himchistka' },
+                { title: 'Ремонт шуб', href: '/uslugi/remont-shub' },
+                { title: 'Хранение в холодильнике', href: '/uslugi/mehovoj-holodilnik' },
               ].map((s) => (
                 <Link key={s.href} href={s.href} className="group p-8 border border-border-light bg-white hover:border-brand transition-colors">
-                  <div className="w-10 h-10 mb-4 flex items-center justify-center bg-brand/10 rounded-sm">
-                    <img src={s.icon} alt="" className="w-5 h-5 opacity-60" />
-                  </div>
-                  <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
+                                    <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
                   <span className="inline-flex items-center gap-2 text-text-muted text-sm mt-3 group-hover:text-brand group-hover:gap-4 transition-all duration-300">
                     Подробнее <span>&rarr;</span>
                   </span>

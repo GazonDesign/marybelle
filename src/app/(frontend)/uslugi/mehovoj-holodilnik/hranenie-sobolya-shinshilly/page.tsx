@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import PremiumFurFAQ from './PremiumFurFAQ'
+import PriceText from '@/components/ui/PriceText'
 
 export const metadata = {
   title: 'Хранение соболя и шиншиллы — от 3 200 ₽/мес',
@@ -13,7 +14,7 @@ export const metadata = {
     title: 'Хранение соболя и шиншиллы — от 3 200 ₽/мес',
     description: 'Хранение элитных шуб из соболя, шиншиллы, рыси, горностая в меховом холодильнике +4°C. Индивидуальный режим, полная страховка. Меховая фабрика с 1870 года.',
     url: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik/hranenie-sobolya-shinshilly',
-    images: [{ url: '/images/holodilnik/hero-new.jpg' }],
+    images: [{ url: '/images/og/holodilnik.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -66,11 +67,11 @@ const advantages = [
 ]
 
 const prices = [
-  { label: 'Шиншилла, соболь, рысь, горностай, куница, белка', price: '3 200 ₽/мес' },
+  { label: 'Шиншилла, соболь, рысь, горностай, куница, белка', price: '~~4 300 ₽/мес~~ 3 200 ₽/мес' },
   { label: 'Оплата за 6 месяцев', price: 'скидка 10%' },
   { label: 'Оплата за 12 месяцев', price: 'скидка 20%' },
   { label: 'Комбинированные изделия (мех + кожа)', price: '+15% к базовой цене' },
-  { label: 'Химчистка премиум перед хранением', price: 'от 5 000 ₽' },
+  { label: 'Химчистка премиум перед хранением', price: '~~от 7 000 ₽~~ от 5 000 ₽' },
 ]
 
 const trustStats = [
@@ -260,7 +261,7 @@ export default function HranenieSobolyaShinshillyPage() {
               {prices.map((item, i) => (
                 <div key={i} className="flex justify-between items-center py-5 border-b border-border-light">
                   <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
+                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4"><PriceText price={item.price} /></span>
                 </div>
               ))}
               <p className="mt-6 text-sm text-text-muted">
@@ -310,15 +311,12 @@ export default function HranenieSobolyaShinshillyPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10">Другие услуги</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: 'Химчистка', href: '/uslugi/himchistka', icon: '/icons/services/cleaning.svg' },
-                { title: 'Ремонт шуб', href: '/uslugi/remont-shub', icon: '/icons/services/repair.svg' },
-                { title: 'Индивидуальный пошив', href: '/uslugi/poshiv-shub', icon: '/icons/services/sewing.svg' },
+                { title: 'Химчистка', href: '/uslugi/himchistka' },
+                { title: 'Ремонт шуб', href: '/uslugi/remont-shub' },
+                { title: 'Индивидуальный пошив', href: '/uslugi/poshiv-shub' },
               ].map((s) => (
                 <Link key={s.href} href={s.href} className="group p-8 border border-border-light bg-white hover:border-brand transition-colors">
-                  <div className="w-10 h-10 mb-4 flex items-center justify-center bg-brand/10 rounded-sm">
-                    <img src={s.icon} alt="" className="w-5 h-5 opacity-60" />
-                  </div>
-                  <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
+                                    <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
                   <span className="inline-flex items-center gap-2 text-text-muted text-sm mt-3 group-hover:text-brand group-hover:gap-4 transition-all duration-300">
                     Подробнее <span>&rarr;</span>
                   </span>

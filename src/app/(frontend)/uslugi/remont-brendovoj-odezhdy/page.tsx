@@ -11,7 +11,7 @@ export const metadata = {
     title: 'Ремонт брендовой одежды в Москве — Премиум',
     description: 'Реставрация люксовых вещей: Moncler, Max Mara, Burberry. Ателье Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/uslugi/remont-brendovoj-odezhdy',
-    images: [{ url: '/images/uslugi-poshiv-hero.webp' }],
+    images: [{ url: '/images/og/poshiv-shub.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -20,7 +20,7 @@ export default function RemontBrendovojOdezhdyPage() {
     <ServicePageTemplate
       title="Ремонт брендовой одежды в Москве"
       subtitle="Реставрация люксовых изделий"
-      description="Ремонт брендовой одежды требует особого подхода — мы работаем с изделиями Moncler, Max Mara, Burberry, Loro Piana и других премиальных марок. Сохраняем оригинальную фурнитуру и подбираем материалы, идентичные оригиналу. Мастера с опытом работы с люксовыми брендами."
+      description="Ремонт брендовой одежды требует особого подхода — мы работаем с изделиями Moncler, Max Mara, Burberry, Loro Piana, Massimo Dutti и других премиальных марок: пуховики, кашемир, кожа, дублёнки. Сохраняем оригинальную фурнитуру и подбираем материалы, идентичные оригиналу. Мастера с опытом работы с люксовыми брендами."
       heroImage="/images/uslugi-poshiv-hero.webp"
       features={[
         { title: 'Работа с люксом', description: 'Знаем особенности конструкции и материалов премиальных брендов.' },
@@ -31,16 +31,19 @@ export default function RemontBrendovojOdezhdyPage() {
         { title: 'Конфиденциальность', description: 'Индивидуальный подход и бережное обращение с каждой вещью.' },
       ]}
       prices={[
-        { label: 'Ремонт пуховика (премиум)', price: 'от 5 000 ₽' },
-        { label: 'Ремонт кашемирового пальто', price: 'от 4 000 ₽' },
-        { label: 'Замена фурнитуры (бренд)', price: 'от 3 000 ₽' },
-        { label: 'Замена подкладки', price: 'от 7 000 ₽' },
-        { label: 'Штопка / реставрация ткани', price: 'от 2 500 ₽' },
+        { label: 'Ремонт пуховика (премиум)', price: '~~от 7 000 ₽~~ от 5 000 ₽' },
+        { label: 'Ремонт кашемирового пальто', price: '~~от 5 500 ₽~~ от 4 000 ₽' },
+        { label: 'Ремонт брендовой дублёнки', price: '~~от 5 500 ₽~~ от 4 000 ₽' },
+        { label: 'Замена фурнитуры (бренд)', price: '~~от 4 300 ₽~~ от 3 000 ₽' },
+        { label: 'Замена подкладки', price: '~~от 10 000 ₽~~ от 7 000 ₽' },
+        { label: 'Штопка / реставрация ткани', price: '~~от 3 600 ₽~~ от 2 500 ₽' },
       ]}
       galleryAspect="3/2"
       gallery={[
+        // Фото 003-2.webp убрано: на паре «до/после» дублёнка с рукавами
+        // превращалась в жилет — читалось как ошибка и пугало посетительниц
+        // (находка прогона «глазами клиенток» 20.07)
         { src: '/images/kozha-gallery/001-2.webp', alt: 'Ремонт дублёнки — до и после' },
-        { src: '/images/kozha-gallery/003-2.webp', alt: 'Реставрация кожаной куртки — до и после' },
         { src: '/images/kozha-gallery/005-1.webp', alt: 'Ремонт дублёнки с мехом — до и после' },
         { src: '/images/kozha-gallery/002-1.webp', alt: 'Восстановление кожаного изделия' },
         { src: '/images/kozha-gallery/004-1.webp', alt: 'Ремонт зимней куртки — до и после' },

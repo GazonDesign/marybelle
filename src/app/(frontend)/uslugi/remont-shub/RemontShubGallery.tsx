@@ -3,17 +3,22 @@
 import { useCallback, useEffect, useState } from 'react'
 
 const gallery = [
-  { src: '/images/before-after/case-10-remont.jpg', alt: 'Ремонт норковой шубы — до и после' },
-  { src: '/images/gov-import/remont-do-posle/remont-shub.jpg', alt: 'Ремонт шубы из норки — результат работы мастера' },
-  { src: '/images/gov-import/remont-do-posle/remont061225.jpg', alt: 'Ремонт мехового изделия — восстановление мездры' },
-  { src: '/images/gov-import/remont-do-posle/remont26.jpg', alt: 'Ремонт шубы — восстановление меха' },
-  { src: '/images/gov-import/remont-do-posle/restovratsiya.jpg', alt: 'Реставрация шубы из норки — ателье Mary Belle' },
-  { src: '/images/gov-import/proizvodstvo/s-ceh-s.jpg', alt: 'Цех ремонта меховых изделий — Mary Belle' },
-  { src: '/images/gov-import/proizvodstvo/sh-ceh-sh.jpg', alt: 'Мастер за работой — ремонт норковой шубы' },
+  { src: '/images/before-after/remont-razryv.jpg', alt: 'Ремонт разрыва норковой шубы — до и после' },
+  { src: '/images/before-after/remont-banner-razryv.jpg', alt: 'Зашить разрыв на шубе — результат ремонта' },
+  { src: '/images/before-after/remont-lokti.jpg', alt: 'Устранение потёртостей на локтях шубы — до и после' },
+  { src: '/images/before-after/remont-borta.jpg', alt: 'Реставрация бортов каракулевой шубы — до и после' },
+  { src: '/images/before-after/remont-podmyshki.jpg', alt: 'Ремонт подмышек шубы — до и после' },
+  { src: '/images/before-after/remont-banner-furnitura.jpg', alt: 'Замена фурнитуры на шубе — до и после' },
+  { src: '/images/before-after/remont-vorotnik.jpg', alt: 'Замена воротника на шубе — до и после' },
+  { src: '/images/before-after/remont-banner-vorotnik.jpg', alt: 'Замена воротника норковой шубы — результат' },
+  { src: '/images/before-after/remont-banner-perekroj.jpg', alt: 'Полный перекрой шубы — до и после' },
 ]
 
 export default function RemontShubGallery() {
   const [lightbox, setLightbox] = useState<number | null>(null)
+  // Первые 4 фото сразу, дальше — по кнопке «Смотреть ещё»: скрытые снимки
+  // не попадают в DOM и не грузятся (см. такой же приём в ServicePageTemplate)
+  const [visible, setVisible] = useState(4)
 
   useEffect(() => {
     if (lightbox === null) return
@@ -43,8 +48,10 @@ export default function RemontShubGallery() {
       <section className="py-16 md:py-20 bg-bg-light">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <h2 className="font-serif text-3xl md:text-4xl text-black mb-8">Наши работы</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {gallery.map((img, i) => (
+          {/* Мобайл: один снимок в ряд, десктоп: два (было 4 — кадры до/после
+              слишком мелкие, деталей ремонта не разглядеть) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {gallery.slice(0, visible).map((img, i) => (
               <div
                 key={i}
                 className="overflow-hidden group cursor-pointer"
@@ -53,11 +60,23 @@ export default function RemontShubGallery() {
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full aspect-[5/4] object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  loading={i < 2 ? 'eager' : 'lazy'}
+                  className="w-full aspect-video object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             ))}
           </div>
+          {visible < gallery.length && (
+            <div className="mt-8 text-center">
+              <button
+                type="button"
+                onClick={() => setVisible((v) => v + 8)}
+                className="px-10 py-3.5 border border-brand text-brand font-light tracking-widest text-sm hover:bg-brand hover:text-white transition-colors"
+              >
+                Смотреть ещё ({gallery.length - visible})
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

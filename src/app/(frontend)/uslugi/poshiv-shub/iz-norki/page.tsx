@@ -3,18 +3,19 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import NorkiFAQ from './NorkiFAQ'
 import FadeIn from '@/components/ui/FadeIn'
+import PriceText from '@/components/ui/PriceText'
 
 export const metadata = {
   title: 'Пошив шуб из норки на заказ — Цены, Москва',
-  description: 'Пошив шубы из норки на заказ в Москве. Скандинавская норка NAFA и Kopenhagen Fur, индивидуальный крой, три примерки за 21 день. Ателье Mary Belle — от 120 000 ₽. М. Войковская.',
+  description: 'Пошив шубы из норки на заказ в Москве. Скандинавская норка NAFA и Kopenhagen Fur, индивидуальный крой, три примерки за 21 день. Ателье Mary Belle — от 130 000 ₽. М. Войковская.',
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/poshiv-shub/iz-norki',
   },
   openGraph: {
     title: 'Пошив шуб из норки на заказ — Цены, Москва',
-    description: 'Пошив шубы из норки на заказ в Москве. Скандинавская норка NAFA и Kopenhagen Fur, индивидуальный крой, три примерки за 21 день. Ателье Mary Belle — от 120 000 ₽.',
+    description: 'Пошив шубы из норки на заказ в Москве. Скандинавская норка NAFA и Kopenhagen Fur, индивидуальный крой, три примерки за 21 день. Ателье Mary Belle — от 130 000 ₽.',
     url: 'https://mary-belle.ru/uslugi/poshiv-shub/iz-norki',
-    images: [{ url: '/images/gov-import/modeli/iz-norki.jpg' }],
+    images: [{ url: '/images/og/poshiv-iz-norki.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -46,13 +47,13 @@ const advantages = [
 ]
 
 const prices = [
-  { label: 'Полушубок из норки (70 см)', price: 'от 120 000 ₽' },
-  { label: 'Шуба до колена (90 см)', price: 'от 160 000 ₽' },
-  { label: 'Шуба миди (110 см)', price: 'от 190 000 ₽' },
-  { label: 'Шуба в пол', price: 'от 220 000 ₽' },
-  { label: 'Норковый жилет', price: 'от 45 000 ₽' },
-  { label: 'Пальто с норковым воротником', price: 'от 80 000 ₽' },
-  { label: 'Срочный пошив (+30% к стоимости)', price: 'от 156 000 ₽' },
+  { label: 'Полушубок из норки (70 см)', price: '~~от 185 500 ₽~~ от 130 000 ₽' },
+  { label: 'Шуба до колена (90 см)', price: '~~от 243 000 ₽~~ от 170 000 ₽' },
+  { label: 'Шуба миди (110 см)', price: '~~от 285 500 ₽~~ от 200 000 ₽' },
+  { label: 'Шуба в пол', price: '~~от 328 500 ₽~~ от 230 000 ₽' },
+  { label: 'Норковый жилет', price: '~~от 78 500 ₽~~ от 55 000 ₽' },
+  { label: 'Пальто с норковым воротником', price: '~~от 128 500 ₽~~ от 90 000 ₽' },
+  { label: 'Срочный пошив (+30% к стоимости)', price: '~~от 241 500 ₽~~ от 169 000 ₽' },
 ]
 
 const trustStats = [
@@ -262,10 +263,20 @@ export default function PoshivNorkiPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10 text-center">Наши работы</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {[
-                { src: '/images/gov-import/modeli/iz-norki.jpg', alt: 'Шуба из норки — индивидуальный пошив' },
-                { src: '/images/gov-import/modeli/prima.jpg', alt: 'Модель Прима — норковая шуба' },
-                { src: '/images/gov-import/modeli/prima-1.jpg', alt: 'Шуба Прима — вид сзади' },
-                { src: '/images/gov-import/modeli/norka3.jpg', alt: 'Норковая шуба — ателье Mary Belle' },
+                { src: '/images/poshiv-norka/01.jpg', alt: 'Норковая шуба — индивидуальный пошив Mary Belle' },
+                { src: '/images/poshiv-norka/02.jpg', alt: 'Шуба из норки на модели — пошив на заказ' },
+                { src: '/images/poshiv-norka/03.jpg', alt: 'Пошив норковой шубы по индивидуальным меркам' },
+                { src: '/images/poshiv-norka/04.jpg', alt: 'Бежевая норковая шуба с капюшоном — работа ателье' },
+                { src: '/images/poshiv-norka/05.jpg', alt: 'Длинная шуба — пошив на заказ в Mary Belle' },
+                { src: '/images/poshiv-norka/06.jpg', alt: 'Тёмно-коричневая шуба с поясом — индивидуальный пошив' },
+                { src: '/images/poshiv-norka/07.jpg', alt: 'Норковая шуба с манишкой и воротником — на заказ' },
+                { src: '/images/poshiv-norka/08.jpg', alt: 'Жакет кашемир с соболем — индивидуальный пошив' },
+                { src: '/images/poshiv-norka/09.jpg', alt: 'Шоколадная длинная шуба — работа ателье Mary Belle' },
+                { src: '/images/poshiv-norka/10.jpg', alt: 'Карамельная шуба с поясом — пошив на заказ' },
+                { src: '/images/poshiv-norka/11.jpg', alt: 'Шуба кэмел с поясом — индивидуальный пошив' },
+                { src: '/images/poshiv-norka/12.jpg', alt: 'Бежевая шуба с капюшоном — модель Mary Belle' },
+                { src: '/images/poshiv-norka/13.jpg', alt: 'Норка с манишкой и воротником — пошив в ателье' },
+                { src: '/images/poshiv-norka/14.jpg', alt: 'Длинная соболиная шуба — индивидуальный пошив' },
               ].map((img, i) => (
                 <div key={i} className="overflow-hidden group">
                   <img
@@ -333,12 +344,14 @@ export default function PoshivNorkiPage() {
               {prices.map((item, i) => (
                 <div key={i} className={`flex justify-between items-center px-6 py-5 ${i % 2 === 0 ? 'bg-white' : 'bg-bg-light'}`}>
                   <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
+                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4"><PriceText price={item.price} /></span>
                 </div>
               ))}
               <p className="mt-6 text-sm text-text-muted">
-                * Стоимость зависит от длины изделия, типа норки и сложности фасона.
-                На консультации мастер рассчитает точную цену именно для вашей модели.
+                *Рекламный прайс — не публичная оферта, требуется консультация специалиста.{' '}
+                <a href="tel:+74952254444" className="underline hover:text-brand transition-colors">
+                  Записаться на консультацию
+                </a>
               </p>
             </div>
           </FadeIn>

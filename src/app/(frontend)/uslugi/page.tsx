@@ -12,7 +12,7 @@ export const metadata = {
     title: 'Услуги мехового ателье — Ремонт, пошив, хранение',
     description: 'Все услуги мехового ателье Mary Belle: ремонт шуб, пошив на заказ, перекрой, окрашивание меха, химчистка, хранение.',
     url: 'https://mary-belle.ru/uslugi',
-    images: [{ url: '/images/production/workshop-hands-sobol.webp' }],
+    images: [{ url: '/images/og/uslugi.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -22,63 +22,66 @@ const services = [
     description: 'Реставрация норковых, соболиных и каракулевых шуб любой сложности — замена подкладки, ремонт швов, перекрой.',
     image: '/images/uslugi-remont-mehov.jpg',
     href: '/uslugi/remont-shub',
-    icon: '/icons/services/repair.svg',
   },
   {
     title: 'Ремонт кожи и дублёнок',
     description: 'Восстановление кожаных курток, дублёнок и аксессуаров. Окрашивание, замена фурнитуры, реставрация.',
     image: '/images/uslugi-remont-kozhi.jpg',
     href: '/uslugi/remont-kozhi',
-    icon: '/icons/services/leather.svg',
   },
   {
-    title: 'Индивидуальный пошив',
-    description: 'Пошив шуб и пальто на заказ из норки, соболя, каракуля. Три примерки, авторский крой.',
+    title: 'Индивидуальный пошив шуб',
+    description: 'Пошив шуб на заказ из норки, соболя, каракуля. Три примерки, авторский крой.',
     image: '/images/uslugi-poshiv-new.jpg',
     href: '/uslugi/poshiv-shub',
-    icon: '/icons/services/sewing.svg',
+  },
+  {
+    title: 'Пошив пальто на заказ',
+    description: 'Индивидуальный пошив пальто из кашемира и шерсти. Любой фасон, меховая отделка, гарантия 2 года.',
+    image: '/images/palto-gallery/0220038.jpg',
+    href: '/uslugi/poshiv-palto',
+  },
+  {
+    title: 'Пошив изделий из кожи',
+    description: 'Куртки, пальто, жилеты и дублёнки на заказ из итальянской кожи. Более 30 мерок, примерки.',
+    image: '/images/uslugi-kozha/poshiv-kozha-01.jpg',
+    href: '/uslugi/poshiv-kozhi',
   },
   {
     title: 'Меховой холодильник',
     description: 'Хранение шуб при +5°C и влажности 50–60%. Защита от моли, страховка, курьер по Москве.',
     image: '/images/uslugi-holodilnik.jpg',
     href: '/uslugi/mehovoj-holodilnik',
-    icon: '/icons/services/storage.svg',
   },
   {
     title: 'Окрашивание меха',
     description: 'Покраска шубы из норки и других мехов. Полное окрашивание, тонирование, эффект омбре.',
     image: '/images/uslugi-okrashivanie.jpg',
     href: '/uslugi/okrashivanie',
-    icon: '/icons/services/coloring.svg',
   },
   {
     title: 'Химчистка',
     description: 'Профессиональная чистка меховых и кожаных изделий. Удаление загрязнений, антимольная обработка.',
     image: '/images/uslugi-himchistka-new.webp',
     href: '/uslugi/himchistka',
-    icon: '/icons/services/cleaning.svg',
   },
   {
     title: 'Перекрой шубы',
     description: 'Новый фасон из старой шубы — перешив, укорачивание, модернизация. Полный и частичный перекрой.',
     image: '/images/uslugi-perekroj.jpg',
     href: '/uslugi/perekroj',
-    icon: '/icons/services/repair.svg',
   },
   {
     title: 'Ремонт пальто',
     description: 'Реставрация шерстяных, кашемировых и драповых пальто. Замена подкладки, ремонт швов.',
     image: '/images/product-palto.webp',
     href: '/uslugi/remont-palto',
-    icon: '/icons/services/sewing.svg',
   },
   {
     title: 'Ремонт брендовой одежды',
     description: 'Moncler, Max Mara, Burberry — работаем с люксовыми брендами. Оригинальная фурнитура.',
     image: '/images/uslugi-brendovaya.webp',
     href: '/uslugi/remont-brendovoj-odezhdy',
-    icon: '/icons/services/leather.svg',
   },
 ]
 
@@ -135,12 +138,7 @@ export default function UslugiPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-8">
-                      {service.icon && (
-                        <div className="w-14 h-14 bg-white/15 backdrop-blur-sm rounded-sm flex items-center justify-center mb-4">
-                          <img src={service.icon} alt="" className="w-8 h-8 brightness-0 invert" />
-                        </div>
-                      )}
-                      <h2 className="font-serif text-2xl text-white mb-2 leading-tight">
+                                            <h2 className="font-serif text-2xl text-white mb-2 leading-tight">
                         {service.title}
                       </h2>
                       <p className="text-white/70 text-sm leading-relaxed">

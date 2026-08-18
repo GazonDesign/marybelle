@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import SobolinyeFAQ from './SobolinyeFAQ'
+import PriceText from '@/components/ui/PriceText'
 
 export const metadata = {
   title: 'Ремонт шуб из соболя в Москве — Реставрация',
@@ -13,7 +14,7 @@ export const metadata = {
     title: 'Ремонт шуб из соболя в Москве — Реставрация',
     description: 'Ремонт шуб из соболя в Москве: реставрация соболиного меха, замена подкладки, восстановление мездры. Бережный ремонт дорогих изделий.',
     url: 'https://mary-belle.ru/uslugi/remont-shub/sobolinye',
-    images: [{ url: '/images/gov-import/modeli/russkij-sobol.jpg' }],
+    images: [{ url: '/images/og/sobol.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -45,13 +46,13 @@ const features = [
 ]
 
 const prices = [
-  { label: 'Зашить разрыв мездры', price: 'от 2 000 \u20BD' },
-  { label: 'Заплатка из соболя (подбор меха)', price: 'от 8 000 \u20BD' },
-  { label: 'Замена секции меха', price: 'от 15 000 \u20BD' },
-  { label: 'Замена подкладки (итальянский шёлк)', price: 'от 25 000 \u20BD' },
-  { label: 'Укрепление мездры (сетка)', price: 'от 5 000 \u20BD' },
-  { label: 'Полная реставрация', price: 'от 40 000 \u20BD' },
-  { label: 'Тонирование меха', price: 'от 12 000 \u20BD' },
+  { label: 'Зашить разрыв мездры', price: '~~от 2 900 \u20BD~~ от 2 000 \u20BD' },
+  { label: 'Заплатка из соболя (подбор меха)', price: '~~от 11 500 \u20BD~~ от 8 000 \u20BD' },
+  { label: 'Замена секции меха', price: '~~от 21 500 \u20BD~~ от 15 000 \u20BD' },
+  { label: 'Замена подкладки (итальянский шёлк)', price: '~~от 35 500 \u20BD~~ от 25 000 \u20BD' },
+  { label: 'Укрепление мездры (сетка)', price: '~~от 7 000 \u20BD~~ от 5 000 \u20BD' },
+  { label: 'Полная реставрация', price: '~~от 57 000 \u20BD~~ от 40 000 \u20BD' },
+  { label: 'Тонирование меха', price: '~~от 17 000 \u20BD~~ от 12 000 \u20BD' },
 ]
 
 const trustStats = [
@@ -71,7 +72,7 @@ export default function RemontSobolinyePage() {
         <section className="relative h-[80vh] min-h-[550px] w-full overflow-hidden">
           <div
             className="absolute inset-0 parallax-bg"
-            style={{ backgroundImage: 'url(/images/gov-import/modeli/russkij-sobol.jpg)' }}
+            style={{ backgroundImage: 'url(/images/remont-sobol-hero.jpg)' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           <div className="relative z-10 h-full flex flex-col justify-end pb-14 px-6 text-center">
@@ -359,7 +360,7 @@ export default function RemontSobolinyePage() {
               {prices.map((item, i) => (
                 <div key={i} className="flex justify-between items-center py-5 border-b border-border-light">
                   <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
+                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4"><PriceText price={item.price} /></span>
                 </div>
               ))}
               <p className="mt-6 text-sm text-text-muted">
@@ -423,15 +424,12 @@ export default function RemontSobolinyePage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10">Другие услуги для соболиных шуб</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: 'Химчистка соболиной шубы', href: '/uslugi/himchistka', icon: '/icons/services/cleaning.svg' },
-                { title: 'Окрашивание меха соболя', href: '/uslugi/okrashivanie', icon: '/icons/services/coloring.svg' },
-                { title: 'Хранение в холодильнике', href: '/uslugi/mehovoj-holodilnik', icon: '/icons/services/storage.svg' },
+                { title: 'Химчистка соболиной шубы', href: '/uslugi/himchistka' },
+                { title: 'Окрашивание меха соболя', href: '/uslugi/okrashivanie' },
+                { title: 'Хранение в холодильнике', href: '/uslugi/mehovoj-holodilnik' },
               ].map((s) => (
                 <Link key={s.href} href={s.href} className="group p-8 border border-border-light bg-white hover:border-brand transition-colors">
-                  <div className="w-10 h-10 mb-4 flex items-center justify-center bg-brand/10 rounded-sm">
-                    <img src={s.icon} alt="" className="w-5 h-5 opacity-60" />
-                  </div>
-                  <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
+                                    <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
                   <span className="inline-flex items-center gap-2 text-text-muted text-sm mt-3 group-hover:text-brand group-hover:gap-4 transition-all duration-300">
                     Подробнее <span>&rarr;</span>
                   </span>

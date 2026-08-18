@@ -11,7 +11,7 @@ export const metadata = {
     title: 'Покраска шубы из норки — Окрашивание в Москве',
     description: 'Покраска шубы из норки в Москве — профессиональное окрашивание меха без потери качества. Покрасить шубу в Москве: обновление цвета, тонирование, омбре. Ателье Mary Belle, м. Войковская.',
     url: 'https://mary-belle.ru/uslugi/okrashivanie',
-    images: [{ url: '/images/uslugi-okrashivanie-hero.webp' }],
+    images: [{ url: '/images/og/okrashivanie.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -31,11 +31,10 @@ export default function OkrashivaniePage() {
         { title: 'Стойкие красители', description: 'Европейские составы — цвет держится несколько сезонов.' },
       ]}
       prices={[
-        { label: 'Окрашивание шубы (полное)', price: 'от 12 000 ₽' },
-        { label: 'Тонирование', price: 'от 8 000 ₽' },
-        { label: 'Окрашивание жилета', price: 'от 7 000 ₽' },
-        { label: 'Окрашивание воротника / манжет', price: 'от 3 000 ₽' },
-        { label: 'Окрашивание кожаных элементов', price: 'от 4 000 ₽' },
+        { label: 'Окрашивание шубы (полное)', price: '~~от 71 500 ₽~~ от 50 000 ₽' },
+        { label: 'Тонирование', price: '~~от 21 500 ₽~~ от 15 000 ₽' },
+        { label: 'Окрашивание жилета', price: '~~от 43 000 ₽~~ от 30 000 ₽' },
+        { label: 'Окрашивание кожаных элементов', price: '~~от 5 500 ₽~~ от 4 000 ₽' },
       ]}
       galleryAspect="5/4"
       gallery={[

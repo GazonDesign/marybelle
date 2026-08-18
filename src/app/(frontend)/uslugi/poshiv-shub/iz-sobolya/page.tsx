@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import SobolyaFAQ from './SobolyaFAQ'
+import PriceText from '@/components/ui/PriceText'
 
 export const metadata = {
   title: 'Пошив шуб из соболя на заказ — Цены, Москва',
@@ -13,7 +14,7 @@ export const metadata = {
     title: 'Пошив шуб из соболя на заказ — Цены, Москва',
     description: 'Пошив шубы из соболя на заказ в Москве. Русский и канадский соболь, индивидуальный крой, три примерки. Меховое ателье Mary Belle — шубы из соболя от 350 000 ₽.',
     url: 'https://mary-belle.ru/uslugi/poshiv-shub/iz-sobolya',
-    images: [{ url: '/images/gov-import/modeli/russkij-sobol.jpg' }],
+    images: [{ url: '/images/og/sobol.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -46,11 +47,11 @@ const processSteps = [
 ]
 
 const prices = [
-  { label: 'Шуба из соболя, короткая (70 см)', price: 'от 350 000 ₽', pelts: '30–40 шкурок' },
-  { label: 'Шуба из соболя, до колена (90 см)', price: 'от 500 000 ₽', pelts: '50–60 шкурок' },
-  { label: 'Шуба из соболя, длинная (110 см)', price: 'от 700 000 ₽', pelts: '70–80 шкурок' },
-  { label: 'Жилет из соболя', price: 'от 180 000 ₽', pelts: '15–25 шкурок' },
-  { label: 'Соболиный воротник / палантин', price: 'от 80 000 ₽', pelts: '5–10 шкурок' },
+  { label: 'Шуба из соболя, короткая (70 см)', price: '~~от 514 500 ₽~~ от 360 000 ₽', pelts: '30–40 шкурок' },
+  { label: 'Шуба из соболя, до колена (90 см)', price: '~~от 728 500 ₽~~ от 510 000 ₽', pelts: '50–60 шкурок' },
+  { label: 'Шуба из соболя, длинная (110 см)', price: '~~от 1 014 500 ₽~~ от 710 000 ₽', pelts: '70–80 шкурок' },
+  { label: 'Жилет из соболя', price: '~~от 271 500 ₽~~ от 190 000 ₽', pelts: '15–25 шкурок' },
+  { label: 'Соболиный воротник / палантин', price: '~~от 128 500 ₽~~ от 90 000 ₽', pelts: '5–10 шкурок' },
   { label: 'Пошив по эскизу заказчика', price: 'индивидуально', pelts: 'рассчитаем при встрече' },
 ]
 
@@ -77,10 +78,11 @@ const careFeatures = [
 ]
 
 const galleryImages = [
-  { src: '/images/gov-import/modeli/russkij-sobol.jpg', alt: 'Шуба из русского соболя — пошив на заказ' },
-  { src: '/images/gov-import/modeli/sobol-e1746367903636.jpg', alt: 'Соболиная шуба — вид сзади' },
-  { src: '/images/gov-import/proizvodstvo/img_7184-kopiya.jpg', alt: 'Мастерская пошива — ателье Mary Belle' },
-  { src: '/images/gov-import/modeli/prima.jpg', alt: 'Модель Прима — меховое ателье Mary Belle' },
+  { src: '/images/poshiv-sobol/01.jpg', alt: 'Соболиная шуба с горизонтальными панелями — пошив на заказ' },
+  { src: '/images/poshiv-sobol/02.jpg', alt: 'Кейп из лисы — индивидуальный пошив Mary Belle' },
+  { src: '/images/poshiv-sobol/03.jpg', alt: 'Шуба из соболя на модели — работа ателье' },
+  { src: '/images/poshiv-sobol/04.jpg', alt: 'Соболиная шуба — пошив на заказ в Москве' },
+  { src: '/images/poshiv-sobol/05.jpg', alt: 'Готовая соболиная шуба на модели — Mary Belle' },
 ]
 
 export default function PoshivSobolyaPage() {
@@ -374,12 +376,14 @@ export default function PoshivSobolyaPage() {
                 <div key={i} className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 py-5 border-b border-border-light items-center">
                   <span className="text-text-body font-medium sm:font-normal">{item.label}</span>
                   <span className="text-text-muted text-sm sm:text-center">{item.pelts}</span>
-                  <span className="text-brand font-medium tracking-wide sm:text-right">{item.price}</span>
+                  <span className="text-brand font-medium tracking-wide sm:text-right"><PriceText price={item.price} /></span>
                 </div>
               ))}
               <p className="mt-6 text-sm text-text-muted">
-                * Точная стоимость рассчитывается после консультации и выбора меха. Стоимость включает
-                все этапы работы: подбор шкурок, эскиз, крой, три примерки и финишную обработку.
+                *Рекламный прайс — не публичная оферта, требуется консультация специалиста.{' '}
+                <a href="tel:+74952254444" className="underline hover:text-brand transition-colors">
+                  Записаться на консультацию
+                </a>
               </p>
             </div>
           </div>

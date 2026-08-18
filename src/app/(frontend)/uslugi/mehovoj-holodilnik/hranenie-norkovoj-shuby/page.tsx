@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import CrossSellBanner from '@/components/ui/CrossSellBanner'
 import FadeIn from '@/components/ui/FadeIn'
+import PriceText from '@/components/ui/PriceText'
 
 export const metadata = {
   title: 'Хранение норковой шубы — от 2 450 ₽/мес',
@@ -14,15 +15,15 @@ export const metadata = {
     title: 'Хранение норковой шубы — от 2 450 ₽/мес',
     description: 'Профессиональное хранение норковой шубы в меховом холодильнике +4°C. Влажность 55% сохраняет блеск норки. Страховка, антимоль, курьер. Фабрика с 1870 года.',
     url: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik/hranenie-norkovoj-shuby',
-    images: [{ url: '/images/holodilnik/hero-new.jpg' }],
+    images: [{ url: '/images/og/holodilnik.jpg', width: 1200, height: 630 }],
   },
 }
 
 const prices = [
-  { label: 'Норка (все виды)', price: '2 450 ₽/мес' },
+  { label: 'Норка (все виды)', price: '~~3 300 ₽/мес~~ 2 450 ₽/мес' },
   { label: 'Скидка при оплате за 6 месяцев', price: '−10%' },
   { label: 'Скидка при оплате за год', price: '−20%' },
-  { label: 'Химчистка перед хранением', price: 'от 4 000 ₽' },
+  { label: 'Химчистка перед хранением', price: '~~от 5 500 ₽~~ от 4 000 ₽' },
   { label: 'Курьер по Москве (от 3 шт)', price: 'бесплатно' },
 ]
 
@@ -31,7 +32,7 @@ const features = [
   { title: 'Антимольная обработка', description: 'Обработка безопасным препаратом, который уничтожает личинки моли и предотвращает повторное заражение.' },
   { title: 'Анатомические вешалки', description: 'Норковая шуба хранится на широкой вешалке по размеру — плечи не деформируются, мех не заминается.' },
   { title: 'Фотофиксация при приёмке', description: 'Фотографируем изделие при приёмке и выдаче — полная прозрачность и контроль состояния.' },
-  { title: 'Страховка на полную стоимость', description: 'Каждое изделие застраховано на заявленную стоимость. Вы ни чем не рискуете.' },
+  { title: 'Страховка на полную стоимость', description: 'Каждое изделие застраховано на заявленную стоимость. Вы ничем не рискуете.' },
   { title: 'Охрана 24/7 + генератор', description: 'Круглосуточная охрана, контроль доступа и резервный генератор — холодильник работает даже при отключении электричества.' },
 ]
 
@@ -125,7 +126,7 @@ export default function HranenieNorkovojShubyPage() {
               areaServed: { '@type': 'City', name: 'Москва' },
               offers: {
                 '@type': 'Offer',
-                price: '2450',
+                price: '~~3 500~~ 2450',
                 priceCurrency: 'RUB',
                 unitText: 'месяц',
               },
@@ -313,7 +314,7 @@ export default function HranenieNorkovojShubyPage() {
               {prices.map((item, i) => (
                 <div key={i} className={`flex justify-between items-center px-6 py-5 ${i % 2 === 0 ? 'bg-white' : 'bg-bg-light'}`}>
                   <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
+                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4"><PriceText price={item.price} /></span>
                 </div>
               ))}
               <p className="mt-6 text-sm text-text-muted">
@@ -377,15 +378,12 @@ export default function HranenieNorkovojShubyPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10">Другие услуги для норковых шуб</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: 'Химчистка', href: '/uslugi/himchistka', icon: '/icons/services/cleaning.svg' },
-                { title: 'Ремонт шуб', href: '/uslugi/remont-shub', icon: '/icons/services/repair.svg' },
-                { title: 'Перекрой', href: '/uslugi/perekroj', icon: '/icons/services/sewing.svg' },
+                { title: 'Химчистка', href: '/uslugi/himchistka' },
+                { title: 'Ремонт шуб', href: '/uslugi/remont-shub' },
+                { title: 'Перекрой', href: '/uslugi/perekroj' },
               ].map((s) => (
                 <Link key={s.href} href={s.href} className="group p-8 border border-border-light bg-white hover:border-brand transition-colors">
-                  <div className="w-10 h-10 mb-4 flex items-center justify-center bg-brand/10 rounded-sm">
-                    <img src={s.icon} alt="" className="w-5 h-5 opacity-60" />
-                  </div>
-                  <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
+                                    <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
                   <span className="inline-flex items-center gap-2 text-text-muted text-sm mt-3 group-hover:text-brand group-hover:gap-4 transition-all duration-300">
                     Подробнее <span>&rarr;</span>
                   </span>

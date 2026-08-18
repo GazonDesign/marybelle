@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import NorkovyeFAQ from './NorkovyeFAQ'
+import PriceText from '@/components/ui/PriceText'
 
 export const metadata = {
   title: 'Ремонт норковых шуб в Москве — Реставрация',
@@ -13,7 +14,7 @@ export const metadata = {
     title: 'Ремонт норковых шуб в Москве — Реставрация',
     description: 'Ремонт норковых шуб в Москве: зашить разрыв, заменить подкладку, восстановить мездру. Ремонт шубы из норки любой сложности. Ателье Mary Belle — от 1 500 ₽, гарантия 1 год.',
     url: 'https://mary-belle.ru/uslugi/remont-shub/norkovye',
-    images: [{ url: '/images/uslugi-remont-mehov-hero.webp' }],
+    images: [{ url: '/images/og/remont-shub.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -63,19 +64,19 @@ const problems = [
 ]
 
 const prices = [
-  { label: 'Зашить разрыв по шву', price: 'от 1 500 ₽' },
-  { label: 'Зашить разрыв мездры (2–10 см)', price: 'от 2 500 ₽' },
-  { label: 'Заплатка из норки (подбор в тон)', price: 'от 3 500 ₽' },
-  { label: 'Устранить потёртости на рукавах', price: 'от 5 000 ₽' },
-  { label: 'Замена секции меха', price: 'от 8 000 ₽' },
-  { label: 'Замена подкладки (без утеплителя)', price: '15 000 ₽' },
-  { label: 'Замена подкладки (с утеплителем)', price: 'от 20 000 ₽' },
-  { label: 'Замена крючков (за штуку)', price: '1 500 ₽' },
-  { label: 'Укоротить низ', price: 'от 13 000 ₽' },
-  { label: 'Укоротить / удлинить рукава', price: 'от 5 800 ₽' },
-  { label: 'Ремонт карманов', price: '7 800 ₽' },
-  { label: 'Ушить плечевой шов', price: 'от 3 800 ₽' },
-  { label: 'Полная реставрация норковой шубы', price: 'от 25 000 ₽' },
+  { label: 'Зашить разрыв по шву', price: '~~от 2 100 ₽~~ от 1 500 ₽' },
+  { label: 'Зашить разрыв мездры (2–10 см)', price: '~~от 3 600 ₽~~ от 2 500 ₽' },
+  { label: 'Заплатка из норки (подбор в тон)', price: '~~от 5 000 ₽~~ от 3 500 ₽' },
+  { label: 'Устранить потёртости на рукавах', price: '~~от 7 000 ₽~~ от 5 000 ₽' },
+  { label: 'Замена секции меха', price: '~~от 11 500 ₽~~ от 8 000 ₽' },
+  { label: 'Замена подкладки (без утеплителя)', price: '~~21 500 ₽~~ 15 000 ₽' },
+  { label: 'Замена подкладки (с утеплителем)', price: '~~от 28 500 ₽~~ от 20 000 ₽' },
+  { label: 'Замена крючков (за штуку)', price: '~~2 100 ₽~~ 1 500 ₽' },
+  { label: 'Укоротить низ', price: '~~от 18 500 ₽~~ от 13 000 ₽' },
+  { label: 'Укоротить / удлинить рукава', price: '~~от 8 500 ₽~~ от 5 800 ₽' },
+  { label: 'Ремонт карманов', price: '~~11 000 ₽~~ 7 800 ₽' },
+  { label: 'Ушить плечевой шов', price: '~~от 5 500 ₽~~ от 3 800 ₽' },
+  { label: 'Полная реставрация норковой шубы', price: '~~от 35 500 ₽~~ от 25 000 ₽' },
 ]
 
 const trustStats = [
@@ -312,18 +313,18 @@ export default function RemontNorkovyePage() {
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-3">Примеры работ</h2>
             <p className="text-text-muted mb-8">Реальные результаты ремонта в нашем ателье</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {[
-                { src: '/images/gov-import/remont-do-posle/remont-shub.jpg', alt: 'Ремонт норковой шубы — восстановление мездры' },
-                { src: '/images/gov-import/remont-do-posle/remont-shub-1.jpg', alt: 'Реставрация норки — результат работы' },
-                { src: '/images/gov-import/remont-do-posle/restovratsiya.jpg', alt: 'Полная реставрация норковой шубы' },
-                { src: '/images/gov-import/remont-do-posle/remont26.jpg', alt: 'Ремонт норковой шубы — ателье Mary Belle' },
+                { src: '/images/remont-norka/01-remont-wide.jpg', alt: 'Ремонт норковой шубы — до и после' },
+                { src: '/images/remont-norka/02-banner-razryv.jpg', alt: 'Зашить разрыв на норковой шубе — результат ремонта' },
+                { src: '/images/remont-norka/03-podmyshki.jpg', alt: 'Ремонт подмышек норковой шубы — до и после' },
+                { src: '/images/remont-norka/04-razryv.jpg', alt: 'Ремонт разрыва норковой шубы — ателье Mary Belle' },
               ].map((img, i) => (
                 <div key={i} className="overflow-hidden group">
                   <img
                     src={img.src}
                     alt={img.alt}
-                    className="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               ))}
@@ -410,7 +411,7 @@ export default function RemontNorkovyePage() {
               {prices.map((item, i) => (
                 <div key={i} className="flex justify-between items-center py-5 border-b border-border-light">
                   <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">{item.price}</span>
+                  <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4"><PriceText price={item.price} /></span>
                 </div>
               ))}
               <p className="mt-6 text-sm text-text-muted">
@@ -474,15 +475,12 @@ export default function RemontNorkovyePage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10">Другие услуги для норковых шуб</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: 'Химчистка шубы из норки', href: '/uslugi/himchistka', icon: '/icons/services/cleaning.svg' },
-                { title: 'Окрашивание норки', href: '/uslugi/okrashivanie', icon: '/icons/services/coloring.svg' },
-                { title: 'Хранение в холодильнике', href: '/uslugi/mehovoj-holodilnik', icon: '/icons/services/storage.svg' },
+                { title: 'Химчистка шубы из норки', href: '/uslugi/himchistka' },
+                { title: 'Окрашивание норки', href: '/uslugi/okrashivanie' },
+                { title: 'Хранение в холодильнике', href: '/uslugi/mehovoj-holodilnik' },
               ].map((s) => (
                 <Link key={s.href} href={s.href} className="group p-8 border border-border-light bg-white hover:border-brand transition-colors">
-                  <div className="w-10 h-10 mb-4 flex items-center justify-center bg-brand/10 rounded-sm">
-                    <img src={s.icon} alt="" className="w-5 h-5 opacity-60" />
-                  </div>
-                  <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
+                                    <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
                   <span className="inline-flex items-center gap-2 text-text-muted text-sm mt-3 group-hover:text-brand group-hover:gap-4 transition-all duration-300">
                     Подробнее <span>&rarr;</span>
                   </span>

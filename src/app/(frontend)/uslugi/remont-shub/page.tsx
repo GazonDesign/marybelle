@@ -3,6 +3,9 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import RemontShubFAQ from './RemontShubFAQ'
 import RemontShubGallery from './RemontShubGallery'
+import SeasonalBanner from '@/components/ui/SeasonalBanner'
+import { getSeasonalBanner } from '@/lib/strapi'
+import PriceText, { payPart } from '@/components/ui/PriceText'
 
 export const metadata = {
   title: 'Ремонт шуб в Москве — Реставрация норковых шуб',
@@ -14,7 +17,7 @@ export const metadata = {
     title: 'Ремонт шуб в Москве — Реставрация норковых шуб',
     description: 'Ремонт шуб в Москве любой сложности: ремонт шубы из норки, реставрация меховых изделий, перекрой и перешив. Меховое ателье Mary Belle — мастера с опытом 15+ лет, гарантия на работы. М. Войковская.',
     url: 'https://mary-belle.ru/uslugi/remont-shub',
-    images: [{ url: '/images/uslugi-remont-mehov-hero.webp' }],
+    images: [{ url: '/images/og/remont-shub.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -27,19 +30,56 @@ const features = [
   { title: 'Укрепление плеч', description: 'Замена и укрепление плечевых швов, подплечников.' },
 ]
 
-const prices = [
-  { label: 'Замена подкладки без утеплителя', price: '15 000 ₽' },
-  { label: 'Замена подкладки с утеплителем', price: 'от 20 000 ₽' },
-  { label: 'Зашить разрыв (2–10 см)', price: 'от 1 500 ₽' },
-  { label: 'Поставить заплатку (4×4–8×8 см)', price: 'от 3 500 ₽' },
-  { label: 'Замена крючка шубного', price: '1 500 ₽' },
-  { label: 'Укоротить / удлинить низ', price: 'от 13 000 ₽' },
-  { label: 'Укоротить / удлинить рукава', price: 'от 5 800 ₽' },
-  { label: 'Реставрация карманов', price: '7 800 ₽' },
-  { label: 'Ушить плечевой шов', price: 'от 3 800 ₽' },
+const ateliers = [
+  {
+    title: 'Специализированное меховое ателье',
+    subtitle: 'Лучший выбор',
+    badge: 'Рекомендуем',
+    isPrimary: true,
+    rows: [
+      { label: 'Оборудование', text: 'Скорняжные машинки, профессиональные ножи и барабаны для чистки.' },
+      { label: 'Команда', text: 'Над изделием работают дизайнер, конструктор и скорняк.' },
+      { label: 'Гарантия', text: 'Дают письменную гарантию на работу и отвечают за результат.' },
+      { label: 'Результат', text: 'Делают даже сложный раскрой («поперечку»), подбирают идеальную фурнитуру.' },
+    ],
+    note: 'Дороже и дольше, чем в обычной мастерской.',
+  },
+  {
+    title: 'Общее швейное ателье',
+    subtitle: 'Для простых задач',
+    rows: [
+      { label: 'Оборудование', text: 'Обычные швейные машины, не для меха.' },
+      { label: 'Компетенции', text: 'Мастер может быть отличным портным по тканям, но мех — специфичный материал.' },
+      { label: 'Результат', text: 'Укоротить рукава, подшить подкладку, ушить шубу по бокам.' },
+    ],
+    note: 'Сложный перекрой или смену фасона лучше не доверять.',
+  },
+  {
+    title: 'Частный мастер с Авито',
+    subtitle: 'Рискованный вариант',
+    rows: [
+      { label: 'Оборудование', text: 'Обычно работают дома на бытовой машинке.' },
+      { label: 'Гарантии', text: 'Никаких. Если что-то пойдёт не так — претензию предъявить некому.' },
+      { label: 'Результат', text: 'Подойдёт, только если шуба не представляет ценности и вы готовы к экспериментам ради экономии.' },
+    ],
+    note: 'Главный риск — испортить дорогое изделие безвозвратно.',
+  },
 ]
 
-export default function RemontShubPage() {
+const prices = [
+  { label: 'Замена подкладки без утеплителя', price: '~~21 500 ₽~~ 15 000 ₽' },
+  { label: 'Замена подкладки с утеплителем', price: '~~от 28 500 ₽~~ от 20 000 ₽' },
+  { label: 'Зашить разрыв (2–10 см)', price: '~~от 2 100 ₽~~ от 1 500 ₽' },
+  { label: 'Поставить заплатку (4×4–8×8 см)', price: '~~от 5 000 ₽~~ от 3 500 ₽' },
+  { label: 'Замена крючка шубного', price: '~~2 100 ₽~~ 1 500 ₽' },
+  { label: 'Укоротить / удлинить низ', price: '~~от 18 500 ₽~~ от 13 000 ₽' },
+  { label: 'Укоротить / удлинить рукава', price: '~~от 8 500 ₽~~ от 5 800 ₽' },
+  { label: 'Реставрация карманов', price: '~~11 000 ₽~~ 7 800 ₽' },
+  { label: 'Ушить плечевой шов', price: '~~от 5 500 ₽~~ от 3 800 ₽' },
+]
+
+export default async function RemontShubPage() {
+  const sb = await getSeasonalBanner()
   return (
     <>
       <Header />
@@ -53,16 +93,33 @@ export default function RemontShubPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           <div className="relative z-10 h-full flex flex-col justify-end pb-14 px-6 text-center">
             <span className="inline-block mb-3 text-sm md:text-base tracking-[0.3em] font-light uppercase text-white/60">
-              Реставрация любой сложности
+              Лето — выгоднее · Фабрика с 1870 года
             </span>
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-tight">
               Ремонт шуб в Москве — Меховое ателье Mary Belle
             </h1>
-            <p className="mt-4 text-white/70 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto">
-              Ремонт норковых шуб, реставрация меха, перекрой — мастера с опытом 15+ лет
+            <p className="mt-5 text-white/80 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+              Отремонтируем и до зимы сохраним в меховом холодильнике. Заберём бесплатно.
             </p>
+            <div className="mt-5 flex justify-center">
+              <span className="inline-flex items-center px-5 py-2.5 rounded-full border border-brand/60 bg-black/40 backdrop-blur-md text-white text-sm md:text-base font-serif tracking-wide text-center">
+                Ремонт от 3 500 ₽ · Диагностика бесплатно · Гарантия 2 года
+              </span>
+            </div>
           </div>
         </section>
+
+        {/* Летняя секция-баннер (под хиро) */}
+        {sb.enabled && (
+          <SeasonalBanner
+            eyebrow={sb.eyebrow}
+            title="Лето — лучшее время для ремонта шубы"
+            text="Без очередей и спешки. Отремонтируем и до зимы сохраним в меховом холодильнике."
+            chips={['от 3 500 ₽', 'Диагностика бесплатно', 'Гарантия 2 года']}
+            ctaLabel="Записаться на диагностику"
+            ctaHref="#zapis"
+          />
+        )}
 
         {/* Breadcrumbs + Schema */}
         <script
@@ -94,8 +151,9 @@ export default function RemontShubPage() {
               },
               areaServed: { '@type': 'City', name: 'Москва' },
               offers: prices.map((p) => {
-                const numeric = p.price.replace(/[^\d]/g, '')
-                const isFrom = /^от\s/i.test(p.price.trim())
+                const pay = payPart(p.price)
+                const numeric = pay.replace(/[^\d]/g, '')
+                const isFrom = /^от\s/i.test(pay.trim())
                 if (isFrom) {
                   return {
                     '@type': 'Offer',
@@ -117,6 +175,33 @@ export default function RemontShubPage() {
             <span className="text-text-primary">Ремонт шуб</span>
           </div>
         </div>
+
+        {/*
+          Порядок секций (20.07.2026): фото работ → цены → тексты.
+          Раньше цены стояли на 9-м экране из 14 (за четырьмя текстовыми
+          статьями), и поисковый трафик уходил с отказами до 58%: человек
+          искал «ремонт шуб цена» и не находил ответа. Тексты остались —
+          они кормят SEO — но переехали ниже дела.
+        */}
+
+        {/* Gallery — первой */}
+        <RemontShubGallery />
+
+        {/* Prices — сразу после работ */}
+        <section className="py-20 md:py-28">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+            <h2 className="font-serif text-3xl md:text-4xl text-black mb-12">Стоимость ремонта шуб</h2>
+            <div className="max-w-2xl">
+              {prices.map((item, i) => (
+                <div key={i} className="flex justify-between items-center py-5 border-b border-border-light">
+                  <span className="text-text-body">{item.label}</span>
+                  <span className="text-brand font-medium tracking-wide"><PriceText price={item.price} /></span>
+                </div>
+              ))}
+              <p className="mt-6 text-sm text-text-muted">* Точная стоимость определяется после осмотра изделия мастером</p>
+            </div>
+          </div>
+        </section>
 
         {/* Intro */}
         <section className="py-20 md:py-28">
@@ -173,9 +258,6 @@ export default function RemontShubPage() {
           </div>
         </section>
 
-        {/* Gallery */}
-        <RemontShubGallery />
-
         {/* Features */}
         <section className="py-20 md:py-28 bg-bg-warm">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12">
@@ -195,8 +277,62 @@ export default function RemontShubPage() {
           </div>
         </section>
 
+        {/* Atelier comparison — закрытие возражения «почему вы дороже» */}
+        <section className="py-20 md:py-28">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+            <h2 className="font-serif text-3xl md:text-4xl text-black mb-3">
+              Как выбрать ателье для ремонта шубы
+            </h2>
+            <p className="text-text-muted mb-12 max-w-2xl text-lg leading-relaxed">
+              От того, куда вы обратитесь, напрямую зависит — будете рады результату или разочарованы.
+              Есть три уровня мастерских, разберём каждый.
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {ateliers.map((a, i) => (
+                <div
+                  key={i}
+                  className={`relative p-8 border ${
+                    a.isPrimary
+                      ? 'bg-brand/5 border-brand shadow-sm'
+                      : 'bg-white border-border-light'
+                  }`}
+                >
+                  {a.badge && (
+                    <span className="absolute -top-3 left-6 px-3 py-1 bg-brand text-white text-xs uppercase tracking-widest">
+                      {a.badge}
+                    </span>
+                  )}
+                  <span className="block text-xs uppercase tracking-widest text-text-muted">
+                    {a.subtitle}
+                  </span>
+                  <h3 className="font-serif text-2xl text-black mt-2 mb-6">{a.title}</h3>
+                  <ul className="space-y-4">
+                    {a.rows.map((r, j) => (
+                      <li key={j}>
+                        <span className="block text-xs uppercase tracking-widest text-brand/80 mb-1">
+                          {r.label}
+                        </span>
+                        <span className="text-text-body text-sm leading-relaxed">{r.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-6 pt-6 border-t border-border-light text-text-muted text-xs italic leading-relaxed">
+                    {a.note}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-10 text-center text-text-muted">
+              Mary Belle — специализированное меховое ателье с 1870 года.{' '}
+              <Link href="/o-fabrike" className="text-brand hover:underline">
+                О нашем производстве →
+              </Link>
+            </p>
+          </div>
+        </section>
+
         {/* CTA */}
-        <section className="relative py-20 md:py-28 text-center overflow-hidden">
+        <section id="zapis" className="relative py-20 md:py-28 text-center overflow-hidden scroll-mt-24">
           <div className="absolute inset-0 parallax-bg" style={{ backgroundImage: 'url(/images/gov-import/proizvodstvo/sh-ceh-sh.jpg)' }} />
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 max-w-[800px] mx-auto px-6">
@@ -216,22 +352,6 @@ export default function RemontShubPage() {
           </div>
         </section>
 
-        {/* Prices */}
-        <section className="py-20 md:py-28">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-            <h2 className="font-serif text-3xl md:text-4xl text-black mb-12">Стоимость ремонта шуб</h2>
-            <div className="max-w-2xl">
-              {prices.map((item, i) => (
-                <div key={i} className="flex justify-between items-center py-5 border-b border-border-light">
-                  <span className="text-text-body">{item.label}</span>
-                  <span className="text-brand font-medium tracking-wide">{item.price}</span>
-                </div>
-              ))}
-              <p className="mt-6 text-sm text-text-muted">* Точная стоимость определяется после осмотра изделия мастером</p>
-            </div>
-          </div>
-        </section>
-
         {/* FAQ */}
         <RemontShubFAQ />
 
@@ -241,15 +361,12 @@ export default function RemontShubPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10">Другие услуги</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: 'Ремонт норковых шуб', href: '/uslugi/remont-shub/norkovye', icon: '/icons/services/repair.svg' },
-                { title: 'Ремонт шуб из соболя', href: '/uslugi/remont-shub/sobolinye', icon: '/icons/services/repair.svg' },
-                { title: 'Ремонт кожи и дублёнок', href: '/uslugi/remont-kozhi', icon: '/icons/services/leather.svg' },
+                { title: 'Ремонт норковых шуб', href: '/uslugi/remont-shub/norkovye' },
+                { title: 'Ремонт шуб из соболя', href: '/uslugi/remont-shub/sobolinye' },
+                { title: 'Ремонт кожи и дублёнок', href: '/uslugi/remont-kozhi' },
               ].map((s) => (
                 <Link key={s.href} href={s.href} className="group p-8 border border-border-light hover:border-brand transition-colors">
-                  <div className="w-10 h-10 mb-4 flex items-center justify-center bg-brand/10 rounded-sm">
-                    <img src={s.icon} alt="" className="w-5 h-5 opacity-60" />
-                  </div>
-                  <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
+                                    <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
                   <span className="inline-flex items-center gap-2 text-text-muted text-sm mt-3 group-hover:text-brand group-hover:gap-4 transition-all duration-300">
                     Подробнее <span>&rarr;</span>
                   </span>

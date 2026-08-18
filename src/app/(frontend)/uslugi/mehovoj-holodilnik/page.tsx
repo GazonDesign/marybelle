@@ -4,6 +4,7 @@ import HolodilnikFAQ from './HolodilnikFAQ'
 import Link from 'next/link'
 import CrossSellBanner from '@/components/ui/CrossSellBanner'
 import FadeIn from '@/components/ui/FadeIn'
+import PriceText from '@/components/ui/PriceText'
 
 export const metadata = {
   title: 'Хранение шуб в холодильнике — Цены 2026, Москва',
@@ -15,7 +16,7 @@ export const metadata = {
     title: 'Хранение шуб в холодильнике — Цены 2026, Москва',
     description: 'Хранение шуб в меховом холодильнике в Москве — цена от 5 000 ₽ за сезон. Температура +5°C, влажность 50–60%. Забор и доставка по Москве. Хранение меховых изделий в ателье Mary Belle.',
     url: 'https://mary-belle.ru/uslugi/mehovoj-holodilnik',
-    images: [{ url: '/images/holodilnik/hero-new.jpg' }],
+    images: [{ url: '/images/og/holodilnik.jpg', width: 1200, height: 630 }],
   },
 }
 
@@ -38,21 +39,23 @@ const advantages = [
 const packages = [
   {
     name: 'На месяц',
-    price: 'от 1 150 ₽/мес.',
+    price: '~~от 1 500 ₽/мес.~~ от 1 150 ₽/мес.',
+    priceNote: 'жилет/аксессуары; норковая шуба — 2 450 ₽/мес.',
     features: ['Климат +4°C, влажность 50%', 'Фото-фиксация при приёме', 'Материальная гарантия'],
     highlighted: false,
   },
   {
     name: 'На сезон',
     subtitle: '6 месяцев, апрель–октябрь',
-    price: 'от 6 900 ₽/сезон',
+    price: '~~от 9 000 ₽/сезон~~ от 6 900 ₽/сезон',
+    priceNote: 'жилет/аксессуары; норковая шуба — 14 700 ₽/сезон',
     features: ['Климат +4°C, влажность 50%', 'Фото-фиксация при приёме', 'Материальная гарантия', 'Бесплатный курьер от 3 шуб'],
     highlighted: true,
   },
   {
     name: 'На год',
     subtitle: '12 месяцев, скидка 25%',
-    price: 'от 10 350 ₽/год',
+    price: '~~от 14 000 ₽/год~~ от 10 350 ₽/год',
     features: ['Климат +4°C, влажность 50%', 'Фото-фиксация при приёме', 'Материальная гарантия', 'Бесплатный курьер всегда'],
     highlighted: false,
   },
@@ -60,7 +63,7 @@ const packages = [
 
 const priceTable = [
   { fur: 'Шиншилла', month: '3 200 ₽', season: '19 200 ₽', year: '28 800 ₽' },
-  { fur: 'Соболь', month: '2 900 ₽', season: '17 400 ₽', year: '26 100 ₽' },
+  { fur: 'Соболь', month: '3 200 ₽', season: '19 200 ₽', year: '28 800 ₽' },
   { fur: 'Норка', month: '2 450 ₽', season: '14 700 ₽', year: '22 050 ₽' },
   { fur: 'Лиса / Песец', month: '2 100 ₽', season: '12 600 ₽', year: '18 900 ₽' },
   { fur: 'Бобер / Нерпа', month: '1 750 ₽', season: '10 500 ₽', year: '15 750 ₽' },
@@ -252,7 +255,12 @@ export default function MehovojHolodilnikPage() {
                   <h3 className="font-serif text-2xl text-black mb-1">{pkg.name}</h3>
                   {pkg.subtitle && <p className="text-text-muted text-sm mb-4">{pkg.subtitle}</p>}
                   {!pkg.subtitle && <div className="mb-4" />}
-                  <p className="text-brand text-2xl font-medium mb-6">{pkg.price}</p>
+                  <p className={`text-brand text-2xl font-medium ${'priceNote' in pkg && pkg.priceNote ? 'mb-1' : 'mb-6'}`}><PriceText price={pkg.price} /></p>
+                  {/* «от 1 150» — это цена жилета; без уточнения посетительница
+                      чувствовала себя обманутой, долистав до цены норки */}
+                  {'priceNote' in pkg && pkg.priceNote && (
+                    <p className="text-text-muted text-xs mb-5">{pkg.priceNote}</p>
+                  )}
                   <ul className="space-y-3">
                     {pkg.features.map((f, j) => (
                       <li key={j} className="flex items-start gap-3 text-text-body text-sm">
@@ -286,19 +294,19 @@ export default function MehovojHolodilnikPage() {
               <table className="w-full max-w-4xl mx-auto">
                 <thead>
                   <tr className="border-b-2 border-brand/20">
-                    <th className="text-left py-4 pr-4 font-serif text-lg text-black">Вид меха</th>
-                    <th className="text-right py-4 px-4 text-sm text-text-muted font-medium tracking-wide">Месяц</th>
-                    <th className="text-right py-4 px-4 text-sm text-text-muted font-medium tracking-wide">Сезон (6 мес.)</th>
-                    <th className="text-right py-4 pl-4 text-sm text-text-muted font-medium tracking-wide">Год (−25%)</th>
+                    <th className="text-left py-4 pr-2 sm:pr-4 font-serif text-lg text-black">Вид меха</th>
+                    <th className="text-right py-4 px-2 sm:px-4 text-sm text-text-muted font-medium tracking-wide">Месяц</th>
+                    <th className="text-right py-4 px-2 sm:px-4 text-sm text-text-muted font-medium tracking-wide">Сезон (6 мес.)</th>
+                    <th className="text-right py-4 pl-2 sm:pl-4 text-sm text-text-muted font-medium tracking-wide">Год (−25%)</th>
                   </tr>
                 </thead>
                 <tbody>
                   {priceTable.map((row, i) => (
                     <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-transparent'}>
-                      <td className="py-4 pr-4 text-text-body">{row.fur}</td>
-                      <td className="py-4 px-4 text-right text-text-body whitespace-nowrap">{row.month}</td>
-                      <td className="py-4 px-4 text-right text-brand font-medium whitespace-nowrap">{row.season}</td>
-                      <td className="py-4 pl-4 text-right text-text-body whitespace-nowrap">{row.year}</td>
+                      <td className="py-4 pr-2 sm:pr-4 text-text-body">{row.fur}</td>
+                      <td className="py-4 px-2 sm:px-4 text-right text-text-body whitespace-nowrap">{row.month}</td>
+                      <td className="py-4 px-2 sm:px-4 text-right text-brand font-medium whitespace-nowrap">{row.season}</td>
+                      <td className="py-4 pl-2 sm:pl-4 text-right text-text-body whitespace-nowrap">{row.year}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -323,15 +331,12 @@ export default function MehovojHolodilnikPage() {
             <h2 className="font-serif text-3xl md:text-4xl text-black mb-10">Другие услуги</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: 'Химчистка', href: '/uslugi/himchistka', icon: '/icons/services/cleaning.svg' },
-                { title: 'Ремонт шуб', href: '/uslugi/remont-shub', icon: '/icons/services/repair.svg' },
-                { title: 'Индивидуальный пошив', href: '/uslugi/poshiv-shub', icon: '/icons/services/sewing.svg' },
+                { title: 'Химчистка', href: '/uslugi/himchistka' },
+                { title: 'Ремонт шуб', href: '/uslugi/remont-shub' },
+                { title: 'Индивидуальный пошив', href: '/uslugi/poshiv-shub' },
               ].map((s) => (
                 <Link key={s.href} href={s.href} className="group p-8 border border-border-light bg-white hover:border-brand transition-colors">
-                  <div className="w-10 h-10 mb-4 flex items-center justify-center bg-brand/10 rounded-sm">
-                    <img src={s.icon} alt="" className="w-5 h-5 opacity-60" />
-                  </div>
-                  <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
+                                    <h3 className="font-serif text-xl text-black group-hover:text-brand transition-colors">{s.title}</h3>
                   <span className="inline-flex items-center gap-2 text-text-muted text-sm mt-3 group-hover:text-brand group-hover:gap-4 transition-all duration-300">
                     Подробнее <span>&rarr;</span>
                   </span>

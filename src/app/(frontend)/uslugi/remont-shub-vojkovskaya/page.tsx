@@ -7,6 +7,12 @@ export const metadata = {
   alternates: {
     canonical: 'https://mary-belle.ru/uslugi/remont-shub-vojkovskaya',
   },
+  openGraph: {
+    title: 'Ремонт шуб у метро Войковская — Ателье',
+    description: 'Ремонт шуб у метро Войковская — меховое ателье Mary Belle в 5 минутах от станции. Реставрация, перешив, химчистка.',
+    url: 'https://mary-belle.ru/uslugi/remont-shub-vojkovskaya',
+    images: [{ url: '/images/og/remont-shub.jpg', width: 1200, height: 630 }],
+  },
 }
 
 export default function RemontShubVojkovskayaPage() {
@@ -25,18 +31,14 @@ export default function RemontShubVojkovskayaPage() {
         { title: 'С 1870 года', description: 'Более 150 лет опыта работы с мехом и кожей.' },
       ]}
       prices={[
-        { label: 'Ремонт шубы', price: 'от 2 000 ₽' },
-        { label: 'Перешив / перекрой', price: 'от 15 000 ₽' },
-        { label: 'Химчистка шубы', price: 'от 5 000 ₽' },
-        { label: 'Окрашивание', price: 'от 8 000 ₽' },
-        { label: 'Хранение (сезон)', price: 'от 5 000 ₽' },
+        { label: 'Ремонт шубы', price: '~~от 2 900 ₽~~ от 2 000 ₽' },
+        { label: 'Перешив / перекрой', price: '~~от 21 500 ₽~~ от 15 000 ₽' },
+        { label: 'Химчистка шубы', price: '~~от 7 000 ₽~~ от 5 000 ₽' },
+        { label: 'Окрашивание', price: '~~от 11 500 ₽~~ от 8 000 ₽' },
+        { label: 'Хранение (сезон)', price: '~~от 6 500 ₽~~ от 5 000 ₽' },
       ]}
       gallery={[
-        { src: '/images/gov-import/proizvodstvo/img_7184-kopiya.jpg', alt: 'Мастерская мехового ателье Mary Belle' },
-        { src: '/images/gov-import/proizvodstvo/img_7185-kopiya-1.jpg', alt: 'Рабочее место мастера по меху' },
-        { src: '/images/gov-import/proizvodstvo/img_7195-kopiya.jpg', alt: 'Процесс работы в ателье' },
-        { src: '/images/gov-import/proizvodstvo/s-ceh-s.jpg', alt: 'Цех мехового ателье' },
-        { src: '/images/gov-import/proizvodstvo/ss-ceh-sh-1.jpg', alt: 'Производство — ателье Mary Belle у м. Войковская' },
+        { src: '/images/before-after/vojkovskaya-collage.jpg', alt: 'Ремонт шуб у м. Войковская — коллаж работ до и после' },
       ]}
       relatedServices={[
         { title: 'Ремонт шуб', href: '/uslugi/remont-shub' },
