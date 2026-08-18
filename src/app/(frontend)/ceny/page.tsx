@@ -13,11 +13,35 @@ export const metadata = {
     title: 'Цены на ремонт шуб, пошив и хранение — Москва',
     description: 'Прайс-лист мехового ателье Mary Belle. Цены на ремонт шуб, хранение, пошив на заказ, окрашивание, химчистку.',
     url: 'https://mary-belle.ru/ceny',
-    images: [{ url: '/images/production/karakul-detail.jpg' }],
+    images: [{ url: '/images/og/ceny.jpg', width: 1200, height: 630 }],
   },
 }
 
+// Раздел пошива. Держим его в коде (а не только в Strapi), чтобы он гарантированно
+// показывался на /ceny с актуальными ценами. При мердже не дублируется, если такой
+// раздел появится в Strapi (см. CenyPage).
+const poshivCategory = {
+  categoryName: 'Индивидуальный пошив', href: '/uslugi/poshiv-shub', sortOrder: 0, slug: 'individualnyj-poshiv',
+  items: [
+    { label: 'Пошив шубы из норки', price: 'от 130 000 ₽' },
+    { label: 'Пошив шубы из соболя', price: 'от 260 000 ₽' },
+    { label: 'Пошив шубы из шиншиллы', price: 'от 210 000 ₽' },
+    { label: 'Пошив шубы из каракуля', price: 'от 105 000 ₽' },
+    { label: 'Пошив шубы из лисы / песца', price: 'от 95 000 ₽' },
+    { label: 'Меховой жилет', price: 'от 55 000 ₽' },
+    { label: 'Болеро / меховая накидка', price: 'от 45 000 ₽' },
+    { label: 'Меховой палантин', price: 'от 35 000 ₽' },
+    { label: 'Пошив пальто (шерсть / кашемир)', price: 'от 90 000 ₽' },
+    { label: 'Пальто с меховой отделкой', price: 'от 90 000 ₽' },
+    { label: 'Куртка (мех + кожа)', price: 'от 75 000 ₽' },
+    { label: 'Пончо / кейп с мехом', price: 'от 65 000 ₽' },
+    { label: 'Изготовление макета с выкройкой', price: 'от 15 000 ₽' },
+    { label: 'Сборка и разборка шубы', price: 'от 35 000 ₽' },
+  ],
+}
+
 const fallbackCategories = [
+  poshivCategory,
   {
     categoryName: 'Перекрой', href: '/uslugi/perekroj', sortOrder: 1, slug: 'perekroj',
     items: [
@@ -134,26 +158,51 @@ const fallbackCategories = [
   {
     categoryName: 'Химчистка', href: '/uslugi/himchistka', sortOrder: 13, slug: 'himchistka',
     items: [
-      { label: 'Химчистка шубы', price: 'от 5 000 ₽' },
-      { label: 'Химчистка дублёнки', price: 'от 4 000 ₽' },
-      { label: 'Химчистка кожаной куртки', price: 'от 3 000 ₽' },
+      { label: 'Химчистка шубы (норка, каракульча)', price: 'от 10 500 ₽' },
+      { label: 'Химчистка шубы (соболь, шиншилла, рысь, куница)', price: 'от 13 000 ₽' },
+      { label: 'Химчистка шубы (лиса, песец, енот, волк)', price: 'от 10 500 ₽' },
+      { label: 'Химчистка шубы (бобёр, нерпа, каракуль, котик)', price: 'от 9 200 ₽' },
+      { label: 'Химчистка дублёнки', price: 'от 6 000 ₽' },
+      { label: 'Химчистка кожаной куртки / пальто', price: 'от 5 000 ₽' },
+      { label: 'Пуховики, стёганые изделия', price: 'от 5 500 ₽' },
       { label: 'Антимольная обработка', price: 'от 1 500 ₽' },
+      { label: 'Экспресс-чистка (1–2 дня)', price: '+50%' },
     ],
   },
   {
     categoryName: 'Окрашивание меха', href: '/uslugi/okrashivanie', sortOrder: 14, slug: 'okrashivanie',
     items: [
-      { label: 'Окрашивание шубы (полное)', price: 'от 12 000 ₽' },
-      { label: 'Тонирование', price: 'от 8 000 ₽' },
-      { label: 'Окрашивание жилета', price: 'от 7 000 ₽' },
-      { label: 'Окрашивание воротника/манжет', price: 'от 3 000 ₽' },
+      { label: 'Окрашивание шубы (полное)', price: 'от 50 000 ₽' },
+      { label: 'Тонирование', price: 'от 15 000 ₽' },
+      { label: 'Окрашивание жилета', price: 'от 30 000 ₽' },
     ],
   },
 ]
 
+// Сезонный формат цены: "~~от 21 500 ₽~~ от 15 000 ₽" — часть в ~~ ~~ рендерится
+// зачёркнутой («цена без скидки»). Обычная строка проходит как есть.
+function PriceCell({ price }: { price: string }) {
+  const m = price.match(/^~~(.+?)~~\s*(.+)$/)
+  if (!m) return <>{price}</>
+  return (
+    <>
+      <s className="text-text-muted font-normal opacity-70 mr-2">{m[1]}</s>
+      {m[2]}
+    </>
+  )
+}
+
 export default async function CenyPage() {
   const strapiPrices = await getPrices()
-  const priceCategories = strapiPrices.length > 0 ? strapiPrices : fallbackCategories
+  // Гарантируем раздел пошива: если Strapi отдаёт цены, но раздела пошива в нём
+  // ещё нет — добавляем его первым. Фолбэк уже содержит poshivCategory.
+  const strapiHasPoshiv = strapiPrices.some(
+    (c) => c.slug === 'individualnyj-poshiv' || /пошив/i.test(c.categoryName)
+  )
+  const priceCategories =
+    strapiPrices.length > 0
+      ? (strapiHasPoshiv ? strapiPrices : [poshivCategory, ...strapiPrices])
+      : fallbackCategories
 
   return (
     <>
@@ -173,8 +222,8 @@ export default async function CenyPage() {
               Цены на услуги
             </h1>
             <p className="mt-4 text-white/70 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto">
-              Актуальные цены на ремонт меховых изделий. Точная стоимость определяется
-              после осмотра изделия мастером.
+              Актуальные цены на индивидуальный пошив и ремонт меховых изделий.
+              Точная стоимость определяется после консультации с мастером.
             </p>
           </div>
         </section>
@@ -213,7 +262,7 @@ export default async function CenyPage() {
                       >
                         <span className="text-text-body">{item.label}</span>
                         <span className="text-brand font-medium tracking-wide whitespace-nowrap ml-4">
-                          {item.price}
+                          <PriceCell price={item.price} />
                         </span>
                       </div>
                     ))}
@@ -233,8 +282,9 @@ export default async function CenyPage() {
             <div className="mt-16 p-8 bg-bg-warm border border-border-light text-center">
               <p className="font-serif text-xl text-black mb-3">Точная стоимость — после осмотра</p>
               <p className="text-text-muted max-w-xl mx-auto mb-6">
-                Цены актуальны. Мастер осмотрит изделие и назовёт точную стоимость
-                с учётом сложности работ, типа меха и состояния.
+                Рекламный прайс — не публичная оферта, требуется консультация специалиста.
+                Мастер осмотрит изделие и назовёт точную стоимость с учётом сложности работ,
+                типа меха и состояния.
               </p>
               <a
                 href="tel:+74952254444"
